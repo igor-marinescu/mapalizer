@@ -43,6 +43,7 @@ mapalizer was created in Qt5 + Microsoft Visual C
 ## How to run mapalizer
 
 Windows: download the `bin/mapalizer.exe` and execute it.
+(MD5 Checksum: 044b9e6aaf42896c469b1e1442c08e8f)
 
 ## To do
 
