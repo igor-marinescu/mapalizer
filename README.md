@@ -29,6 +29,11 @@ The user has the option to:
 - filter the symbols by section.
 - search a symbol by name.
 
+Mapalizer can help you:
+- identify the potential location of buffer overflows (by checking how the symbols are organized in memory).
+- identify the most memory-expensive symbols and their sections.
+- identify all memory used (or available) for data and code.
+
 The following compilers/linkers are supported: IAR, Keil
 
 ## How to compile mapalizer
