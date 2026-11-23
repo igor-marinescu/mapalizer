@@ -30,7 +30,7 @@
 //******************************************************************************
 static const char APP_TITLE[] = "mapalizer";
 static const char FILE_FILTER[] =
-    "IAR MAP File (*.map);;ST/Keil L166 MAP File (*.m66);;Any File (*.*)";
+    "IAR MAP File (*.map);;GCC MAP File (*.map);;ST/Keil L166 MAP File (*.m66);;Any File (*.*)";
 static const int STATUS_TIMEOUT_MS = 3000;
 
 //******************************************************************************
@@ -223,7 +223,7 @@ bool MainWindow::openFile(const QString &fileName){
     if(!recognized || newMap->entMap.empty()){
         AppInterface::MsgErr(this, tr("No symbols found."),
                 QDir::toNativeSeparators(fileName) + "\n"
-                + tr("The file is not a supported map file (IAR, ST/Keil L166)."));
+                + tr("The file is not a supported map file (IAR, GCC, ST/Keil L166)."));
         return false;
     }
 

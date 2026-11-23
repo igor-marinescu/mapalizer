@@ -10,6 +10,7 @@
 #include "map_loader.h"
 #include "iar_map.h"
 #include "st_map.h"
+#include "gcc_map.h"
 
 //******************************************************************************
 MapFormat detectMapFormat(const std::string & content, const std::string & extension){
@@ -23,6 +24,10 @@ MapFormat detectMapFormat(const std::string & content, const std::string & exten
     if((content.find("*** ENTRY LIST") != std::string::npos)
     || (content.find("IAR ELF Linker") != std::string::npos))
         return MAP_FORMAT_IAR;
+
+    // GNU ld signatures
+    if(content.find("Linker script and memory map") != std::string::npos)
+        return MAP_FORMAT_GCC;
 
     // Not recognized: use the file extension
     std::string ext = extension;
@@ -42,6 +47,8 @@ XMap * createMap(MapFormat format){
     switch(format){
     case MAP_FORMAT_ST:
         return new StMap();
+    case MAP_FORMAT_GCC:
+        return new GccMap();
     case MAP_FORMAT_IAR:
     default:
         return new IarMap();

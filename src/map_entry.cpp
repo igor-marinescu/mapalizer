@@ -100,14 +100,14 @@ bool XMap::isValidSymbolName(const std::string & name){
 }
 
 //******************************************************************************
-void XMap::addEntry(const MapEntry & entry){
+void XMap::addEntry(const MapEntry & entry, bool countSize){
 
     entMap.push_back(entry);
 
     if(entry.addr > maxAddr)
         maxAddr = entry.addr;
 
-    MapValue size = entry.valid.size ? entry.size : 0;
+    MapValue size = (countSize && entry.valid.size) ? entry.size : 0;
 
     // Object entry (inserted if not already in map)
     ObjEntry * objEntry = nullptr;

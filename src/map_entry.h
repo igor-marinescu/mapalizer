@@ -105,8 +105,10 @@ protected:
     // true if 'name' starts with a character allowed for a symbol name
     static bool isValidSymbolName(const std::string & name);
 
-    // Add a valid entry to the entry list and update object/total sizes
-    void addEntry(const MapEntry & entry);
+    // Add a valid entry to the entry list and update object/total sizes.
+    // countSize = false: the size is not added to the object/total sizes
+    // (e.g. alias of a symbol already counted).
+    void addEntry(const MapEntry & entry, bool countSize = true);
 
 private:
     // not copyable

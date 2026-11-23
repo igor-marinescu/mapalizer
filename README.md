@@ -34,7 +34,9 @@ Mapalizer can help you:
 - identify the most memory-expensive symbols and their sections.
 - identify all memory used (or available) for data and code.
 
-The following compilers/linkers are supported: IAR, Keil
+The following compilers/linkers are supported: IAR, Keil, GCC (GNU ld)
+
+Note for GCC map files: the GNU linker does not list symbol sizes. mapalizer calculates the size of a symbol as the distance to the next symbol in the same input section (or to the end of the section). Parts of input sections without a global symbol (e.g. static functions or variables) are listed under the input section name, e.g. `.text.my_static_function` or `.bss`.
 
 ## How to compile mapalizer
 

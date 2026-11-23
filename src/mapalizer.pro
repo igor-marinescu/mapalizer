@@ -32,7 +32,8 @@ SOURCES += main.cpp \
     map_models.cpp \
     utils.cpp \
     st_map.cpp \
-    iar_map.cpp
+    iar_map.cpp \
+    gcc_map.cpp
 
 HEADERS  += mainwindow.h \
     ConfFile.h \
@@ -43,7 +44,8 @@ HEADERS  += mainwindow.h \
     map_models.h \
     utils.h \
     st_map.h \
-    iar_map.h
+    iar_map.h \
+    gcc_map.h
 
 FORMS    += mainwindow.ui
 
