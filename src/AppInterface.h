@@ -18,42 +18,37 @@
 //******************************************************************************
 class AppInterface{
 
-    bool in_loadWidgetGeometry;
-    QWidget * wid_loadWidgetGeometry;
-
 public:
 
     ConfFile confFile;
 
+    // Loads the configuration from the user's application data directory.
+    // QCoreApplication must exist and applicationName must be set.
     AppInterface();
     virtual ~AppInterface();
 
-    void saveWidgetGeometry(QWidget * wid, const char * category);
+    // Write the configuration file. Returns false on error.
+    bool saveConfig();
+
+    void saveWidgetGeometry(const QWidget * wid, const char * category);
     void loadWidgetGeometry(QWidget * wid, const char * category);
 
     // Messages
-    static int MsgErr(const QString & txt, const QString & info);
-    static int MsgWrn(const QString & txt, const QString & info,
+    static int MsgErr(QWidget * parent, const QString & txt, const QString & info = QString());
+    static int MsgWrn(QWidget * parent, const QString & txt, const QString & info,
                 QMessageBox::StandardButtons btns,
                 QMessageBox::StandardButton  btn);
-    static int MsgInf(const QString & txt, const QString & info = "");
+    static int MsgInf(QWidget * parent, const QString & txt, const QString & info = QString());
 
-    // Open/Save dialogs
-    QString SaveDialog(QWidget * parent,
+    // Open/Save dialogs (return an empty string if canceled)
+    static QString SaveDialog(QWidget * parent,
                        const QString & directory,
                        const QString & filter,
                        const QString & extension);
-    QString OpenDialog(QWidget * parent,
+    static QString OpenDialog(QWidget * parent,
                        const QString & directory,
                        const QString & filter,
-                       QString * selFilter = NULL);
-
-/*
-    QString OpenDialog2(QWidget * parent,
-                       const QString & directory,
-                       const QString & filter,
-                       QString * selFilter = NULL);
-*/
+                       QString * selFilter = nullptr);
 };
 
 //******************************************************************************

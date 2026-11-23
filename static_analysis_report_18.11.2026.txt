@@ -1,0 +1,575 @@
+================================================================================
+ mapalizer - Static Code Analysis Report
+ Scope : src/*.cpp, src/*.h, src/mapalizer.pro, src/mapalizer.rc, .gitignore
+ Date  : 2026-11-18
+ Note  : Manual static review only - nothing was compiled, run or modified.
+================================================================================
+
+Severity legend:
+  [CRITICAL] crash / memory corruption / undefined behaviour likely in normal use
+  [HIGH]     wrong results or crash under realistic conditions
+  [MEDIUM]   functional defect, robustness or portability problem
+  [LOW]      code quality, maintainability, minor UX
+  [INFO]     cosmetic / style / possible improvement
+
+Format:  <file>:<line>  [SEVERITY]  <issue>
+
+--------------------------------------------------------------------------------
+ 1. CRITICAL / HIGH
+--------------------------------------------------------------------------------
+
+src/mainwindow.cpp:145-148  [CRITICAL]
+    openFile() deletes iarMap/stMap but does not set them to nullptr. Pointers
+    dangle. Scenario: open an IAR .map (iarMap = A), then open a .M66 (A deleted,
+    iarMap still == A, stMap = B), then open any file -> "delete iarMap" deletes
+    A a second time => double free / heap corruption. The same dangling pointer
+    is deleted again in the destructor (mainwindow.cpp:84-88).
+    Fix: set to nullptr after delete, or better use a single
+    std::unique_ptr<XMap> (requires virtual destructor in XMap, see below).
+
+src/iar_map.cpp:29 (used at :68)  [HIGH]
+    'char chapter;' is uninitialized. Every line before the first "***" line is
+    tested with 'if(chapter == 'E')' on an indeterminate value (undefined
+    behaviour; random garbage parsing if it happens to be 'E').
+    Fix: char chapter = '\0';
+
+src/st_map.cpp:29-30 (used at :60, :67)  [HIGH]
+    'chapter' and 'ch_line_idx' are uninitialized. Same undefined behaviour as
+    above; ch_line_idx++ on an indeterminate value.
+
+src/iar_map.cpp:52, src/st_map.cpp:49  [HIGH]
+    strncpy_s(cline, 256, line.c_str(), line.length()) - if a line is >= 256
+    characters the runtime-constraint is violated: with MSVC CRT the invalid
+    parameter handler is called (default: process termination). Long C++
+    mangled/demangled symbol names easily exceed 255 chars.
+    Also MSVC/Annex-K specific (not portable).
+    Fix: pass _TRUNCATE as count, or avoid the fixed buffer entirely and work
+    on a std::vector<char>/std::string copy of the line.
+
+src/utils.cpp:115  [HIGH]
+    extractRest(): condition '(*ptr0 == ' ') && (*ptr0 == '\t')' is always false
+    (a char cannot be both). Trailing whitespace is never removed, contrary to
+    the documented behaviour. Should be '||'. Object names may therefore carry
+    trailing blanks and object filtering / grouping compares unequal strings.
+
+src/utils.cpp:145, :194; src/map_entry.h:43-44, :64-66, :87-89  [HIGH]
+    'unsigned long' is 32 bit on Windows (LLP64). 64-bit addresses (IAR prints
+    them as 0x0000'0000'0800'0000 - the apostrophe handling suggests this is
+    expected) are silently truncated; hex digits beyond 8 are shifted out with
+    no overflow detection. Sizes summed in codeSize/dataSize can also overflow.
+    Fix: use uint64_t / unsigned long long and check digit count.
+
+src/ConfFile.cpp:272  [HIGH]
+    get_qstr() returns it2->second.varString directly, ignoring the object type.
+    If the value was stored as an integer (set()) or was previously read via
+    get() (which converts STRING->INTEGER and CLEARS varString, see :44-53) an
+    empty string is returned. Use the 'operator string()' conversion instead.
+
+src/ConfFile.cpp:44-53 / :58-68 (decl. ConfFile.h:41-42)  [HIGH]
+    Conversion operators are non-const and destructive: converting to int
+    erases the string representation and vice versa. Reading a value changes
+    the stored value (e.g. a string "abc" read once as int becomes 0 forever and
+    is written back as "0" to config.cfg). Conversions should be const and
+    non-mutating.
+
+src/mainwindow.cpp:151  [HIGH]
+    fileName.toLatin1() - any path containing characters outside Latin-1
+    (Cyrillic, CJK, many Eastern European letters, ...) is converted to '?' and
+    the file cannot be opened. Additionally the parsers use narrow-char
+    ifstream, which on Windows uses the ANSI code page.
+    Fix: open with QFile/QTextStream, or pass a wide path
+    (fileName.toStdWString()) to std::ifstream on Windows.
+
+src/mainwindow.cpp:153-157  [HIGH]
+    No error handling when the file cannot be opened or contains no recognised
+    data: the parsers silently return (iar_map.cpp:38-39, st_map.cpp:39-40),
+    empty tables are shown and the title shows the file name as if loaded.
+    Show an error (AppInterface::MsgErr exists but is never used).
+
+--------------------------------------------------------------------------------
+ 2. MEDIUM
+--------------------------------------------------------------------------------
+
+src/map_entry.h:78-90  [MEDIUM]
+    XMap (base class) has no constructor (objCnt, codeSize, dataSize,
+    unknownSize are uninitialized until a derived ctor sets them) and no
+    virtual destructor - deleting a derived object through an XMap* (e.g.
+    currMap) would be undefined behaviour. All data members are public.
+
+src/map_entry.h:29-40  [MEDIUM]
+    Anonymous struct inside a union is a compiler extension (not ISO C++,
+    warns with -pedantic). Writing 'valid.value' and reading bit fields is
+    union type-punning (UB in C++). Use plain bool members or std::bitset.
+
+src/AppInterface.h:21-22 / src/AppInterface.cpp:18-21  [MEDIUM]
+    in_loadWidgetGeometry and wid_loadWidgetGeometry are not initialized in the
+    constructor. saveWidgetGeometry() reads them; if it is ever called before
+    loadWidgetGeometry() -> undefined behaviour.
+
+src/AppInterface.cpp:19  [MEDIUM]
+    Configuration file "config.cfg" is a relative path -> depends on the current
+    working directory (shortcut "Start in", drag&drop on exe, command line).
+    Settings get lost/scattered, and writing fails silently in read-only dirs
+    (e.g. Program Files). Use QSettings or QStandardPaths::AppConfigLocation.
+
+src/AppInterface.cpp:39-42  [MEDIUM]
+    When the window is minimized/maximized only one flag is written; the other
+    keeps its old value (e.g. Minimized=1 and Maximized=1 can both be stored).
+    Saving "Minimized" also makes the application start minimized next time,
+    which is usually unwanted.
+
+src/AppInterface.cpp:65-71  [MEDIUM]
+    Restored position is not validated against available screens; after
+    removing a monitor or changing resolution the window can open off-screen.
+    Consider QWidget::saveGeometry()/restoreGeometry() (handles frame, screen
+    and maximized state).
+
+src/AppInterface.cpp:136, :159  [MEDIUM]
+    parent->tr(...) dereferences 'parent' without null check; calling
+    SaveDialog/OpenDialog with nullptr crashes. Use QObject::tr() or
+    QCoreApplication::translate().
+
+src/AppInterface.cpp:14, src/mainwindow.cpp:17  [MEDIUM]
+    #include "Windows.h" is not needed (only used by commented-out code),
+    makes the code Windows-only, pollutes the namespace with min/max macros, and
+    the capitalised name breaks cross-compilation on case-sensitive file
+    systems ("windows.h" with MinGW on Linux).
+
+src/ConfFile.cpp:80-96  [MEDIUM]
+    Configuration is written in the destructor: errors are silently ignored,
+    nothing is saved if the application crashes, and the file is truncated
+    before writing (no write-to-temp-then-rename -> corrupt config on failure).
+
+src/ConfFile.cpp:139-140, :153-154  [MEDIUM]
+    remove_if(isspace) removes ALL whitespace, not only leading/trailing (the
+    comment says "trim"). "Win Pos" becomes "WinPos". Also calling isspace()
+    with a (possibly negative) char is undefined behaviour for non-ASCII bytes;
+    cast to unsigned char.
+
+src/ConfFile.cpp:163  [MEDIUM]
+    Value is not trimmed; with CRLF line endings (file edited/copied on another
+    system, or opened in binary mode) a trailing '\r' becomes part of the value,
+    e.g. in the stored LastFile path.
+
+src/ConfFile.cpp:48  [MEDIUM]
+    strtol() result not checked (no end-pointer / errno check): invalid or
+    out-of-range values silently become 0 / truncated by the (int) cast.
+
+src/ConfFile.h:70-71  [MEDIUM]
+    Overloads get(cat,name,int*) and get(cat,name,int default) are error-prone:
+    get(c, n, NULL) or get(c, n, 0) selects the int overload (NULL is 0 on
+    MSVC) instead of the pointer overload. Rename one of them (e.g. get_int /
+    get_or).
+
+src/ConfFile.cpp:99-112  [MEDIUM]
+    Copy constructor and copy assignment do not copy 'filename' (copy ctor also
+    leaves it default). If intentional (avoid double write), document it;
+    otherwise a copy loses its persistence target. Rule of three/five unclear.
+
+src/iar_map.cpp:56-64  [MEDIUM]
+    Chapter detection uses only the first letter of the chapter name
+    ('E' for "ENTRY LIST"). Any other chapter starting with 'E' would be parsed
+    as entry list. Lines "***" with no second word keep the previous chapter.
+    Compare the full chapter name.
+
+src/iar_map.cpp:124-127  [MEDIUM]
+    Symbol name validation rejects names starting with '?', '$', '@', '~' or
+    digits (IAR uses '?' and '$' prefixed symbols, e.g. "?main", "$Super$$");
+    such entries are silently dropped. Inconsistent with st_map.cpp:128 which
+    accepts '?'.
+
+src/iar_map.cpp:73  [MEDIUM]
+    Continuation-line detection checks only for ' ' - a line starting with a
+    TAB is treated as a symbol name.
+
+src/iar_map.cpp:152, src/st_map.cpp:142  [MEDIUM]
+    codeSize/dataSize/unknownSize totals (shown in the "< All >" row) are only
+    accumulated for entries that have an object name; entries without object
+    are shown in the list but missing from the totals -> totals inconsistent
+    with the list.
+
+src/iar_map.cpp:142  [LOW]
+    Name copied from prevEntry was never run through the name-validity check
+    (it was stored at :86 before validation).
+
+src/st_map.cpp:89-90  [MEDIUM]
+    Size is always 0 for ST/Keil map files, so the Size column and the Code/
+    Data totals in the object table are always 0. Possible improvement:
+    estimate sizes from the address difference to the next symbol in the same
+    section, or mark the size as "not available" (valid.size = false) instead
+    of reporting 0 as valid.
+
+src/st_map.cpp:106-110  [MEDIUM]
+    &cptr1[1] skips the first character of the CLASS field without
+    explanation/validation (magic offset). If the field format differs the
+    type is silently UNKNOWN.
+
+src/st_map.cpp:63  [MEDIUM]
+    Entity lines are recognised only if they start with exactly 6 spaces;
+    the header skipping (ch_line_idx <= 2) assumes a fixed layout. Fragile.
+
+src/st_map.cpp:138  [MEDIUM]
+    DBG_INFO(entry) for every symbol; together with DEBUGON/DEBUGCOUT enabled
+    in mapalizer.pro this writes every entry to debug.txt in normal builds ->
+    slow loading and disk I/O.
+
+src/mapalizer.pro:17-18  [MEDIUM]
+    DEFINES += DEBUGCOUT / DEBUGON are always active (also release builds).
+    Every run creates/overwrites debug.txt in the current directory and
+    std::cout is redirected. Enable only for debug: CONFIG(debug, debug|release).
+
+src/utils.cpp:185-212  [MEDIUM]
+    interpretHex2(): accepts "H" (no digits) as valid value 0; does not accept
+    lowercase 'h' suffix; no overflow check; doc says "start with" but any
+    trailing text after 'H' is ignored without check.
+
+src/utils.cpp:56, :63, :101, :135, :191  [MEDIUM]
+    Only ' ' and '\t' are treated as whitespace; '\r' (CRLF files read in a
+    non-text-mode or on non-Windows platforms) stays attached to the last word
+    of the line (object name, type ...).
+
+src/mainwindow.cpp:21-27  [MEDIUM]
+    IntTableWidgetItem compares text().toInt(): values > INT_MAX (unsigned long
+    sizes) give 0 -> wrong sort order. Simpler and correct: store the number
+    with item->setData(Qt::DisplayRole, qulonglong(value)) and drop the custom
+    class. Also missing 'override'.
+
+src/mainwindow.cpp:464  [MEDIUM]
+    on_btnFind_clicked(): after the wrap-around search the "Found?" condition is
+    'row < rowCount()' but the loop ends at currentRow(); when nothing is found
+    row == currentRow() and the condition is still true. No "not found"
+    feedback is given to the user. Condition should be 'row < currentRow()'.
+
+src/mainwindow.cpp:474-491  [MEDIUM]
+    Event filter is installed on the whole application (qApp) to catch Ctrl+F:
+    every event of every object passes through it, and a key event that
+    propagates to parents is seen several times. Use a QShortcut /
+    QAction with QKeySequence::Find (and QKeySequence::FindNext for F3).
+    The filter is also not removed in the destructor although 'ui' is deleted
+    first (mainwindow.cpp:82).
+
+src/mainwindow.cpp:152  [MEDIUM]
+    Map format is chosen only by file extension (.M66 -> ST/Keil, everything
+    else -> IAR). A file with another extension (e.g. Keil .map) is parsed with
+    the wrong parser and shows nothing. Detect format from file content.
+
+src/mainwindow.cpp:216 / :160-161  [MEDIUM]
+    ui->tabObjects->clear()/setRowCount(0) in displayObj() emits
+    currentCellChanged -> on_tabObjects_currentCellChanged() calls displayMap()
+    and changes the title; openFile() then calls displayMap() again. The entry
+    table is rebuilt 2-3 times per file open (slow for large maps). Block
+    signals (QSignalBlocker) during rebuild.
+
+src/mainwindow.cpp:293-423  [MEDIUM]
+    All parsing and table filling runs on the GUI thread with one
+    QTableWidgetItem per cell (5 per symbol); large map files freeze the UI.
+    Consider QTableView + custom QAbstractTableModel + QSortFilterProxyModel
+    (which would also make the manual filtering/counting unnecessary).
+
+--------------------------------------------------------------------------------
+ 3. LOW
+--------------------------------------------------------------------------------
+
+src/ConfFile.h:6-7, :81  [LOW]
+    Include guard VARFBOX_H does not match the file name (copy/paste leftover);
+    risk of collision with another header. Use CONFFILE_H.
+
+src/ConfFile.h:16, src/map_entry.h:17, src/iar_map.h:18, src/st_map.h:18  [LOW]
+    'using namespace std;' in header files leaks into every includer
+    (e.g. mainwindow.h parameter named 'map' at :37-38 shadows std::map).
+
+src/ConfFile.h:27  [LOW]
+    Enum value BYTEARRAY is never used.
+
+src/ConfFile.h:33-34  [LOW]
+    Converting constructors ConfObj(int) / ConfObj(string) are implicit;
+    ConfObj(string) takes the string by value (use const string&).
+
+src/ConfFile.h:63-74  [LOW]
+    exists(), get(), get_str(), get_qstr() do not modify the object and
+    should be const.
+
+src/ConfFile.cpp:116  [LOW]
+    Constructor parameter 'filename' shadows the member 'filename'
+    (this->filename used to disambiguate).
+
+src/ConfFile.cpp:205-273  [LOW]
+    get(), get(default), get_str(), get_qstr() repeat the same two-level
+    lookup; factor out a private find(cat, name) helper.
+
+src/ConfFile.cpp:10-15  [LOW]
+    Missing #include <cstdlib> (strtol), <cctype> (isspace); relies on
+    transitive includes.
+
+src/iar_map.cpp:99-101, src/st_map.cpp:53, :63, :106-110, :176  [LOW]
+    strcmp/strncmp used without #include <cstring> (transitive include only).
+
+src/iar_map.cpp:12, src/st_map.cpp:12; src/iar_map.h:13-15, src/st_map.h:13-15  [LOW]
+    Unused includes: <sstream>, <algorithm>, <vector>, <set>, <map>,
+    <iostream> (already provided by map_entry.h or not needed).
+
+src/mainwindow.cpp:13-14  [LOW]
+    Unused includes <QFile>, <QTextStream>.
+
+src/iar_map.cpp:120-180 vs src/st_map.cpp:122-170  [LOW]
+    Name validation and "add entry / accumulate object sizes" blocks are
+    duplicated almost verbatim. Move into an XMap::addEntry() method.
+
+src/iar_map.cpp:17, src/st_map.cpp:17  [LOW]
+    Whole file parsing is done in the constructor; a constructor cannot report
+    failure (no return value, no exception used). Prefer a bool load()/parse()
+    method.
+
+src/iar_map.cpp:26, :32; src/st_map.cpp:26, :33  [LOW]
+    Magic numbers 256 (line buffer) and 1000 (reserve). Use named constants.
+
+src/st_map.cpp:53, :176  [LOW]
+    Hard-coded string lengths (24, 19) for strncmp; derive from the literal
+    (sizeof("...")-1) to avoid mismatch on edits.
+
+src/iar_map.cpp:190-194, src/st_map.cpp:188-192  [LOW]
+    Empty destructors (only debug traces) - can be removed / defaulted.
+
+src/map_entry.h:56, :74  [LOW]
+    std::ostream used in friend declarations but <iosfwd>/<ostream> is not
+    included in the header.
+
+src/map_entry.cpp:32-33, :56-58  [LOW]
+    operator<< sets std::hex on the stream and does not restore it; all
+    subsequent integer output on that stream (debug log) is in hex.
+
+src/map_entry.h:52  [LOW]
+    Commented-out operator= declaration (dead code).
+
+src/mainwindow.h:56-58  [LOW]
+    Three raw pointers (iarMap, stMap, currMap) for one loaded map. One
+    std::unique_ptr<XMap> would remove the ownership bug above and the
+    duplicated delete code.
+
+src/mainwindow.h:28, :34-35  [LOW]
+    eventFilter/dragEnterEvent/dropEvent are overrides of virtual functions but
+    are not marked 'override'; dragEnterEvent/dropEvent are public instead of
+    protected.
+
+src/mainwindow.h:31  [LOW]
+    'QWidget *parent = 0' - use nullptr. Mixed NULL / nullptr / 0 usage across
+    the code base (AppInterface.h:49, mainwindow.cpp:33-35).
+
+src/mainwindow.h:37-38 vs src/mainwindow.cpp:210, :293  [LOW]
+    Parameter named 'map' in declaration but 'mmap' in definition; 'map' also
+    shadows std::map (because of 'using namespace std').
+
+src/mainwindow.cpp:94-99  [LOW]
+    dragEnterEvent accepts any URL (also non-local / web URLs); check
+    url.isLocalFile().
+
+src/mainwindow.cpp:104-108  [LOW]
+    dropEvent opens every dropped file in sequence; each one replaces the
+    previous one -> only the last is shown but all are parsed. Open only the
+    first file. 'foreach' is a deprecated Qt macro - use range-based for.
+
+src/mainwindow.cpp:130, :142  [LOW]
+    "LastFile" is stored twice (in openFile() and on_btnOpen_clicked()).
+
+src/mainwindow.cpp:221-226  [LOW]
+    Comments say "Address" / "Size" for columns 1 and 2 of the object table,
+    which actually are "Code" / "Data" (copy/paste).
+
+src/mainwindow.cpp:221  [LOW]
+    Object table shows Code and Data but not the computed "unknown" size
+    (ObjEntry::unknown, XMap::unknownSize) - objects with only unknown entries
+    show 0/0.
+
+src/mainwindow.cpp:222-223, :306-307  [LOW]
+    setHorizontalHeaderLabels() is called before setColumnCount(); if the
+    column count in the .ui is smaller, the extra labels are dropped. Call
+    setColumnCount() first.
+
+src/mainwindow.cpp:240  [LOW]
+    XMap::objCnt is redundant with objMap.size(); keeping two counters in sync
+    is error-prone.
+
+src/mainwindow.cpp:243-260  [LOW]
+    The "< All >" row takes part in sorting and moves away from the top when
+    the user sorts by Name/Code/Data. Also the "< All >" detection relies on
+    comparing display text (:196).
+
+src/mainwindow.cpp:244, :251, :258, :268, :275, :282, :390, :396, :402, :409, :415  [LOW]
+    'item->flags() ^ Qt::ItemIsEditable' toggles the flag; the intent is to
+    clear it: 'item->flags() & ~Qt::ItemIsEditable'. Repeated 11 times - use
+    a small helper to create read-only items.
+
+src/mainwindow.cpp:231-233, :317-319  [LOW]
+    Palette and column widths/header labels are re-applied on every refresh;
+    set them once in the constructor.
+
+src/mainwindow.cpp:334-335, :362-363  [LOW]
+    'entry == nullptr' is never true (address of a vector element) - dead check.
+
+src/mainwindow.cpp:330-354 vs :359-420  [LOW]
+    Filter logic (object + type checkboxes) is duplicated for counting and
+    filling. Use one predicate function, or collect matching entries once.
+
+src/mainwindow.cpp:401  [LOW]
+    Address formatted with fixed width 8 - inconsistent with 64-bit addresses.
+
+src/mainwindow.cpp:206  [LOW]
+    Window title becomes "mapalizer - " (trailing dash) when no file is loaded.
+    The title string "mapalizer" is duplicated at :43, :165, :206.
+
+src/mainwindow.cpp:438  [LOW]
+    Search looks only in the Name column; "Find" does not search object names.
+
+src/mainwindow.cpp:484-487  [LOW]
+    F3 handler is empty (call commented out) - dead code / unfinished feature.
+
+src/mainwindow.cpp:57-61  [LOW]
+    Commented-out style-sheet code (dead code).
+
+src/AppInterface.cpp:129-150, :88-126  [LOW]
+    SaveDialog(), MsgErr(), MsgWrn(), MsgInf() are never used. Message boxes
+    are created without a parent (not centered over the main window).
+
+src/AppInterface.cpp:144-146  [LOW]
+    fileNames[0] accessed without checking selectedFiles() is non-empty.
+
+src/AppInterface.cpp:165-196, src/AppInterface.h:51-56  [LOW]
+    Large commented-out OpenDialog2 (dead code).
+
+src/AppInterface.cpp:33-36, :61, :82  [LOW]
+    The in_loadWidgetGeometry guard is ineffective: loadWidgetGeometry() never
+    triggers saveWidgetGeometry() synchronously, so the flag is never observed
+    as true. Either remove it or document the intended scenario.
+
+src/debug_cout.cpp:35  [LOW]
+    Global object 'DebugCout debugCout' redirects std::cout during static
+    initialisation; order relative to other globals is unspecified.
+
+src/debug_cout.cpp:45  [LOW]
+    dfile.open() result not checked; if debug.txt cannot be created, cout is
+    redirected to a closed filebuf, output is lost and cout gets badbit (which
+    persists after the buffer is restored).
+
+src/debug_cout.h:51-59  [LOW]
+    DebugCout is copyable (raw streambuf pointers); delete copy ctor/assignment.
+
+src/main.cpp:12-14  [LOW]
+    argv[1] is logged but not used - a file passed on the command line
+    ("Open with...", drag onto mapalizer.exe) is not opened. Easy improvement:
+    if(argc >= 2) w.openFile(QString::fromLocal8Bit(argv[1])) (better use
+    QApplication::arguments() for Unicode).
+
+src/mapalizer.pro:42  [LOW]
+    Trailing line-continuation backslash on the last line of OTHER_FILES.
+
+src/mapalizer.pro  [LOW]
+    No explicit 'CONFIG += c++11' (or newer) although nullptr is used; no
+    warning flags (e.g. -Wall -Wextra / /W4) configured, which would have
+    reported several of the issues above (uninitialized variables, unused
+    includes, always-false condition).
+
+src/mapalizer.rc:1  [LOW]
+    Backslash in resource path "resources\mapalizer.ico"; use forward slash
+    for portability with windres / cross builds.
+
+.gitignore  [LOW]
+    Runtime files config.cfg and debug.txt are not ignored. Built binary
+    bin/mapalizer.exe is kept in the source tree (better published as a
+    release artifact).
+
+--------------------------------------------------------------------------------
+ 4. INFO (typos, comments, style)
+--------------------------------------------------------------------------------
+
+src/debug_cout.h:7, src/debug_cout.cpp:7  [INFO]
+    Comment says "use LOG(x) statement" but the macros are DBG_INFO/DBG_ENTER/...
+
+src/debug_cout.h:11, src/debug_cout.cpp:11  [INFO]
+    Typo "activate de debugging" -> "the"; "debuging" -> "debugging" (:2).
+
+src/debug_cout.h:24, src/debug_cout.cpp:24  [INFO]
+    "Data: 16.09.2013" -> "Date:".
+
+src/debug_cout.h:39-47  [INFO]
+    Macros are not wrapped in do { ... } while(0); when disabled they expand to
+    nothing, leaving empty statements ("empty body" warnings in if/else).
+
+src/AppInterface.cpp:29  [INFO]  Typo "configuratoin" -> "configuration".
+src/ConfFile.cpp:18          [INFO]  Typo "assigmnet" -> "assignment".
+src/ConfFile.cpp:30, ConfFile.h:36  [INFO]  Typo "assigment" -> "assignment".
+src/utils.cpp:13             [INFO]  Comment refers to 'pstring', parameter is 'pstart'.
+src/iar_map.cpp:136-137      [INFO]  Typos "splited" -> "split", "previos" -> "previous".
+src/mainwindow.cpp:20        [INFO]  Comment "Custom widget used to select size" - it
+                                     is a table item used for numeric sorting.
+src/main.cpp:1               [INFO]  Missing file header comment (all other files have one).
+src/mainwindow.cpp:468       [INFO]  Missing separator comment line before function
+                                     (inconsistent with the rest of the file).
+
+src/st_map.h:2, src/st_map.cpp:2  [INFO]
+    Class/file named "ST map" but README and parser target Keil L166 linker
+    output ("LINKER/LOCATER L166"); naming is confusing. File filter text
+    "ST MAP File (*.m66)" (mainwindow.cpp:120) has the same issue.
+
+src/utils.cpp:138  [INFO]
+    interpretHex() accepts only lowercase "0x", not "0X".
+
+src/utils.cpp:162  [INFO]
+    interpretHex() accepts a trailing digit separator ("0x12'").
+
+src/ConfFile.cpp:165-166, :169  [INFO]
+    Commented-out code (whitespace removal, debug cout).
+
+================================================================================
+ Summary
+   CRITICAL : 1   (double delete in MainWindow::openFile)
+   HIGH     : 9   (uninitialized parser state, strncpy_s abort on long lines,
+                   extractRest trim bug, 32-bit address truncation, config value
+                   corruption, Latin-1 file names, silent open failures)
+   MEDIUM   : ~30
+   LOW/INFO : ~60
+================================================================================
+
+
+================================================================================
+ RESOLUTION (2026-11-18)
+================================================================================
+Original sources backed up to: src_backup_before_fixes/
+Verified: builds with MSVC 2010 + Qt 5.1.1 (release + debug, no compiler
+warnings); parser output on map_examples/templproj.map identical to the
+original version; GUI behaviour checked with an automated test harness.
+
+FIXED - all CRITICAL, HIGH, MEDIUM, LOW and INFO items, except as noted below.
+Main structural changes:
+  - MainWindow owns the map via std::unique_ptr<XMap> (double delete gone).
+  - Parsers: parse(std::istream&) instead of parsing in the constructor;
+    state initialized; no fixed 256 char buffer; shared code moved into
+    XMap::addEntry()/isValidSymbolName(); 64 bit MapValue for addr/size.
+  - New map_loader.*: format detection by content (fallback: extension).
+  - New map_models.*: QTableView + models replace QTableWidget items
+    (numeric sorting, "< All >" pinned on top, one filter function,
+    added "Unknown" column).
+  - ConfFile stores plain strings (no destructive conversions), explicit
+    load()/save() with QSaveFile; config moved to the user's app data
+    directory (old config.cfg is migrated automatically on first start).
+  - Window geometry via saveGeometry()/restoreGeometry().
+  - Ctrl+F / F3 via QShortcut (application-wide event filter removed).
+  - Errors are shown for unreadable / unsupported files; status bar shows
+    symbol count and "not found" messages.
+  - File given on the command line is opened.
+  - Debug output (debug.txt) only in debug builds.
+
+NOT CHANGED / DIFFERENT SOLUTION:
+  - mainwindow.cpp:293-423 (parsing on GUI thread): parsing stays on the GUI
+    thread; with the model/view rewrite the expensive table filling is gone.
+  - mainwindow.cpp:438 (Find searches only Name): kept as intended behaviour.
+  - st_map.cpp:89-90 (ST size always 0): size is now marked "not available"
+    (empty cell) instead of being estimated from address gaps (an estimate
+    would be misleading for gaps/alignment).
+  - AppInterface MsgWrn/MsgInf/SaveDialog (unused): kept as reusable
+    helpers, but fixed (parent, empty selection).
+  - Parser classes (non-Qt) use 'virtual' instead of 'override' because
+    MSVC 2010 has no portable 'override'; Qt classes use Q_DECL_OVERRIDE.
+  - bin/mapalizer.exe was not rebuilt (still the old version).
+  - Window position/size stored by older versions is not migrated (one-time
+    reset of the window geometry).
+================================================================================

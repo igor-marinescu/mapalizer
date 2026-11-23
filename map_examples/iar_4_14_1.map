@@ -1,0 +1,1021 @@
+###############################################################################
+#
+# IAR ELF Linker V4.14.1.5408 for Renesas RX              19/Nov/2026  14:31:52
+# Copyright 2009-2019 IAR Systems AB.
+#
+#    Output file  =  D:\projects\PCS\PCM8_DM_FW\Debug\Exe\FW_DM-8.out.tmp
+#    Map file     =  D:\projects\PCS\PCM8_DM_FW\Debug\List\FW_DM-8.map
+#    Command line =
+#        -f C:\Users\IGOR~1.MAR\AppData\Local\Temp\EW8098.tmp
+#        (D:\projects\PCS\PCM8_DM_FW\Debug\Obj\adc.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\app_data.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\checksum.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\data_types.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\eeprom.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\error.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\hwsetup.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\iar_call_inits.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\interrupt.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\io.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\lbus_user.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\led.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\lju_bus_handler.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\lju_bus_protocol.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\logging.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\lowlvl.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\lowsrc.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\main.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\mcu_clocks.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\mcu_init.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\mcu_interrupts.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\mcu_locks.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\Pin.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\r_bsp_common.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\r_bsp_cpu.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\r_bsp_interrupts.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\r_bsp_locking.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\r_bsp_mcu_startup.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\r_bsp_software_interrupt.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\r_byteq.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\r_cg_hardware_setup.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\r_cmt_rx.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\r_iwdt_rx.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\r_iwdt_rx_user.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\r_lvd1_rx.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\r_lvd1_rx_user.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\r_rspi_rx.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\r_rspi_rx_pinset.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\r_rx_intrinsic_functions.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\r_s12ad_rx.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\r_s12ad_rx110.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\r_s12ad_rx_pinset.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\r_sci_rx.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\r_sci_rx110.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\r_sci_rx110_data.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\r_sci_rx_dmaca.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\r_sci_rx_dtc.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\r_sci_rx_pinset.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\r_smc_cgc.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\r_smc_cgc_user.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\r_smc_interrupt.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\reset.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\resetprg.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\rs485.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\timer.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\utils.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\vecttbl.o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Obj\version.o --no_out_extension -o
+#        D:\projects\PCS\PCM8_DM_FW\Debug\Exe\FW_DM-8.out.tmp --keep __checksum
+#        --map D:\projects\PCS\PCM8_DM_FW\Debug\List\FW_DM-8.map --config
+#        D:\projects\PCS\PCM8_DM_FW\lnkr5f51105.icf --config_def
+#        _USTACK_SIZE=0x600 --config_def _ISTACK_SIZE=0x1800 --config_def
+#        _HEAP_SIZE=0x000 --entry __iar_program_start --place_holder
+#        __checksum,2,.checksum,1 --define_symbol __checksum_begin=0xfffee000
+#        --define_symbol __checksum_end=0xffffbfff --debug_lib --redirect
+#        ___write=___write_buffered --no_vfe --text_out locale)
+#
+###############################################################################
+
+*******************************************************************************
+*** RUNTIME MODEL ATTRIBUTES
+***
+
+__SystemLibrary            = DLib
+__calling_conv             = abi10
+__core                     = 1
+__dlib_file_descriptor     = 0
+__dlib_full_locale_support = 0
+__dlib_version             = 6
+__double_size              = 32
+__endian                   = l
+__enum_size                = var
+__fpu                      = *
+__int_size                 = 32
+__lock_R10                 = 0
+__lock_R11                 = 0
+__lock_R12                 = 0
+__lock_R13                 = 0
+__lock_R8                  = 0
+__lock_R9                  = 0
+__rt_version               = 5
+
+
+*******************************************************************************
+*** HEAP SELECTION
+***
+
+The basic heap was selected because no calls to memory allocation
+functions were found in the application outside of system library
+functions, and there are calls to deallocation functions in the
+application.
+
+
+*******************************************************************************
+*** PLACEMENT SUMMARY
+***
+
+"A1":  place at address 0xffff'fffc { ro section .resetvect };
+"A2":  place at address 0xffff'ff80 { ro section .exceptvect };
+define block RAM_CONTENT
+   with fixed order {
+      rw section .data16*, rw section __DLIB_PERTHREAD, rw section .data24*,
+      rw, ro section D, ro section D_1, ro section D_2 };
+define block HEAP with size = 0, alignment = 4 { };
+define block HEAPS
+   with fixed order {
+      rw section SECTION_HEAP_OVERFLOW, block HEAP,
+      rw section SECTION_HEAP_UNDERFLOW };
+"RAM": place in [from 0x10 to 0x3fff] { first block RAM_CONTENT, block HEAPS };
+define block ISTACK with size = 6K, alignment = 4 { };
+define block USTACK with size = 1'536, alignment = 4 { };
+define block STACKS
+   with fixed order {
+      rw section SECTION_STACK_OVERFLOW, rw section SECTION_ISTACK_OVERFLOW,
+      block ISTACK, rw section SECTION_ISTACK_UNDERFLOW,
+      rw section SECTION_USTACK_OVERFLOW, block USTACK,
+      rw section SECTION_USTACK_UNDERFLOW, rw section SECTION_STACK_UNDERFLOW };
+"STACKS":
+       place at end of [from 0x10 to 0x3fff] { block STACKS };
+define block ROM_IDENT
+   with fixed order {
+      ro section IDENT_SECTION, ro section INFO_SECTION,
+      ro section HEADER_CHECKSUM_SECTION, ro section BODY_CHECKSUM_SECTION };
+define block ROM_CONTENT
+   with fixed order {
+      block ROM_IDENT, ro section .code16*, ro section .data16*,
+      ro section .code24*, ro section .data24*, ro };
+"ROM": place in [from 0xfffe'0000 to 0xffff'ffff] { block ROM_CONTENT };
+initialize by copy { rw, ro section D, ro section D_1, ro section D_2 };
+
+No sections matched the following patterns:
+
+  ro section .code16*                  in block ROM_CONTENT
+  ro section .code24*                  in block ROM_CONTENT
+  ro section .data16*                  in block ROM_CONTENT
+  ro section .option_mem               in "A0"
+  ro section D                         in block RAM_CONTENT
+  ro section D_1                       in block RAM_CONTENT
+  ro section D_2                       in block RAM_CONTENT
+  rw section .data16*                  in block RAM_CONTENT
+  rw section SECTION_HEAP_OVERFLOW     in block HEAPS
+  rw section SECTION_HEAP_UNDERFLOW    in block HEAPS
+  rw section SECTION_ISTACK_UNDERFLOW  in block STACKS
+  rw section SECTION_STACK_OVERFLOW    in block STACKS
+  rw section SECTION_STACK_UNDERFLOW   in block STACKS
+  rw section SECTION_USTACK_UNDERFLOW  in block STACKS
+  rw section __DLIB_PERTHREAD          in block RAM_CONTENT
+
+
+  Section                 Kind         Address    Size  Object
+  -------                 ----         -------    ----  ------
+"RAM":                                           0xec0
+  RAM_CONTENT                             0x10   0xec0  <Block>
+    rw section .data24*-1
+                                          0x10    0x68  <Init block>
+      .data24.data        inited          0x10     0x4  r_rspi_rx.o [1]
+      .data24.data        inited          0x14     0x8  r_s12ad_rx.o [1]
+      .data24.data        inited          0x1c    0x28  r_sci_rx110_data.o [1]
+      .data24.data        inited          0x44    0x28  r_sci_rx110_data.o [1]
+      .data24.data        inited          0x6c     0x1  adc.o [1]
+      .data24.data        inited          0x6d     0xb  r_rspi_rx.o [1]
+    .data24.bss           zero            0x78     0xc  adc.o [1]
+    .data24.bss           zero            0x84     0xc  adc.o [1]
+    .data24.bss           zero            0x90    0x2c  adc.o [1]
+    .data24.bss           zero            0xbc     0x4  adc.o [1]
+    .data24.bss           zero            0xc0    0x24  app_data.o [1]
+    .data24.bss           zero            0xe4     0x4  app_data.o [1]
+    .data24.bss           zero            0xe8     0x8  app_data.o [1]
+    .data24.bss           zero            0xf0    0x44  app_data.o [1]
+    .data24.bss           zero           0x134     0xc  eeprom.o [1]
+    .data24.bss           zero           0x140     0x4  eeprom.o [1]
+    .data24.bss           zero           0x144    0x60  eeprom.o [1]
+    .data24.bss           zero           0x1a4    0x60  eeprom.o [1]
+    .data24.bss           zero           0x204     0x4  error.o [1]
+    .data24.bss           zero           0x208    0x80  error.o [1]
+    .data24.bss           zero           0x288     0x4  lbus_user.o [1]
+    .data24.bss           zero           0x28c    0xf4  lbus_user.o [1]
+    .data24.bss           zero           0x380    0xf4  lbus_user.o [1]
+    .data24.bss           zero           0x474     0xc  led.o [1]
+    .data24.bss           zero           0x480     0x4  led.o [1]
+    .data24.bss           zero           0x484   0x100  lju_bus_handler.o [1]
+    .data24.bss           zero           0x584     0x4  lju_bus_handler.o [1]
+    .data24.bss           zero           0x588    0xf4  lju_bus_handler.o [1]
+    .data24.bss           zero           0x67c     0x4  lju_bus_handler.o [1]
+    .data24.bss           zero           0x680   0x100  lju_bus_handler.o [1]
+    .data24.bss           zero           0x780     0x4  lju_bus_handler.o [1]
+    .data24.bss           zero           0x784    0xf4  lju_bus_handler.o [1]
+    .data24.bss           zero           0x878     0x4  main.o [1]
+    .data24.bss           zero           0x87c     0x4  main.o [1]
+    .data24.bss           zero           0x880     0x8  main.o [1]
+    .data24.bss           zero           0x888    0x8c  mcu_locks.o [1]
+    .data24.bss           zero           0x914    0x30  r_bsp_interrupts.o [1]
+    .data24.bss           zero           0x944   0x180  r_byteq.o [1]
+    .data24.bss           zero           0xac4     0x8  r_cmt_rx.o [1]
+    .data24.bss           zero           0xacc     0x8  r_rspi_rx.o [1]
+    .data24.bss           zero           0xad4     0x4  r_rspi_rx.o [1]
+    .data24.bss           zero           0xad8    0x14  r_rspi_rx.o [1]
+    .data24.bss           zero           0xaec     0x8  r_rspi_rx.o [1]
+    .data24.bss           zero           0xaf4    0x50  r_sci_rx.o [1]
+    .data24.bss           zero           0xb44    0x50  r_sci_rx.o [1]
+    .data24.bss           zero           0xb94    0x30  rs485.o [1]
+    .data24.bss           zero           0xbc4     0x4  timer.o [1]
+    .data24.bss           zero           0xbc8     0x4  timer.o [1]
+    .data24.bss           zero           0xbcc     0x4  timer.o [1]
+    .data24.bss           zero           0xbd0    0x26  adc.o [1]
+    .data24.bss           zero           0xbf6    0x16  adc.o [1]
+    .data24.bss           zero           0xc0c    0x16  adc.o [1]
+    .data24.bss           zero           0xc22     0x2  adc.o [1]
+    .data24.bss           zero           0xc24     0x2  adc.o [1]
+    .data24.bss           zero           0xc26     0x2  adc.o [1]
+    .data24.bss           zero           0xc28     0x2  error.o [1]
+    .data24.bss           zero           0xc2a     0x2  error.o [1]
+    .data24.bss           zero           0xc2c     0xa  r_bsp_cpu.o [1]
+    .data24.bss           zero           0xc36     0x1  adc.o [1]
+    .data24.bss           zero           0xc37     0x1  adc.o [1]
+    .data24.bss           zero           0xc38     0x1  adc.o [1]
+    .data24.bss           zero           0xc39     0x1  adc.o [1]
+    .data24.bss           zero           0xc3a     0xb  adc.o [1]
+    .data24.bss           zero           0xc45    0x7e  app_data.o [1]
+    .data24.bss           zero           0xcc3     0x1  eeprom.o [1]
+    .data24.bss           zero           0xcc4     0x1  error.o [1]
+    .data24.bss           zero           0xcc5     0x2  lbus_user.o [1]
+    .data24.bss           zero           0xcc7     0x5  lbus_user.o [1]
+    .data24.bss           zero           0xccc     0x1  lbus_user.o [1]
+    .data24.bss           zero           0xccd     0x1  led.o [1]
+    .data24.bss           zero           0xcce     0x1  led.o [1]
+    .data24.bss           zero           0xccf     0x1  lju_bus_handler.o [1]
+    .data24.bss           zero           0xcd0     0x1  lju_bus_handler.o [1]
+    .data24.bss           zero           0xcd1     0x1  lju_bus_handler.o [1]
+    .data24.bss           zero           0xcd2     0x1  lju_bus_handler.o [1]
+    .data24.bss           zero           0xcd3     0x1  main.o [1]
+    .data24.bss           zero           0xcd4     0x1  main.o [1]
+    .data24.bss           zero           0xcd5     0x1  main.o [1]
+    .data24.bss           zero           0xcd6     0x1  main.o [1]
+    .data24.bss           zero           0xcd7     0x1  main.o [1]
+    .data24.bss           zero           0xcd8     0x1  r_byteq.o [1]
+    .data24.bss           zero           0xcd9     0x2  r_cmt_rx.o [1]
+    .data24.bss           zero           0xcdb    0xfa  r_sci_rx.o [1]
+    .data24.bss           zero           0xdd5    0xfa  r_sci_rx.o [1]
+    .data24.bss           zero           0xecf     0x1  timer.o [1]
+                                       - 0xed0   0xec0
+
+"STACKS":                                       0x1e20
+  STACKS                                0x21e0  0x1e20  <Block>
+    SECTION_ISTACK_OVERFLOW
+                          zero          0x21e0    0x10  reset.o [1]
+    ISTACK                              0x21f0  0x1800  <Block>
+      ISTACK              uninit        0x21f0  0x1800  <Block tail>
+    SECTION_USTACK_OVERFLOW
+                          zero          0x39f0    0x10  reset.o [1]
+    USTACK                              0x3a00   0x600  <Block>
+      USTACK              uninit        0x3a00   0x600  <Block tail>
+                                      - 0x4000  0x1e20
+
+"ROM":                                          0x6998
+  ROM_CONTENT                      0xfffe'0000  0x6998  <Block>
+    ROM_IDENT                      0xfffe'0000    0x80  <Block>
+      IDENT_SECTION       const    0xfffe'0000    0x40  version.o [1]
+      INFO_SECTION        const    0xfffe'0040    0x3c  version.o [1]
+      HEADER_CHECKSUM_SECTION
+                          const    0xfffe'007c     0x2  version.o [1]
+      BODY_CHECKSUM_SECTION
+                          const    0xfffe'007e     0x2  version.o [1]
+    .data24.rodata        const    0xfffe'0080    0x34  adc.o [1]
+    .data24.rodata        const    0xfffe'00b4     0x4  app_data.o [1]
+    .data24.rodata        const    0xfffe'00b8    0x10  app_data.o [1]
+    .data24.rodata        const    0xfffe'00c8   0x200  checksum.o [1]
+    .data24.rodata        const    0xfffe'02c8     0x4  eeprom.o [1]
+    .data24.rodata        const    0xfffe'02cc     0x4  error.o [1]
+    .data24.rodata        const    0xfffe'02d0     0x8  r_bsp_cpu.o [1]
+    .data24.rodata        const    0xfffe'02d8     0x8  r_cmt_rx.o [1]
+    .data24.rodata        const    0xfffe'02e0    0x10  r_cmt_rx.o [1]
+    .data24.rodata        const    0xfffe'02f0    0x24  r_s12ad_rx110.o [1]
+    .data24.rodata        const    0xfffe'0314    0x20  r_sci_rx110_data.o [1]
+    .data24.rodata        const    0xfffe'0334    0x10  r_sci_rx110_data.o [1]
+    .data24.rodata        const    0xfffe'0344    0x34  r_sci_rx110_data.o [1]
+    .data24.rodata        const    0xfffe'0378    0x34  r_sci_rx110_data.o [1]
+    .data24.rodata        const    0xfffe'03ac    0x34  r_sci_rx110_data.o [1]
+    .data24.rodata        const    0xfffe'03e0    0x10  reset.o [1]
+    .data24.rodata        const    0xfffe'03f0     0xc  rs485.o [1]
+    Initializer bytes     const    0xfffe'03fc    0x34  <for rw section .data24*-1>
+    .text                 ro code  0xfffe'0430    0x20  data_init.o [3]
+    .switch.rodata        const    0xfffe'0450    0x10  r_bsp_cpu.o [1]
+    .switch.rodata        const    0xfffe'0460    0x10  r_rspi_rx.o [1]
+    .switch.rodata        const    0xfffe'0470    0x1c  r_s12ad_rx110.o [1]
+    .switch.rodata        const    0xfffe'048c    0x14  r_sci_rx110.o [1]
+    .text                 ro code  0xfffe'04a0    0x2c  cstartup.o [4]
+    .text                 ro code  0xfffe'04cc    0x25  resetprg.o [1]
+    .text                 ro code  0xfffe'04f1   0x3de  main.o [1]
+    .text                 ro code  0xfffe'08d0     0x4  exit.o [3]
+    .text                 ro code  0xfffe'08d4   0x18f  mcu_clocks.o [1]
+    .text                 ro code  0xfffe'0a63   0x1c6  r_bsp_cpu.o [1]
+    .text                 ro code  0xfffe'0c29   0x2a7  r_bsp_interrupts.o [1]
+    .text                 ro code  0xfffe'0ed0    0x17  hwsetup.o [1]
+    .text                 ro code  0xfffe'0ee7    0x6a  reset.o [1]
+    .text                 ro code  0xfffe'0f51   0x16f  Pin.o [1]
+    .text                 ro code  0xfffe'10c0   0x346  io.o [1]
+    .text                 ro code  0xfffe'1406   0x1ae  led.o [1]
+    .text                 ro code  0xfffe'15b4   0x1da  error.o [1]
+    .text                 ro code  0xfffe'178e   0x601  app_data.o [1]
+    .text                 ro code  0xfffe'1d8f    0xc1  timer.o [1]
+    .text                 ro code  0xfffe'1e50   0x457  eeprom.o [1]
+    .text                 ro code  0xfffe'22a7   0x619  adc.o [1]
+    .text                 ro code  0xfffe'28c0   0x1e9  lju_bus_handler.o [1]
+    .text                 ro code  0xfffe'2aa9   0x466  rs485.o [1]
+    .text                 ro code  0xfffe'2f0f   0x2e7  lbus_user.o [1]
+    .text                 ro code  0xfffe'31f6    0x11  r_iwdt_rx.o [1]
+    .text                 ro code  0xfffe'3207     0x8  cexit.o [3]
+    .text                 ro code  0xfffe'320f    0xe0  r_bsp_common.o [1]
+    .text                 ro code  0xfffe'32ef     0x8  r_rx_intrinsic_functions.o [1]
+    .text                 ro code  0xfffe'32f7   0x130  mcu_interrupts.o [1]
+    .text                 ro code  0xfffe'3427    0x44  r_cg_hardware_setup.o [1]
+    .text                 ro code  0xfffe'346b     0x2  mcu_init.o [1]
+    .text                 ro code  0xfffe'346d   0x969  r_sci_rx.o [1]
+    .text                 ro code  0xfffe'3dd6    0x25  interrupt.o [1]
+    .text                 ro code  0xfffe'3dfb    0xa6  utils.o [1]
+    .checksum             const    0xfffe'3ea1     0x2  Place holder __checksum
+    .text                 ro code  0xfffe'3ea4    0x1e  memcmp.o [3]
+    .text                 ro code  0xfffe'3ec2    0xab  checksum.o [1]
+    .text                 ro code  0xfffe'3f6d   0x3dc  r_cmt_rx.o [1]
+    .text                 ro code  0xfffe'4349   0xdfe  r_rspi_rx.o [1]
+    .text                 ro code  0xfffe'5147   0x177  r_s12ad_rx.o [1]
+    .text                 ro code  0xfffe'52be    0xe5  lju_bus_protocol.o [1]
+    .text                 ro code  0xfffe'53a3    0x2b  r_sci_rx_pinset.o [1]
+    .text                 ro code  0xfffe'53ce     0x2  def_nmi_handlers.o [4]
+    .text                 ro code  0xfffe'53d0    0x12  __dbg_xxexit.o [2]
+    .text                 ro code  0xfffe'53e2   0x200  div64u.o [4]
+    .text                 ro code  0xfffe'55e2     0x5  r_smc_cgc.o [1]
+    .text                 ro code  0xfffe'55e7    0x4b  r_lvd1_rx.o [1]
+    .text                 ro code  0xfffe'5632   0x151  r_byteq.o [1]
+    .text                 ro code  0xfffe'5783   0x758  r_sci_rx110.o [1]
+    .text                 ro code  0xfffe'5edb    0x55  r_bsp_locking.o [1]
+    .text                 ro code  0xfffe'5f30   0x5be  r_s12ad_rx110.o [1]
+    .text                 ro code  0xfffe'64f0     0x1  __dbg_break.o [2]
+    .text                 ro code  0xfffe'64f1     0x1  r_smc_cgc_user.o [1]
+    .text                 ro code  0xfffe'64f2     0x3  r_lvd1_rx_user.o [1]
+    .text                 ro code  0xfffe'64f8     0xe  interrupt_table.o [3]
+    .text                 ro code  0xfffe'6508     0xf  __dbg_abort.o [2]
+    SECTION_MAX           const    0xfffe'6518     0x4  version.o [1]
+    SECTION_MIN           const    0xfffe'651c     0x4  version.o [1]
+    SECTION_SIZE          const    0xfffe'6520     0x4  version.o [1]
+    .text                 ro code  0xfffe'6524    0x18  zero_init2.o [3]
+    .text                 ro code  0xfffe'653c    0x29  packbits_init_single.o [3]
+    .inttable                      0xfffe'6568   0x400  <Block>
+      .inttable           const    0xfffe'6568   0x400  interrupt_table.o [3]
+    .iar.init_table       const    0xfffe'6968    0x30  - Linker created -
+                                 - 0xfffe'6998  0x6998
+
+"A2":                                             0x7c
+  .exceptvect             const    0xffff'ff80    0x7c  exceptvect.o [4]
+                                 - 0xffff'fffc    0x7c
+
+"A1":                                              0x4
+  .resetvect              const    0xffff'fffc     0x4  resetvect.o [4]
+                                         - 0x0     0x4
+
+Unused ranges:
+
+         From           To      Size
+         ----           --      ----
+        0xed0       0x21df    0x1310
+  0xfffe'6998  0xffff'ff7f  0x1'95e8
+
+
+*******************************************************************************
+*** INIT TABLE
+***
+
+          Address      Size
+          -------      ----
+Zero (___iar_zero_init2)
+    3 destination ranges, total size 0xe78:
+                 0x78  0xe58
+               0x21e0   0x10
+               0x39f0   0x10
+
+Copy/packbits (___iar_packbits_init_single2)
+    1 source range, total size 0x34 (50% of destination):
+          0xfffe'03fc   0x34
+    1 destination range, total size 0x68:
+                 0x10   0x68
+
+
+
+*******************************************************************************
+*** MODULE SUMMARY
+***
+
+    Module                      ro code  ro data  rw data
+    ------                      -------  -------  -------
+command line/config:
+    Place holder __checksum                    2
+    -----------------------------------------------------
+    Total:                                     2
+
+D:\projects\PCS\PCM8_DM_FW\Debug\Obj: [1]
+    Pin.o                           367
+    adc.o                         1'561       52      176
+    app_data.o                    1'537       20      242
+    checksum.o                      171      512
+    eeprom.o                      1'111        4      209
+    error.o                         474        4      137
+    hwsetup.o                        23
+    interrupt.o                      37
+    io.o                            838
+    lbus_user.o                     743               500
+    led.o                           430                18
+    lju_bus_handler.o               489             1'016
+    lju_bus_protocol.o              229
+    main.o                          990                21
+    mcu_clocks.o                    399
+    mcu_init.o                        2
+    mcu_interrupts.o                304
+    mcu_locks.o                                       140
+    r_bsp_common.o                  224
+    r_bsp_cpu.o                     454       24       10
+    r_bsp_interrupts.o              679                48
+    r_bsp_locking.o                  85
+    r_byteq.o                       337               385
+    r_cg_hardware_setup.o            68
+    r_cmt_rx.o                      988       24       10
+    r_iwdt_rx.o                      17
+    r_lvd1_rx.o                      75
+    r_lvd1_rx_user.o                  3
+    r_rspi_rx.o                   3'582       24       55
+    r_rx_intrinsic_functions.o        8
+    r_s12ad_rx.o                    375        4        8
+    r_s12ad_rx110.o               1'470       64
+    r_sci_rx.o                    2'409               660
+    r_sci_rx110.o                 1'880       20
+    r_sci_rx110_data.o                       244       80
+    r_sci_rx_pinset.o                43
+    r_smc_cgc.o                       5
+    r_smc_cgc_user.o                  1
+    reset.o                         106       16       32
+    resetprg.o                       37
+    rs485.o                       1'126       12       48
+    timer.o                         193                13
+    utils.o                         166
+    version.o                                140
+    -----------------------------------------------------
+    Total:                       24'036    1'164    3'808
+
+dbgrxfllnd.a: [2]
+    __dbg_abort.o                    15
+    __dbg_break.o                     1
+    __dbg_xxexit.o                   18
+    -----------------------------------------------------
+    Total:                           34
+
+dlrxflln.a: [3]
+    cexit.o                           8
+    data_init.o                      32
+    exit.o                            4
+    interrupt_table.o                14    1'024
+    memcmp.o                         30
+    packbits_init_single.o           41
+    zero_init2.o                     24
+    -----------------------------------------------------
+    Total:                          153    1'024
+
+rtrx1fll.a: [4]
+    cstartup.o                       44
+    def_nmi_handlers.o                2
+    div64u.o                        512
+    exceptvect.o                             124
+    resetvect.o                                4
+    -----------------------------------------------------
+    Total:                          558      128
+
+    Gaps                              9        1
+    Linker created                            48    7'680
+---------------------------------------------------------
+    Grand Total:                 24'790    2'367   11'488
+
+
+*******************************************************************************
+*** ENTRY LIST
+***
+
+Entry                       Address   Size  Type      Object
+-----                       -------   ----  ----      ------
+.iar.init_table$$Base   0xfffe'6968          --   Gb  - Linker created -
+.iar.init_table$$Limit  0xfffe'6998          --   Gb  - Linker created -
+.inttable$$Base         0xfffe'6568          --   Gb  - Linker created -
+.inttable$$Limit        0xfffe'6968          --   Gb  - Linker created -
+ISTACK$$Base                 0x21f0          --   Gb  - Linker created -
+ISTACK$$Limit                0x39f0          --   Gb  - Linker created -
+RAM_CONTENT$$Base              0x10          --   Gb  - Linker created -
+RAM_CONTENT$$Limit            0xed0          --   Gb  - Linker created -
+ROM_CONTENT$$Base       0xfffe'0000          --   Gb  - Linker created -
+ROM_CONTENT$$Limit      0xfffe'6998          --   Gb  - Linker created -
+ROM_IDENT$$Base         0xfffe'0000          --   Gb  - Linker created -
+ROM_IDENT$$Limit        0xfffe'0080          --   Gb  - Linker created -
+R_BYTEQ_Open::qcb_init        0xcd8    0x1  Data  Lc  r_byteq.o [1]
+Region$$Table$$Base     0xfffe'6968          --   Gb  - Linker created -
+Region$$Table$$Limit    0xfffe'6998          --   Gb  - Linker created -
+STACKS$$Base                 0x21e0          --   Gb  - Linker created -
+STACKS$$Limit                0x4000          --   Gb  - Linker created -
+USTACK$$Base                 0x3a00          --   Gb  - Linker created -
+USTACK$$Limit                0x4000          --   Gb  - Linker created -
+_BOOTLOADER_CODE_MAX {Abs}
+                        0xffff'ffff         Data  Gb  <internal module>
+_BOOTLOADER_CODE_MIN {Abs}
+                        0xfffe'0000         Data  Gb  <internal module>
+_BOOTLOADER_CODE_SIZE {Abs}
+                           0x2'0000         Data  Gb  <internal module>
+_BOOTLOADER_MIN {Abs}   0xfffe'0000         Data  Gb  <internal module>
+_BOOTLOADER_RAM_MAX {Abs}
+                             0x3fff         Data  Gb  <internal module>
+_BOOTLOADER_RAM_MIN {Abs}
+                               0x10         Data  Gb  <internal module>
+_BOOTLOADER_RESET_VECTOR {Abs}
+                        0xffff'fffc         Data  Gb  <internal module>
+_BOOTLOADER_VECTOR_TABLE {Abs}
+                        0xffff'ff80         Data  Gb  <internal module>
+_FIRMWARE_CODE_MAX {Abs}
+                        0xffff'bfff         Data  Gb  <internal module>
+_FIRMWARE_CODE_MIN {Abs}
+                        0xfffe'0000         Data  Gb  <internal module>
+_FIRMWARE_CODE_SIZE {Abs}
+                           0x1'c000         Data  Gb  <internal module>
+_FIRMWARE_RESET_VECTOR {Abs}
+                        0xffff'bffc         Data  Gb  <internal module>
+_FIRMWARE_SIZE {Abs}       0x2'0000         Data  Gb  <internal module>
+_FIRMWARE_VECTOR_TABLE {Abs}
+                        0xffff'bf80         Data  Gb  <internal module>
+_FIRMWARE_max           0xfffe'6518    0x4  Data  Gb  version.o [1]
+_FIRMWARE_min           0xfffe'651c    0x4  Data  Gb  version.o [1]
+_FIRMWARE_size          0xfffe'6520    0x4  Data  Gb  version.o [1]
+_RESET_VECTOR_OFFSET {Abs}
+                                0x4         Data  Gb  <internal module>
+_R_ADC_Control          0xfffe'5162   0x17  Code  Gb  r_s12ad_rx.o [1]
+_R_ADC_Open             0xfffe'5147   0x1b  Code  Gb  r_s12ad_rx.o [1]
+_R_ADC_ReadAll          0xfffe'5179   0xad  Code  Gb  r_s12ad_rx.o [1]
+_R_BSP_BitClear         0xfffe'32f3    0x4  Code  Gb  r_rx_intrinsic_functions.o [1]
+_R_BSP_BitSet           0xfffe'32ef    0x4  Code  Gb  r_rx_intrinsic_functions.o [1]
+_R_BSP_CpuInterruptLevelRead
+                        0xfffe'0a63    0xc  Code  Gb  r_bsp_cpu.o [1]
+_R_BSP_CpuInterruptLevelWrite
+                        0xfffe'0a6f   0x77  Code  Gb  r_bsp_cpu.o [1]
+_R_BSP_GetIClkFreqHz    0xfffe'3218    0x5  Code  Gb  r_bsp_common.o [1]
+_R_BSP_HardwareLock     0xfffe'5f02   0x17  Code  Gb  r_bsp_locking.o [1]
+_R_BSP_HardwareUnlock   0xfffe'5f19   0x17  Code  Gb  r_bsp_locking.o [1]
+_R_BSP_InterruptControl
+                        0xfffe'0d19   0x8f  Code  Gb  r_bsp_interrupts.o [1]
+_R_BSP_InterruptRequestDisable
+                        0xfffe'0c46   0x1d  Code  Gb  r_bsp_interrupts.o [1]
+_R_BSP_InterruptRequestEnable
+                        0xfffe'0c29   0x1d  Code  Gb  r_bsp_interrupts.o [1]
+_R_BSP_InterruptWrite   0xfffe'0c7c   0x45  Code  Gb  r_bsp_interrupts.o [1]
+_R_BSP_RegisterProtectDisable
+                        0xfffe'0b78   0x75  Code  Gb  r_bsp_cpu.o [1]
+_R_BSP_RegisterProtectEnable
+                        0xfffe'0ae6   0x92  Code  Gb  r_bsp_cpu.o [1]
+_R_BSP_SoftwareDelay    0xfffe'321d   0xd2  Code  Gb  r_bsp_common.o [1]
+_R_BSP_SoftwareLock     0xfffe'5edb   0x1f  Code  Gb  r_bsp_locking.o [1]
+_R_BSP_SoftwareReset    0xfffe'0bed   0x11  Code  Gb  r_bsp_cpu.o [1]
+_R_BSP_SoftwareUnlock   0xfffe'5efa    0x8  Code  Gb  r_bsp_locking.o [1]
+_R_BYTEQ_Flush          0xfffe'573d   0x15  Code  Gb  r_byteq.o [1]
+_R_BYTEQ_Get            0xfffe'56fd   0x40  Code  Gb  r_byteq.o [1]
+_R_BYTEQ_Open           0xfffe'5632   0x94  Code  Gb  r_byteq.o [1]
+_R_BYTEQ_Put            0xfffe'56c6   0x37  Code  Gb  r_byteq.o [1]
+_R_BYTEQ_Unused         0xfffe'5768   0x1b  Code  Gb  r_byteq.o [1]
+_R_BYTEQ_Used           0xfffe'5752   0x16  Code  Gb  r_byteq.o [1]
+_R_CGC_Create           0xfffe'55e2    0x5  Code  Gb  r_smc_cgc.o [1]
+_R_CGC_Create_UserInit  0xfffe'64f1    0x1  Code  Gb  r_smc_cgc_user.o [1]
+_R_CMT_CreatePeriodicAssignChannelPriority
+                        0xfffe'4166   0x1e  Code  Gb  r_cmt_rx.o [1]
+_R_CMT_Stop             0xfffe'426b   0x2f  Code  Gb  r_cmt_rx.o [1]
+_R_Pins_Create          0xfffe'0f51  0x16f  Code  Gb  Pin.o [1]
+_R_RSPI_Control         0xfffe'45f8  0x205  Code  Gb  r_rspi_rx.o [1]
+_R_RSPI_DisableRSPI     0xfffe'4b2f   0x27  Code  Gb  r_rspi_rx.o [1]
+_R_RSPI_DisableSpti     0xfffe'4b15   0x1a  Code  Gb  r_rspi_rx.o [1]
+_R_RSPI_IntSpriIerClear
+                        0xfffe'4ad7   0x3e  Code  Gb  r_rspi_rx.o [1]
+_R_RSPI_IntSptiIerClear
+                        0xfffe'4a99   0x3e  Code  Gb  r_rspi_rx.o [1]
+_R_RSPI_Open            0xfffe'4441  0x1b7  Code  Gb  r_rspi_rx.o [1]
+_R_RSPI_WriteRead       0xfffe'4a6c   0x2d  Code  Gb  r_rspi_rx.o [1]
+_R_SCI_Control          0xfffe'3c4e  0x188  Code  Gb  r_sci_rx.o [1]
+_R_SCI_Open             0xfffe'3763  0x156  Code  Gb  r_sci_rx.o [1]
+_R_SCI_PinSet_SCI12     0xfffe'53a3   0x2b  Code  Gb  r_sci_rx_pinset.o [1]
+_R_SCI_Send             0xfffe'3999   0x6f  Code  Gb  r_sci_rx.o [1]
+_R_Systeminit           0xfffe'3428   0x43  Code  Gb  r_cg_hardware_setup.o [1]
+_R_r_iwdt_rx_Restart    0xfffe'31f6   0x11  Code  Gb  r_iwdt_rx.o [1]
+_R_r_lvd1_rx_Create     0xfffe'55e7   0x4b  Code  Gb  r_lvd1_rx.o [1]
+_R_r_lvd1_rx_Create_UserInit
+                        0xfffe'64f2    0x1  Code  Gb  r_lvd1_rx_user.o [1]
+_SW_INFO_LEN {Abs}             0x80         Data  Gb  <internal module>
+_THIS_CODE_MAX {Abs}    0xffff'ffff         Data  Gb  <internal module>
+_THIS_CODE_MIN {Abs}    0xfffe'0000         Data  Gb  <internal module>
+_THIS_RAM_MAX {Abs}          0x3fff         Data  Gb  <internal module>
+_THIS_RAM_MIN {Abs}            0x10         Data  Gb  <internal module>
+_THIS_RESET_VECTOR {Abs}
+                        0xffff'fffc         Data  Gb  <internal module>
+_THIS_VECTOR_TABLE {Abs}
+                        0xffff'ff80         Data  Gb  <internal module>
+_UPDATE_CODE_MAX {Abs}  0xffff'bfff         Data  Gb  <internal module>
+_UPDATE_CODE_MIN {Abs}  0xfffe'0000         Data  Gb  <internal module>
+_UPDATE_CODE_SIZE {Abs}
+                           0x1'c000         Data  Gb  <internal module>
+_UPDATE_RESET_VECTOR {Abs}
+                        0xffff'bffc         Data  Gb  <internal module>
+_UPDATE_VECTOR_TABLE {Abs}
+                        0xffff'bf80         Data  Gb  <internal module>
+_VECTOR_TABLE_LEN {Abs}
+                               0x80         Data  Gb  <internal module>
+__ID_BYTES_13_16 {Abs}  0xffff'ffff          --   Gb  vecttbl.o [1]
+__ID_BYTES_1_4 {Abs}    0xffff'ffff          --   Gb  vecttbl.o [1]
+__ID_BYTES_5_8 {Abs}    0xffff'ffff          --   Gb  vecttbl.o [1]
+__ID_BYTES_9_12 {Abs}   0xffff'ffff          --   Gb  vecttbl.o [1]
+__MDES {Abs}            0xffff'ffff          --   Gb  vecttbl.o [1]
+__OFS0 {Abs}            0xffff'ff2d          --   Gb  vecttbl.o [1]
+__OFS1 {Abs}            0xffff'ffff          --   Gb  vecttbl.o [1]
+___DebugBreak           0xfffe'64f0    0x1  Code  Gb  __dbg_break.o [2]
+___NMI_handler          0xfffe'0dd6   0xc5  Code  Gb  r_bsp_interrupts.o [1]
+___exit                 0xfffe'53d0   0x12  Code  Gb  __dbg_xxexit.o [2]
+___iar_data_init2       0xfffe'0430   0x20  Code  Gb  data_init.o [3]
+___iar_packbits_init_single2
+                        0xfffe'653c   0x29  Code  Gb  packbits_init_single.o [3]
+___iar_zero_init2       0xfffe'6524   0x18  Code  Gb  zero_init2.o [3]
+___interrupt_102        0xfffe'524c         Code  Gb  r_s12ad_rx.o [1]
+___interrupt_103        0xfffe'5285         Code  Gb  r_s12ad_rx.o [1]
+___interrupt_16         0xfffe'0eb2         Code  Gb  r_bsp_interrupts.o [1]
+___interrupt_222        0xfffe'5a28         Code  Gb  r_sci_rx110.o [1]
+___interrupt_223        0xfffe'5a02         Code  Gb  r_sci_rx110.o [1]
+___interrupt_224        0xfffe'59b6         Code  Gb  r_sci_rx110.o [1]
+___interrupt_225        0xfffe'59dc         Code  Gb  r_sci_rx110.o [1]
+___interrupt_238        0xfffe'5a3b         Code  Gb  r_sci_rx110.o [1]
+___interrupt_239        0xfffe'5a15         Code  Gb  r_sci_rx110.o [1]
+___interrupt_240        0xfffe'59c9         Code  Gb  r_sci_rx110.o [1]
+___interrupt_241        0xfffe'59ef         Code  Gb  r_sci_rx110.o [1]
+___interrupt_28         0xfffe'42a3         Code  Gb  r_cmt_rx.o [1]
+___interrupt_29         0xfffe'42f6         Code  Gb  r_cmt_rx.o [1]
+___interrupt_44         0xfffe'506a         Code  Gb  r_rspi_rx.o [1]
+___interrupt_45         0xfffe'4e0f         Code  Gb  r_rspi_rx.o [1]
+___interrupt_46         0xfffe'4ea3         Code  Gb  r_rspi_rx.o [1]
+___interrupt_47         0xfffe'5138         Code  Gb  r_rspi_rx.o [1]
+___interrupt_88         0xfffe'64f3         Code  Gb  r_lvd1_rx_user.o [1]
+___low_level_init       0xfffe'04cc   0x25  Code  Gb  resetprg.o [1]
+___privileged_handler   0xfffe'0da8   0x17  Code  Gb  r_bsp_interrupts.o [1]
+___undefined_handler    0xfffe'0dbf   0x17  Code  Gb  r_bsp_interrupts.o [1]
+___undefined_interrupt_source_handler
+                        0xfffe'0e9b   0x17  Code  Gb  r_bsp_interrupts.o [1]
+__checksum              0xfffe'3ea1    0x2  Data  Gb  Place holder __checksum
+__checksum_begin {Abs}  0xfffe'e000         Data  Gb  <internal module>
+__checksum_end {Abs}    0xffff'bfff         Data  Gb  <internal module>
+__exceptvect_v1         0xffff'ff80         Data  Gb  exceptvect.o [4]
+__exit                  0xfffe'3207         Code  Gb  cexit.o [3]
+__float_placeholder     0xfffe'53ce         Code  Wk  def_nmi_handlers.o [4]
+__iar_call_low_level_init
+                        0xfffe'04b5         Code  Gb  cstartup.o [4]
+__iar_cstart_end        0xfffe'04cc         Code  Gb  cstartup.o [4]
+__iar_div64u            0xfffe'53e2         Code  Gb  div64u.o [4]
+__iar_main_call         0xfffe'04c2         Code  Gb  cstartup.o [4]
+__iar_program_start     0xfffe'04a0         Code  Gb  cstartup.o [4]
+__iar_reset_vector      0xffff'fffc         Data  Gb  resetvect.o [4]
+__link_file_version_4 {Abs}
+                                0x1         Data  Gb  <internal module>
+__timer_tick_callback   0xfffe'1e0e   0x3a  Code  Gb  timer.o [1]
+_abort                  0xfffe'6508    0xf  Code  Gb  __dbg_abort.o [2]
+_ad_fill                       0x6c    0x1  Data  Lc  adc.o [1]
+_adc_cfg                       0x78    0xc  Data  Lc  adc.o [1]
+_adc_ch_cfg                    0x84    0xc  Data  Lc  adc.o [1]
+_adc_config             0xfffe'22a7   0x5e  Code  Gb  adc.o [1]
+_adc_control            0xfffe'6381  0x16d  Code  Gb  r_s12ad_rx110.o [1]
+_adc_convert            0xfffe'2452  0x107  Code  Lc  adc.o [1]
+_adc_data_raw                 0xbd0   0x26  Data  Lc  adc.o [1]
+_adc_enable_chans       0xfffe'6218  0x169  Code  Lc  r_s12ad_rx110.o [1]
+_adc_enable_s12adi0     0xfffe'5226   0x26  Code  Gb  r_s12ad_rx.o [1]
+_adc_filter             0xfffe'2559   0x9e  Code  Lc  adc.o [1]
+_adc_gbadi_isr          0xfffe'5285   0x39  Code  Lc  r_s12ad_rx.o [1]
+_adc_get_hsis           0xfffe'28b5    0xb  Code  Gb  adc.o [1]
+_adc_get_inputs         0xfffe'28ab    0xa  Code  Gb  adc.o [1]
+_adc_get_temperature    0xfffe'28a1    0xa  Code  Gb  adc.o [1]
+_adc_in                       0xbf6   0x16  Data  Lc  adc.o [1]
+_adc_in_fil                   0xc0c   0x16  Data  Lc  adc.o [1]
+_adc_in_filter_cnt            0xc38    0x1  Data  Lc  adc.o [1]
+_adc_in_max_low               0xc22    0x2  Data  Lc  adc.o [1]
+_adc_in_min_high              0xc24    0x2  Data  Lc  adc.o [1]
+_adc_in_sum                    0x90   0x2c  Data  Lc  adc.o [1]
+_adc_init               0xfffe'2305   0xc3  Code  Gb  adc.o [1]
+_adc_inputs                   0xc39    0x1  Data  Lc  adc.o [1]
+_adc_inputs_filter            0xc3a    0xb  Data  Lc  adc.o [1]
+_adc_is_busy                  0xc37    0x1  Data  Lc  adc.o [1]
+_adc_is_init                  0xc36    0x1  Data  Lc  adc.o [1]
+_adc_open               0xfffe'5f30  0x2e8  Code  Gb  r_s12ad_rx110.o [1]
+_adc_poll               0xfffe'27c5   0xdc  Code  Gb  adc.o [1]
+_adc_s12adi0_isr        0xfffe'524c   0x39  Code  Lc  r_s12ad_rx.o [1]
+_adc_set_inputs         0xfffe'25f7  0x15e  Code  Lc  adc.o [1]
+_adc_set_temperature    0xfffe'2755   0x70  Code  Lc  adc.o [1]
+_adc_start_time                0xbc    0x4  Data  Lc  adc.o [1]
+_adc_temp_x256                0xc26    0x2  Data  Lc  adc.o [1]
+_app_data_build_sw_info
+                        0xfffe'178e   0xde  Code  Gb  app_data.o [1]
+_app_data_default_config
+                        0xfffe'1945    0xd  Code  Gb  app_data.o [1]
+_app_data_flush         0xfffe'1d5b   0x34  Code  Gb  app_data.o [1]
+_app_data_get_config    0xfffe'1978   0x1b  Code  Gb  app_data.o [1]
+_app_data_get_config_ptr
+                        0xfffe'1972    0x6  Code  Gb  app_data.o [1]
+_app_data_get_hw_info   0xfffe'1923   0x22  Code  Gb  app_data.o [1]
+_app_data_get_sw_info   0xfffe'186c   0x22  Code  Gb  app_data.o [1]
+_app_data_poll          0xfffe'1b56  0x1ca  Code  Gb  app_data.o [1]
+_app_data_rd_config     0xfffe'1952   0x20  Code  Gb  app_data.o [1]
+_app_data_rd_hw_info    0xfffe'188e   0x20  Code  Gb  app_data.o [1]
+_app_data_save_pending  0xfffe'1d20   0x3b  Code  Gb  app_data.o [1]
+_app_data_set_config    0xfffe'1993   0x53  Code  Gb  app_data.o [1]
+_app_data_set_hw_info   0xfffe'18d7   0x4c  Code  Gb  app_data.o [1]
+_app_dm_config                 0xe4    0x4  Data  Gb  app_data.o [1]
+_app_dm_default_config  0xfffe'00b4    0x4  Data  Lc  app_data.o [1]
+_app_dm_hw_info                0xc0   0x24  Data  Gb  app_data.o [1]
+_app_dm_mode                  0xcd3    0x1  Data  Lc  main.o [1]
+_app_dm_sw_info               0xc45   0x7e  Data  Gb  app_data.o [1]
+_app_out_ch_ovr_mask          0xcd6    0x1  Data  Lc  main.o [1]
+_app_out_ch_pls_mask          0xcd5    0x1  Data  Lc  main.o [1]
+_app_out_cmd                  0xcd4    0x1  Data  Lc  main.o [1]
+_app_out_timer                0x880    0x8  Data  Lc  main.o [1]
+_async_baud             0xfffe'0314   0x20  Data  Gb  r_sci_rx110_data.o [1]
+_bccCalc8               0xfffe'3ec2   0x64  Code  Gb  checksum.o [1]
+_body_checksum          0xfffe'007e    0x2  Data  Gb  version.o [1]
+_bsp_fit_interrupts_control
+                        0xfffe'0cc1   0x58  Code  Lc  r_bsp_interrupts.o [1]
+_bsp_interrupt_enable_disable
+                        0xfffe'32f7  0x130  Code  Gb  mcu_interrupts.o [1]
+_bsp_interrupt_open     0xfffe'0c63   0x19  Code  Gb  r_bsp_interrupts.o [1]
+_bsp_non_existent_port_init
+                        0xfffe'346b    0x2  Code  Gb  mcu_init.o [1]
+_bsp_ram_initialize     0xfffe'0c13   0x16  Code  Gb  r_bsp_cpu.o [1]
+_bsp_register_protect_open
+                        0xfffe'0bfe   0x15  Code  Gb  r_bsp_cpu.o [1]
+_build_str1             0xfffe'3dfb   0x35  Code  Gb  utils.o [1]
+_build_str2             0xfffe'3e30   0x71  Code  Gb  utils.o [1]
+_bus_error_isr          0xfffe'0eb2   0x1e  Code  Gb  r_bsp_interrupts.o [1]
+_ch12_ctrl                     0x44   0x28  Data  Gb  r_sci_rx110_data.o [1]
+_ch12_rom               0xfffe'0378   0x34  Data  Gb  r_sci_rx110_data.o [1]
+_ch12_rx_buf                  0xdd5   0xfa  Data  Lc  r_sci_rx.o [1]
+_ch12_tx_buf                  0xcdb   0xfa  Data  Lc  r_sci_rx.o [1]
+_ch5_ctrl                      0x1c   0x28  Data  Gb  r_sci_rx110_data.o [1]
+_ch5_rom                0xfffe'0344   0x34  Data  Gb  r_sci_rx110_data.o [1]
+_ch5_rx_buf                   0xb44   0x50  Data  Lc  r_sci_rx.o [1]
+_ch5_tx_buf                   0xaf4   0x50  Data  Lc  r_sci_rx.o [1]
+_check_hsis             0xfffe'0823   0x4d  Code  Gb  main.o [1]
+_clock_source_select    0xfffe'092e   0xc3  Code  Lc  mcu_clocks.o [1]
+_cmt0_isr               0xfffe'42a3   0x53  Code  Lc  r_cmt_rx.o [1]
+_cmt1_isr               0xfffe'42f6   0x53  Code  Lc  r_cmt_rx.o [1]
+_cmt_counter_start_priority
+                        0xfffe'4059   0x91  Code  Lc  r_cmt_rx.o [1]
+_cmt_counter_stop       0xfffe'4201   0x6a  Code  Lc  r_cmt_rx.o [1]
+_cmt_create_priority    0xfffe'40ea   0x7c  Code  Lc  r_cmt_rx.o [1]
+_cmt_lock_state         0xfffe'429a    0x9  Code  Lc  r_cmt_rx.o [1]
+_cmt_setup_channel      0xfffe'3fd6   0x83  Code  Lc  r_cmt_rx.o [1]
+_cmt_unlock_state       0xfffe'3f6d    0x7  Code  Lc  r_cmt_rx.o [1]
+_config                       0x474    0xc  Data  Lc  led.o [1]
+_crc_calc_sw            0xfffe'3f46   0x27  Code  Gb  checksum.o [1]
+_crc_update_sw          0xfffe'3f26   0x20  Code  Gb  checksum.o [1]
+_crctab                 0xfffe'00c8  0x200  Data  Lc  checksum.o [1]
+_default_handler        0xfffe'64f8    0xe  Code  Gb  interrupt_table.o [3]
+_delay_wait             0xfffe'320f    0x9  Code  Lc  r_bsp_common.o [1]
+_don_t_auto_clear_errors
+                        0xfffe'02cc    0x4  Data  Lc  error.o [1]
+_eeprom_cmd_arg_wait    0xfffe'1f1a   0x29  Code  Lc  eeprom.o [1]
+_eeprom_init            0xfffe'1fb1   0x61  Code  Gb  eeprom.o [1]
+_eeprom_init_wren       0xfffe'1f43   0x6e  Code  Lc  eeprom.o [1]
+_eeprom_is_ready        0xfffe'21c8   0x24  Code  Gb  eeprom.o [1]
+_eeprom_rd_blocking     0xfffe'2155   0x73  Code  Gb  eeprom.o [1]
+_eeprom_rd_crc_data_blocking
+                        0xfffe'225b   0x4c  Code  Gb  eeprom.o [1]
+_eeprom_rd_data_wait    0xfffe'20e2   0x73  Code  Lc  eeprom.o [1]
+_eeprom_rd_nowait       0xfffe'222d   0x2e  Code  Gb  eeprom.o [1]
+_eeprom_transfer        0xfffe'1e50   0xca  Code  Lc  eeprom.o [1]
+_eeprom_transfer_status
+                              0xcc3    0x1  Data  Lc  eeprom.o [1]
+_eeprom_wait_ready      0xfffe'2032   0x36  Code  Lc  eeprom.o [1]
+_eeprom_wr_data_wait    0xfffe'2068   0x7a  Code  Lc  eeprom.o [1]
+_eeprom_wr_page_start   0xfffe'21ec   0x41  Code  Gb  eeprom.o [1]
+_eri_handler            0xfffe'3c42    0xc  Code  Gb  r_sci_rx.o [1]
+_error_clear            0xfffe'16ca   0x43  Code  Gb  error.o [1]
+_error_clear_all_request
+                        0xfffe'1671   0x4f  Code  Gb  error.o [1]
+_error_clr_request_flag
+                              0xcc4    0x1  Data  Lc  error.o [1]
+_error_diag_buff              0x208   0x80  Data  Lc  error.o [1]
+_error_diag_idx               0xc2a    0x2  Data  Lc  error.o [1]
+_error_diag_val               0xc28    0x2  Data  Lc  error.o [1]
+_error_get_diag         0xfffe'1715   0x79  Code  Gb  error.o [1]
+_error_get_mask         0xfffe'170d    0x8  Code  Gb  error.o [1]
+_error_init             0xfffe'15b4   0x11  Code  Gb  error.o [1]
+_error_is_active        0xfffe'15d6    0xf  Code  Gb  error.o [1]
+_error_is_clar_all_request
+                        0xfffe'16c0    0xa  Code  Gb  error.o [1]
+_error_is_set           0xfffe'15c5   0x11  Code  Gb  error.o [1]
+_error_mask                   0x204    0x4  Data  Lc  error.o [1]
+_error_set              0xfffe'15e5   0x8c  Code  Gb  error.o [1]
+_exit                   0xfffe'08d0    0x4  Code  Gb  exit.o [3]
+_g_bsp_Locks                  0x888   0x8c  Data  Gb  mcu_locks.o [1]
+_g_bsp_vectors                0x914   0x30  Data  Lc  r_bsp_interrupts.o [1]
+_g_cmt_callbacks              0xac4    0x8  Data  Lc  r_cmt_rx.o [1]
+_g_cmt_channels         0xfffe'02d8    0x8  Data  Lc  r_cmt_rx.o [1]
+_g_cmt_clock_dividers   0xfffe'02e0   0x10  Data  Lc  r_cmt_rx.o [1]
+_g_cmt_modes                  0xcd9    0x2  Data  Lc  r_cmt_rx.o [1]
+_g_ctrl_reg_values             0x6d    0xb  Data  Lc  r_rspi_rx.o [1]
+_g_dcb                         0x14    0x8  Data  Gb  r_s12ad_rx.o [1]
+_g_handles              0xfffe'03ac   0x34  Data  Gb  r_sci_rx110_data.o [1]
+_g_istack_guard              0x21e0   0x10  Data  Gb  reset.o [1]
+_g_qcb                        0x944  0x180  Data  Lc  r_byteq.o [1]
+_g_rspi_cb_data               0xaec    0x8  Data  Lc  r_rspi_rx.o [1]
+_g_rspi_channels               0x10    0x4  Data  Gb  r_rspi_rx.o [1]
+_g_rspi_handles               0xacc    0x8  Data  Lc  r_rspi_rx.o [1]
+_g_rspi_tcb                   0xad8   0x14  Data  Lc  r_rspi_rx.o [1]
+_g_rxdata                     0xad4    0x4  Data  Lc  r_rspi_rx.o [1]
+_g_ustack_guard              0x39f0   0x10  Data  Gb  reset.o [1]
+_get_iclk_freq_hz       0xfffe'08d4   0x5a  Code  Gb  mcu_clocks.o [1]
+_get_timer_ms_cnt       0xfffe'1e48    0x8  Code  Gb  timer.o [1]
+_gp_sreg_ptrs           0xfffe'02f0   0x24  Data  Gb  r_s12ad_rx110.o [1]
+_handle_leds            0xfffe'0604   0x83  Code  Lc  main.o [1]
+_handle_out             0xfffe'0687   0x7f  Code  Lc  main.o [1]
+_handle_out_timer       0xfffe'0706  0x11d  Code  Lc  main.o [1]
+_hardware_setup         0xfffe'0ed9    0xe  Code  Gb  hwsetup.o [1]
+_header_checksum        0xfffe'007c    0x2  Data  Gb  version.o [1]
+_init                   0xfffe'04f1  0x113  Code  Lc  main.o [1]
+_interrupt_disable      0xfffe'3de2    0x8  Code  Gb  interrupt.o [1]
+_interrupt_disable_neasted
+                        0xfffe'3df8    0x3  Code  Gb  interrupt.o [1]
+_interrupt_enable       0xfffe'3dea    0x8  Code  Gb  interrupt.o [1]
+_interrupt_enable_neasted
+                        0xfffe'3df2    0x6  Code  Gb  interrupt.o [1]
+_interrupt_is_enabled   0xfffe'3dd6    0xc  Code  Gb  interrupt.o [1]
+_interrupts_configure   0xfffe'0ed5    0x2  Code  Lc  hwsetup.o [1]
+_io_init                0xfffe'10c0   0xfd  Code  Gb  io.o [1]
+_io_out_enable          0xfffe'1231   0x12  Code  Gb  io.o [1]
+_io_out_set             0xfffe'11bd   0x74  Code  Gb  io.o [1]
+_is_init                      0xccd    0x1  Data  Lc  led.o [1]
+_lbus_cmd                     0xcc5    0x2  Data  Lc  lbus_user.o [1]
+_lbus_dm_mode                 0xcd2    0x1  Data  Lc  lju_bus_handler.o [1]
+_lbus_get_rx_cmd        0xfffe'31ec    0xa  Code  Gb  lbus_user.o [1]
+_lbus_is_init                 0xccf    0x1  Data  Lc  lju_bus_handler.o [1]
+_lbus_loc_addr                0xcd0    0x1  Data  Lc  lju_bus_handler.o [1]
+_lbus_mod_ident               0xcd1    0x1  Data  Lc  lju_bus_handler.o [1]
+_lbus_process_command   0xfffe'2f10   0xbd  Code  Lc  lbus_user.o [1]
+_lbus_process_config    0xfffe'2fcd   0x58  Code  Lc  lbus_user.o [1]
+_lbus_process_diag      0xfffe'3095   0x1a  Code  Lc  lbus_user.o [1]
+_lbus_process_flash_start
+                        0xfffe'30af   0x77  Code  Lc  lbus_user.o [1]
+_lbus_process_info      0xfffe'3025   0x70  Code  Lc  lbus_user.o [1]
+_lbus_rx_cmd_out              0xccc    0x1  Data  Lc  lbus_user.o [1]
+_lbus_status                  0xcc7    0x5  Data  Lc  lbus_user.o [1]
+_lbus_user_init         0xfffe'2f0f    0x1  Code  Gb  lbus_user.o [1]
+_lbus_user_poll         0xfffe'3126   0xc6  Code  Gb  lbus_user.o [1]
+_led_init               0xfffe'14eb   0xc1  Code  Gb  led.o [1]
+_led_set                0xfffe'143c   0xaf  Code  Gb  led.o [1]
+_led_sr_callback        0xfffe'15ac    0x8  Code  Gb  led.o [1]
+_led_sr_set             0xfffe'1406   0x36  Code  Gb  led.o [1]
+_led_sr_value                 0xcce    0x1  Data  Lc  led.o [1]
+_ljuBusPacketDecode     0xfffe'52be   0x78  Code  Gb  lju_bus_protocol.o [1]
+_ljuBusPacketEncode     0xfffe'5336   0x6d  Code  Gb  lju_bus_protocol.o [1]
+_lju_bus_command_rx_cnt
+                              0x288    0x4  Data  Gb  lbus_user.o [1]
+_lju_bus_get_rx_mbox    0xfffe'29c4   0x56  Code  Gb  lju_bus_handler.o [1]
+_lju_bus_init           0xfffe'28c0   0x44  Code  Gb  lju_bus_handler.o [1]
+_lju_bus_processor      0xfffe'2904   0xc0  Code  Gb  lju_bus_handler.o [1]
+_lju_bus_set_tx_mbox    0xfffe'2a1a   0x8f  Code  Gb  lju_bus_handler.o [1]
+_main                   0xfffe'0870   0x5f  Code  Gb  main.o [1]
+_mcu_clock_setup        0xfffe'0a5f    0x4  Code  Gb  mcu_clocks.o [1]
+_memcmp                 0xfffe'3ea4   0x1e  Code  Gb  memcmp.o [3]
+_ntc_adc_tbl            0xfffe'0080   0x34  Data  Lc  adc.o [1]
+_ntc_adc_to_temp        0xfffe'23c8   0x8a  Code  Gb  adc.o [1]
+_nv_any_failed          0xfffe'19e6   0x22  Code  Lc  app_data.o [1]
+_nv_job                        0xf0   0x44  Data  Lc  app_data.o [1]
+_nv_job_check_ready     0xfffe'1b31   0x25  Code  Lc  app_data.o [1]
+_nv_job_fail            0xfffe'1aff   0x32  Code  Lc  app_data.o [1]
+_nv_job_finish          0xfffe'1a89   0x76  Code  Lc  app_data.o [1]
+_nv_job_start           0xfffe'1a08   0x81  Code  Lc  app_data.o [1]
+_nv_rec_desc            0xfffe'00b8   0x10  Data  Lc  app_data.o [1]
+_nv_rec_state                  0xe8    0x8  Data  Lc  app_data.o [1]
+_nv_request_save        0xfffe'18ae   0x29  Code  Lc  app_data.o [1]
+_operating_frequency_set
+                        0xfffe'09f1   0x6e  Code  Lc  mcu_clocks.o [1]
+_output_ports_configure
+                        0xfffe'0ed7    0x2  Code  Lc  hwsetup.o [1]
+_peripheral_modules_enable
+                        0xfffe'0ed0    0x5  Code  Lc  hwsetup.o [1]
+_power_off              0xfffe'4184   0x7d  Code  Lc  r_cmt_rx.o [1]
+_power_on               0xfffe'3f74   0x62  Code  Lc  r_cmt_rx.o [1]
+_power_on               0xfffe'3727   0x3c  Code  Lc  r_sci_rx.o [1]
+_power_on_off           0xfffe'43f4   0x4d  Code  Lc  r_rspi_rx.o [1]
+_r_r_lvd1_rx_lvd1_interrupt
+                        0xfffe'64f3    0x2  Code  Lc  r_lvd1_rx_user.o [1]
+_r_undefined_exception  0xfffe'3427    0x1  Code  Gb  r_cg_hardware_setup.o [1]
+_reset_execute          0xfffe'0ee7    0x6  Code  Gb  reset.o [1]
+_rs485_init             0xfffe'2ad6   0xf2  Code  Gb  rs485.o [1]
+_rs485_is_rx_timeout    0xfffe'2ee6   0x29  Code  Gb  rs485.o [1]
+_rs485_offline_timeout_callback
+                        0xfffe'2d42    0x1  Code  Gb  rs485.o [1]
+_rs485_private                0xb94   0x30  Data  Lc  rs485.o [1]
+_rs485_response_timeout_callback
+                        0xfffe'2d44    0x4  Code  Gb  rs485.o [1]
+_rs485_rx_timeout_callback
+                        0xfffe'2d43    0x1  Code  Gb  rs485.o [1]
+_rs485_sci_callback     0xfffe'2e09   0xdd  Code  Gb  rs485.o [1]
+_rs485_timeout_check_callback
+                        0xfffe'2bc8  0x17a  Code  Gb  rs485.o [1]
+_rs485_tx               0xfffe'2d79   0x90  Code  Gb  rs485.o [1]
+_rs485_tx_ready         0xfffe'2d48   0x31  Code  Gb  rs485.o [1]
+_rs485_tx_stop          0xfffe'2aa9   0x2d  Code  Gb  rs485.o [1]
+_rspi_baud_set          0xfffe'4b56   0x8d  Code  Lc  r_rspi_rx.o [1]
+_rspi_callback          0xfffe'2012   0x20  Code  Lc  eeprom.o [1]
+_rspi_command           0xfffe'02c8    0x4  Data  Lc  eeprom.o [1]
+_rspi_config                  0x134    0xc  Data  Lc  eeprom.o [1]
+_rspi_get_data_type     0xfffe'4823   0x2a  Code  Lc  r_rspi_rx.o [1]
+_rspi_handle                  0x140    0x4  Data  Lc  eeprom.o [1]
+_rspi_interrupts_clear  0xfffe'47fd   0x26  Code  Lc  r_rspi_rx.o [1]
+_rspi_interrupts_enable
+                        0xfffe'4349   0x7c  Code  Lc  r_rspi_rx.o [1]
+_rspi_ir_priority_set   0xfffe'43c5   0x2f  Code  Lc  r_rspi_rx.o [1]
+_rspi_rx_common         0xfffe'4cd8  0x137  Code  Lc  r_rspi_rx.o [1]
+_rspi_spei0_isr         0xfffe'506a    0xf  Code  Lc  r_rspi_rx.o [1]
+_rspi_spei_isr_common   0xfffe'4f3a  0x130  Code  Lc  r_rspi_rx.o [1]
+_rspi_spii0_isr         0xfffe'5138    0xf  Code  Lc  r_rspi_rx.o [1]
+_rspi_spii_isr_common   0xfffe'5079   0xbf  Code  Lc  r_rspi_rx.o [1]
+_rspi_spri0_isr         0xfffe'4e0f   0x94  Code  Lc  r_rspi_rx.o [1]
+_rspi_spti0_isr         0xfffe'4ea3   0x97  Code  Lc  r_rspi_rx.o [1]
+_rspi_tx_common         0xfffe'4be3   0xf5  Code  Lc  r_rspi_rx.o [1]
+_rspi_write_read_common
+                        0xfffe'484d  0x21f  Code  Lc  r_rspi_rx.o [1]
+_rx_mbox                      0x28c   0xf4  Data  Lc  lbus_user.o [1]
+_rx_mbox                      0x588   0xf4  Data  Lc  lju_bus_handler.o [1]
+_rx_mbox_full                 0x67c    0x4  Data  Lc  lju_bus_handler.o [1]
+_rx_raw_buff                  0x484  0x100  Data  Lc  lju_bus_handler.o [1]
+_rx_raw_size                  0x584    0x4  Data  Lc  lju_bus_handler.o [1]
+_rxi_handler            0xfffe'3b97    0xc  Code  Gb  r_sci_rx.o [1]
+_s_pattern              0xfffe'03e0   0x10  Data  Lc  reset.o [1]
+_s_prcr_masks           0xfffe'02d0    0x8  Data  Lc  r_bsp_cpu.o [1]
+_s_protect_counters           0xc2c    0xa  Data  Lc  r_bsp_cpu.o [1]
+_sci12_eri12_isr        0xfffe'5a3b   0x13  Code  Lc  r_sci_rx110.o [1]
+_sci12_rxi12_isr        0xfffe'5a15   0x13  Code  Lc  r_sci_rx110.o [1]
+_sci12_tei12_isr        0xfffe'59ef   0x13  Code  Lc  r_sci_rx110.o [1]
+_sci12_txi12_isr        0xfffe'59c9   0x13  Code  Lc  r_sci_rx110.o [1]
+_sci5_eri5_isr          0xfffe'5a28   0x13  Code  Lc  r_sci_rx110.o [1]
+_sci5_rxi5_isr          0xfffe'5a02   0x13  Code  Lc  r_sci_rx110.o [1]
+_sci5_tei5_isr          0xfffe'59dc   0x13  Code  Lc  r_sci_rx110.o [1]
+_sci5_txi5_isr          0xfffe'59b6   0x13  Code  Lc  r_sci_rx110.o [1]
+_sci_async_cmds         0xfffe'5a4e  0x26d  Code  Gb  r_sci_rx110.o [1]
+_sci_error              0xfffe'3ba3   0x9f  Code  Lc  r_sci_rx.o [1]
+_sci_init_async         0xfffe'35e7  0x140  Code  Lc  r_sci_rx.o [1]
+_sci_init_bit_rate      0xfffe'5856   0xcb  Code  Gb  r_sci_rx110.o [1]
+_sci_init_queues        0xfffe'346d   0x91  Code  Lc  r_sci_rx.o [1]
+_sci_init_register      0xfffe'579b   0xbb  Code  Gb  r_sci_rx110.o [1]
+_sci_init_sync          0xfffe'34fe   0xe9  Code  Lc  r_sci_rx.o [1]
+_sci_initialize_ints    0xfffe'5921   0x95  Code  Gb  r_sci_rx110.o [1]
+_sci_mcu_param_check    0xfffe'5783   0x18  Code  Gb  r_sci_rx110.o [1]
+_sci_put_byte           0xfffe'3907   0x15  Code  Lc  r_sci_rx.o [1]
+_sci_receive            0xfffe'3ab6   0xe1  Code  Lc  r_sci_rx.o [1]
+_sci_send_async_data    0xfffe'391c   0x7d  Code  Lc  r_sci_rx.o [1]
+_sci_send_sync_data     0xfffe'38b9   0x4e  Code  Lc  r_sci_rx.o [1]
+_sci_sync_cmds          0xfffe'5cbb  0x220  Code  Gb  r_sci_rx110.o [1]
+_sci_transfer           0xfffe'3a08   0x57  Code  Lc  r_sci_rx.o [1]
+_sspiHandle                   0x480    0x4  Data  Lc  led.o [1]
+_sspi_rx_data                 0x1a4   0x60  Data  Lc  eeprom.o [1]
+_sspi_tx_data                 0x144   0x60  Data  Lc  eeprom.o [1]
+_stack_guard_check      0xfffe'0f18   0x39  Code  Gb  reset.o [1]
+_stack_guard_init       0xfffe'0eed   0x2b  Code  Gb  reset.o [1]
+_switches_get_address   0xfffe'1243   0xb5  Code  Gb  io.o [1]
+_sync_baud              0xfffe'0334   0x10  Data  Gb  r_sci_rx110_data.o [1]
+_system_time                  0x878    0x4  Data  Lc  main.o [1]
+_system_time_100ms            0x87c    0x4  Data  Lc  main.o [1]
+_tei_handler            0xfffe'3a7c   0x3a  Code  Gb  r_sci_rx.o [1]
+_this_ident             0xfffe'0000   0x40  Data  Gb  version.o [1]
+_this_info              0xfffe'0040   0x3c  Data  Gb  version.o [1]
+_time_get_diff          0xfffe'1dbd    0x6  Code  Gb  timer.o [1]
+_timer_init             0xfffe'1d8f   0x2e  Code  Gb  timer.o [1]
+_timer_is_init                0xecf    0x1  Data  Lc  timer.o [1]
+_timer_ms_cnt                 0xbc8    0x4  Data  Lc  timer.o [1]
+_timer_processing_callback
+                        0xfffe'1dc3   0x4b  Code  Gb  timer.o [1]
+_timer_us                     0xbc4    0x4  Data  Lc  timer.o [1]
+_tp_set                 0xfffe'12f8   0x87  Code  Gb  io.o [1]
+_tp_toggle              0xfffe'137f   0x87  Code  Gb  io.o [1]
+_tx_mbox                      0x380   0xf4  Data  Lc  lbus_user.o [1]
+_tx_mbox                      0x784   0xf4  Data  Lc  lju_bus_handler.o [1]
+_tx_raw_buff                  0x680  0x100  Data  Lc  lju_bus_handler.o [1]
+_tx_raw_size                  0x780    0x4  Data  Lc  lju_bus_handler.o [1]
+_txi_handler            0xfffe'3a5f   0x1d  Code  Gb  r_sci_rx.o [1]
+_vector_table           0xfffe'6568  0x400  Data  Gb  interrupt_table.o [3]
+handle_leds::led_blink_idx
+                              0xcd7    0x1  Data  Lc  main.o [1]
+timer_processing_callback::last_timer_us
+                              0xbcc    0x4  Data  Lc  timer.o [1]
+
+
+[1] = D:\projects\PCS\PCM8_DM_FW\Debug\Obj
+[2] = dbgrxfllnd.a
+[3] = dlrxflln.a
+[4] = rtrx1fll.a
+
+  24'790 bytes of readonly  code memory
+   2'367 bytes of readonly  data memory
+  11'488 bytes of readwrite data memory
+
+Errors: none
+Warnings: none

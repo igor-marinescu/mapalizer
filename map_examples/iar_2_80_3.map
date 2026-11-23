@@ -1,0 +1,1856 @@
+###############################################################################
+#
+# IAR ELF Linker V2.80.3.2749 for Renesas RX              26/Oct/2026  15:04:19
+# Copyright 2009-2015 IAR Systems AB.
+#
+#    Output file  =  D:\projects\PCS\PCM8_SM_FW\Release\Exe\FW_SM-8.out.tmp
+#    Map file     =  D:\projects\PCS\PCM8_SM_FW\Release\List\FW_SM-8.map
+#    Command line =  
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\adc.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\application.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\bcc.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\cache.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\data.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\eeprom.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\error.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\fcs.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\flash.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\freq.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\hwsetup.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\interrupt.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\led.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\lju_bus_handler.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\lju_bus_protocol.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\logging.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\main.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\mcu_clocks.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\mcu_init.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\mcu_interrupts.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\mcu_locks.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\Pin.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\profiler.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_bsc_rx.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_bsc_rx_user.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_bsp_common.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_bsp_cpu.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_bsp_interrupts.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_bsp_locking.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_bsp_mcu_startup.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_bsp_software_interrupt.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_byteq.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_cg_hardware_setup.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_cmt_rx.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_codeflash.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_codeflash_extra.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_dataflash.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_flash_fcu.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_flash_group.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_flash_rx.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_flash_type1.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_flash_type3.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_flash_type4.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_flash_utils.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_icu_rx.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_icu_rx_user.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_iwdt_rx.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_iwdt_rx_user.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_lvd1_rx.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_lvd1_rx_user.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_mtu1_rx.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_mtu1_rx_user.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_rx_intrinsic_functions.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_s12ad_rx.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_s12ad_rx110.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_s12ad_rx_pinset.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_sci_rx.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_sci_rx110.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_sci_rx110_data.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_sci_rx_pinset.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_smc_cgc.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_smc_cgc_user.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\r_smc_interrupt.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\ram.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\reset.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\resetprg.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\rs485.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\switches.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\sync.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\timer.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\tp.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\vecttbl.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\version.o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Obj\watchdog.o -o
+#        D:\projects\PCS\PCM8_SM_FW\Release\Exe\FW_SM-8.out.tmp --keep
+#        __checksum --map D:\projects\PCS\PCM8_SM_FW\Release\List\FW_SM-8.map
+#        --config D:\projects\PCS\PCM8_SM_FW\lnkr5f51105.icf --config_def
+#        _USTACK_SIZE=0x700 --config_def _ISTACK_SIZE=0x1900 --config_def
+#        _HEAP_SIZE=0x000 --entry __iar_program_start --place_holder
+#        __checksum,2,.checksum,1 --define_symbol __checksum_begin=0xfffee000
+#        --define_symbol __checksum_end=0xffffbfff --inline --vfe
+#        --enable_stack_usage --stack_usage_control
+#        D:\projects\PCS\PCM8_SM_FW\stack_usage.suc --call_graph
+#        D:\projects\PCS\PCM8_SM_FW\call_graph
+#
+###############################################################################
+
+*******************************************************************************
+*** MESSAGES
+***
+
+
+  llback;//, _sci12_callback;
+                 ^
+"D:\projects\PCS\PCM8_SM_FW\stack_usage.suc",33  Warning[Ls008]: no function
+          matching "_sci_error [r_sci_rx.o]" found
+Warning[Ls015]: [stack usage analysis] at least one function appears to be
+          uncalled. Example: "__COM_AEXPf". A complete list of uncalled
+          functions is in the map file.
+
+
+*******************************************************************************
+*** RUNTIME MODEL ATTRIBUTES
+***
+
+__SystemLibrary            = DLib
+__calling_conv             = abi10
+__core                     = 1
+__dlib_file_descriptor     = 0
+__dlib_full_locale_support = 0
+__double_size              = 32
+__endian                   = l
+__enum_size                = var
+__fpu                      = 1
+__int_size                 = 32
+__lock_R10                 = 0
+__lock_R11                 = 0
+__lock_R12                 = 0
+__lock_R13                 = 0
+__lock_R8                  = 0
+__lock_R9                  = 0
+__rt_version               = 5
+
+
+*******************************************************************************
+*** PLACEMENT SUMMARY
+***
+
+"P3":  place in [from 0xfffe0080 to 0xffffbfff] { block RamCodeInit };
+"P4":  place in [from 0x00000000 to 0x00003fff] { block RamCode };
+"A1":  place at 0xffffbf80 { ro section .nmivec };
+"P5":  place in [from 0xfffe0000 to 0xfffe007f] { first block ROM_IDENT };
+"RAM16":
+       place in [from 0x00000000 to 0x00003fff] {
+          rw section .data16*, rw section __DLIB_PERTHREAD };
+"ROM24":
+       place in [from 0xfffe0080 to 0xffffbfff] {
+          ro section .code24*, ro section .data24* };
+"RAM24":
+       place in [from 0x00000000 to 0x00003fff] { rw section .data24* };
+"ROM32":
+       place in [from 0xfffe0080 to 0xffffbfff] { ro };
+"RAM32":
+       place in [from 0x00000000 to 0x00003fff] {
+          rw, ro section D, ro section D_1, ro section D_2, block HEAPS,
+          block STACKS };
+
+  Section                 Kind        Address    Size  Object
+  -------                 ----        -------    ----  ------
+"P4":                                           0x51c
+  RamCode                          0x00000000   0x51c  <Block>
+    RamCode-1                      0x00000000   0x51c  <Init block>
+      PFRAM               inited   0x00000000   0x2b0  r_codeflash.o [1]
+      PFRAM               inited   0x000002b0   0x173  r_flash_group.o [1]
+      PFRAM               inited   0x00000423    0x46  r_flash_rx.o [1]
+      PFRAM               inited   0x00000469    0x25  r_flash_type1.o [1]
+      PFRAM               inited   0x0000048e    0x8e  r_flash_utils.o [1]
+                                 - 0x0000051c   0x51c
+
+"RAM16":                                          0x4
+  RAM16 s0                         0x0000051c     0x4  <Init block>
+    __DLIB_PERTHREAD      inited   0x0000051c     0x4  strtok.o [4]
+                                 - 0x00000520     0x4
+
+"RAM24":                                       0x10a0
+  RAM24 s1                         0x00000520    0x88  <Init block>
+    .data24.data          inited   0x00000520    0x28  r_sci_rx110_data.o [1]
+    .data24.data          inited   0x00000548    0x28  r_sci_rx110_data.o [1]
+    .data24.data          inited   0x00000570    0x28  r_sci_rx110_data.o [1]
+    .data24.data          inited   0x00000598     0x8  r_s12ad_rx.o [1]
+    .data24.data          inited   0x000005a0     0x4  led.o [1]
+    .data24.data          inited   0x000005a4     0x1  timer.o [1]
+  .data24.bss             zero     0x000005a8   0x400  flash.o [1]
+  .data24.bss             zero     0x000009a8   0x2b0  lju_bus_handler.o [1]
+  .data24.bss             zero     0x00000c58   0x180  r_byteq.o [1]
+  .data24.bss             zero     0x00000dd8    0xfa  r_sci_rx.o [1]
+  .data24.bss             zero     0x00000ed2    0xfa  r_sci_rx.o [1]
+  .data24.bss             zero     0x00000fcc    0xf0  lju_bus_protocol.o [1]
+  .data24.bss             zero     0x000010bc    0x8c  mcu_locks.o [1]
+  .data24.bss             zero     0x00001148    0x80  error.o [1]
+  .data24.bss             zero     0x000011c8    0x80  lju_bus_handler.o [1]
+  .data24.bss             zero     0x00001248    0x50  r_sci_rx.o [1]
+  .data24.bss             zero     0x00001298    0x50  r_sci_rx.o [1]
+  .data24.bss             zero     0x000012e8    0x50  r_sci_rx.o [1]
+  .data24.bss             zero     0x00001338    0x50  r_sci_rx.o [1]
+  .data24.bss             zero     0x00001388    0x30  freq.o [1]
+  .data24.bss             zero     0x000013b8    0x30  rs485.o [1]
+  .data24.bss             zero     0x000013e8    0x30  sync.o [1]
+  .data24.bss             zero     0x00001418    0x2c  cache.o [1]
+  .data24.bss             zero     0x00001444    0x2c  timer.o [1]
+  .data24.bss             zero     0x00001470    0x2a  eeprom.o [1]
+  .data24.bss             zero     0x0000149a    0x26  lju_bus_handler.o [1]
+  .data24.bss             zero     0x000014c0    0x28  r_bsp_interrupts.o [1]
+  .data24.bss             zero     0x000014e8    0x20  eeprom.o [1]
+  .data24.bss             zero     0x00001508    0x1d  r_flash_group.o [1]
+  .data24.bss             zero     0x00001525     0x2  r_cmt_rx.o [1]
+  .data24.bss             zero     0x00001527     0x1  application.o [1]
+  .data24.bss             zero     0x00001528    0x14  adc.o [1]
+  .data24.bss             zero     0x0000153c    0x14  flash.o [1]
+  .data24.bss             zero     0x00001550    0x12  led.o [1]
+  .data24.bss             zero     0x00001562     0xa  r_bsp_cpu.o [1]
+  .data24.bss             zero     0x0000156c     0xc  eeprom.o [1]
+  .data24.bss             zero     0x00001578     0xc  error.o [1]
+  .data24.bss             zero     0x00001584     0xc  r_codeflash.o [1]
+  .data24.bss             zero     0x00001590     0x8  r_cmt_rx.o [1]
+  .data24.bss             zero     0x00001598     0x8  r_flash_group.o [1]
+  .data24.bss             zero     0x000015a0     0x8  timer.o [1]
+  .data24.bss             zero     0x000015a8     0x8  watchdog.o [1]
+  .data24.bss             zero     0x000015b0     0x4  application.o [1]
+  .data24.bss             zero     0x000015b4     0x4  lju_bus_handler.o [1]
+  .data24.bss             zero     0x000015b8     0x4  r_flash_rx.o [1]
+  .data24.bss             zero     0x000015bc     0x1  r_byteq.o [1]
+  .data24.bss             zero     0x000015bd     0x1  r_flash_group.o [1]
+  .data24.bss             zero     0x000015be     0x1  r_flash_rx.o [1]
+  .data24.bss             zero     0x000015bf     0x1  sync.o [1]
+                                 - 0x000015c0  0x10a0
+
+"RAM32":                                       0x2000
+  STACKS                           0x000015c0  0x2000  <Block>
+    ISTACK                         0x000015c0  0x1900  <Block>
+      ISTACK              uninit   0x000015c0  0x1900  <Block tail>
+    USTACK                         0x00002ec0   0x700  <Block>
+      USTACK              uninit   0x00002ec0   0x700  <Block tail>
+                                 - 0x000035c0  0x2000
+
+"P5":                                            0x80
+  ROM_IDENT                        0xfffe0000    0x80  <Block>
+    IDENT_SECTION         const    0xfffe0000    0x40  version.o [1]
+    INFO_SECTION          const    0xfffe0040    0x3c  version.o [1]
+    HEADER_CHECKSUM_SECTION
+                          const    0xfffe007c     0x2  version.o [1]
+    BODY_CHECKSUM_SECTION
+                          const    0xfffe007e     0x2  version.o [1]
+                                 - 0xfffe0080    0x80
+
+"P3":                                           0x51c
+  RamCodeInit                      0xfffe0080   0x51c  <Block>
+    Initializer bytes     const    0xfffe0080   0x51c  <for RamCode-1>
+                                 - 0xfffe059c   0x51c
+
+"ROM24":                                        0x558
+  .data24.rodata          const    0xfffe059c   0x200  fcs.o [1]
+  .data24.rodata          const    0xfffe079c    0x4c  r_s12ad_rx110.o [1]
+  .data24.rodata          const    0xfffe07e8    0x48  lju_bus_handler.o [1]
+  .data24.rodata          const    0xfffe0830    0x34  r_sci_rx110_data.o [1]
+  .data24.rodata          const    0xfffe0864    0x34  r_sci_rx110_data.o [1]
+  .data24.rodata          const    0xfffe0898    0x34  r_sci_rx110_data.o [1]
+  .data24.rodata          const    0xfffe08cc    0x34  r_sci_rx110_data.o [1]
+  .data24.rodata          const    0xfffe0900    0x28  lju_bus_handler.o [1]
+  .data24.rodata          const    0xfffe0928    0x24  r_s12ad_rx110.o [1]
+  .data24.rodata          const    0xfffe094c    0x20  lju_bus_handler.o [1]
+  .data24.rodata          const    0xfffe096c    0x20  r_sci_rx110_data.o [1]
+  .data24.rodata          const    0xfffe098c    0x18  adc.o [1]
+  .data24.rodata          const    0xfffe09a4    0x18  lju_bus_protocol.o [1]
+  .data24.rodata          const    0xfffe09bc    0x10  lju_bus_handler.o [1]
+  .data24.rodata          const    0xfffe09cc    0x10  lju_bus_handler.o [1]
+  .data24.rodata          const    0xfffe09dc    0x10  lju_bus_handler.o [1]
+  .data24.rodata          const    0xfffe09ec    0x10  r_cmt_rx.o [1]
+  .data24.rodata          const    0xfffe09fc    0x10  r_sci_rx110_data.o [1]
+  .data24.rodata          const    0xfffe0a0c     0xc  eeprom.o [1]
+  .data24.rodata          const    0xfffe0a18     0xc  rs485.o [1]
+  .data24.rodata          const    0xfffe0a24     0x8  data.o [1]
+  .data24.rodata          const    0xfffe0a2c     0x8  lju_bus_handler.o [1]
+  .data24.rodata          const    0xfffe0a34     0x8  lju_bus_protocol.o [1]
+  .data24.rodata          const    0xfffe0a3c     0x8  r_bsp_cpu.o [1]
+  .data24.rodata          const    0xfffe0a44     0x8  r_cmt_rx.o [1]
+  .data24.rodata          const    0xfffe0a4c     0x6  timer.o [1]
+  .data24.rodata          const    0xfffe0a52     0x5  freq.o [1]
+  .data24.rodata          const    0xfffe0a57     0x5  sync.o [1]
+  .data24.rodata          const    0xfffe0a5c     0x4  adc.o [1]
+  .data24.rodata          const    0xfffe0a60     0x3  eeprom.o [1]
+  .data24.rodata          const    0xfffe0a63     0x2  eeprom.o [1]
+  .data24.rodata          const    0xfffe0a65     0x2  lju_bus_handler.o [1]
+  .data24.rodata          const    0xfffe0a67     0x2  lju_bus_handler.o [1]
+  .data24.rodata          const    0xfffe0a69     0x1  eeprom.o [1]
+  .data24.rodata          const    0xfffe0a6a     0x1  eeprom.o [1]
+  .data24.rodata          const    0xfffe0a6b     0x1  eeprom.o [1]
+  Initializer bytes       const    0xfffe0a6c    0x88  <for RAM24 s1>
+                                 - 0xfffe0af4   0x558
+
+"ROM32":                                       0x56a0
+  .text                   ro code  0xfffe0af4   0xb96  lju_bus_handler.o [1]
+  .text                   ro code  0xfffe168a   0x110  error.o [1]
+  Veneer                  ro code  0xfffe179a     0x8  - Linker created -
+  Veneer                  ro code  0xfffe17a2     0x8  - Linker created -
+  .text                   ro code  0xfffe17aa   0x1e3  flash.o [1]
+  .text                   ro code  0xfffe198d    0x60  data.o [1]
+  .text                   ro code  0xfffe19ed   0x10e  lju_bus_protocol.o [1]
+  .text                   ro code  0xfffe1afb    0x50  strtok.o [4]
+  .text                   ro code  0xfffe1b4b    0x1e  memcmp.o [4]
+  .text                   ro code  0xfffe1b69     0x6  reset.o [1]
+  .text                   ro code  0xfffe1b6f   0x401  cache.o [1]
+  .text                   ro code  0xfffe1f70   0x306  sync.o [1]
+  .text                   ro code  0xfffe2276   0x1b6  freq.o [1]
+  .text                   ro code  0xfffe242c    0x71  interrupt.o [1]
+  .text                   ro code  0xfffe249d    0x14  r_flash_rx.o [1]
+  .text                   ro code  0xfffe24b1    0x6d  bcc.o [1]
+  .text                   ro code  0xfffe251e    0x1c  strspn.o [4]
+  .text                   ro code  0xfffe253a    0x1e  strcspn.o [4]
+  .text                   ro code  0xfffe2558   0x19b  r_bsp_cpu.o [1]
+  .text                   ro code  0xfffe26f3    0x64  fcs.o [1]
+  .text                   ro code  0xfffe2757   0x5f2  eeprom.o [1]
+  .text                   ro code  0xfffe2d49    0x95  watchdog.o [1]
+  .text                   ro code  0xfffe2dde    0xb9  r_mtu1_rx.o [1]
+  .text                   ro code  0xfffe2e97   0x3a1  timer.o [1]
+  .text                   ro code  0xfffe3238    0x64  i32tof32.o [4]
+  .text                   ro code  0xfffe329c   0x104  div32f.o [4]
+  .text                   ro code  0xfffe33a0    0x24  cmple32f.o [5]
+  .text                   ro code  0xfffe33c4   0x12d  add32f.o [4]
+  .text                   ro code  0xfffe34f1    0x24  f32toi32.o [4]
+  .text                   ro code  0xfffe3515   0x110  r_icu_rx.o [1]
+  Veneer                  ro code  0xfffe3625     0x8  - Linker created -
+  Veneer                  ro code  0xfffe362d     0x8  - Linker created -
+  Veneer                  ro code  0xfffe3635     0x8  - Linker created -
+  .text                   ro code  0xfffe363d    0xc5  r_flash_group.o [1]
+  .text                   ro code  0xfffe3702   0x255  r_bsp_interrupts.o [1]
+  .text                   ro code  0xfffe3957   0x679  r_sci_rx.o [1]
+  .text                   ro code  0xfffe3fd0    0x63  r_sci_rx_pinset.o [1]
+  .text                   ro code  0xfffe4033    0x10  r_iwdt_rx.o [1]
+  .text                   ro code  0xfffe4043    0x54  r_mtu1_rx_user.o [1]
+  .text                   ro code  0xfffe4097   0x272  rs485.o [1]
+  .text                   ro code  0xfffe4309   0x1b6  led.o [1]
+  .text                   ro code  0xfffe44bf   0x16b  adc.o [1]
+  .text                   ro code  0xfffe462a   0x306  r_cmt_rx.o [1]
+  .text                   ro code  0xfffe4930    0xbb  r_icu_rx_user.o [1]
+  .text                   ro code  0xfffe49eb    0x52  mcu_interrupts.o [1]
+  .text                   ro code  0xfffe4a3d     0x8  r_rx_intrinsic_functions.o [1]
+  .text                   ro code  0xfffe4a45   0x68d  r_sci_rx110.o [1]
+  .text                   ro code  0xfffe50d2   0x14e  r_byteq.o [1]
+  .text                   ro code  0xfffe5220     0x5  r_iwdt_rx_user.o [1]
+  .text                   ro code  0xfffe5225    0x8a  r_s12ad_rx.o [1]
+  .text                   ro code  0xfffe52af    0x6d  adjexp32f.o [4]
+  .text                   ro code  0xfffe531c    0x31  r_bsp_locking.o [1]
+  .text                   ro code  0xfffe534d   0x3fe  r_s12ad_rx110.o [1]
+  .inttable                        0xfffe574c   0x400  <Block>
+    .inttable             const    0xfffe574c   0x400  interrupt_table.o [4]
+  .text                   ro code  0xfffe5b4c   0x126  application.o [1]
+  .text                   ro code  0xfffe5c72    0x24  tp.o [1]
+  .text                   ro code  0xfffe5c96    0x10  switches.o [1]
+  .text                   ro code  0xfffe5ca6    0xdc  mcu_clocks.o [1]
+  .text                   ro code  0xfffe5d82    0xdb  r_bsp_common.o [1]
+  .text                   ro code  0xfffe5e5d    0xa5  div64u.o [5]
+  .text                   ro code  0xfffe5f02    0x62  r_cg_hardware_setup.o [1]
+  .text                   ro code  0xfffe5f64    0x1f  r_smc_cgc.o [1]
+  .text                   ro code  0xfffe5f83    0x20  r_lvd1_rx.o [1]
+  .text                   ro code  0xfffe5fa3     0xf  r_bsc_rx.o [1]
+  .text                   ro code  0xfffe5fb2     0x1  r_smc_cgc_user.o [1]
+  .text                   ro code  0xfffe5fb3     0x9  r_lvd1_rx_user.o [1]
+  .text                   ro code  0xfffe5fbc     0x1  r_bsc_rx_user.o [1]
+  .text                   ro code  0xfffe5fbd    0x47  mcu_init.o [1]
+  .text                   ro code  0xfffe6004    0x33  resetprg.o [1]
+  .text                   ro code  0xfffe6037    0x15  data_init2.o [4]
+  .text                   ro code  0xfffe604c     0xa  hwsetup.o [1]
+  .checksum               const    0xfffe6056     0x2  Place holder __checksum
+  .text                   ro code  0xfffe6058    0x2a  cstartup.o [6]
+  .text                   ro code  0xfffe6082     0xa  main.o [1]
+  .text                   ro code  0xfffe608c     0x4  exit.o [4]
+  .text                   ro code  0xfffe6090     0x8  cexit.o [4]
+  .text                   ro code  0xfffe6098     0x2  xxexit.o [3]
+  .iar.init_table         const    0xfffe609c    0x4c  - Linker created -
+  .text                   ro code  0xfffe60e8    0x20  interrupt_table.o [4]
+  .text                   ro code  0xfffe6108     0x6  abort.o [3]
+  .switch.rodata          const    0xfffe6110    0x1c  r_s12ad_rx110.o [1]
+  .text                   ro code  0xfffe612c    0x1c  copy_init2.o [4]
+  .text                   ro code  0xfffe6148    0x18  zero_init2.o [4]
+  .switch.rodata          const    0xfffe6160    0x12  r_sci_rx110.o [1]
+  .text                   ro code  0xfffe6172     0x2  def_nmi_handlers.o [6]
+  .switch.rodata          const    0xfffe6174    0x10  r_bsp_cpu.o [1]
+  SECTION_MAX             const    0xfffe6184     0x4  version.o [1]
+  SECTION_MIN             const    0xfffe6188     0x4  version.o [1]
+  SECTION_SIZE            const    0xfffe618c     0x4  version.o [1]
+  Initializer bytes       const    0xfffe6190     0x4  <for RAM16 s0>
+                                 - 0xfffe6194  0x56a0
+
+"A1":                                            0x80
+  .nmivec                 const    0xffffbf80    0x80  nmivec.o [6]
+                                 - 0xffffc000    0x80
+
+
+*******************************************************************************
+*** INIT TABLE
+***
+
+          Address     Size
+          -------     ----
+Zero (___iar_zero_init2)
+    1 destination range, total size 0x1018:
+          0x000005a8  0x1018
+
+Copy (___iar_copy_init2)
+    1 source range, total size 0x51c:
+          0xfffe0080   0x51c
+    1 destination range, total size 0x51c:
+          0x00000000   0x51c
+
+Copy (___iar_copy_init2)
+    1 source range, total size 0x4:
+          0xfffe6190     0x4
+    1 destination range, total size 0x4:
+          0x0000051c     0x4
+
+Copy (___iar_copy_init2)
+    1 source range, total size 0x88 (102% of destination):
+          0xfffe0a6c    0x88
+    1 destination range, total size 0x85:
+          0x00000520    0x85
+
+
+*******************************************************************************
+*** STACK USAGE
+***
+
+  Call Graph Root Category  Max Use  Total Use
+  ------------------------  -------  ---------
+  init                           12         12
+  interrupt                     568      6 700
+  Program entry                 574        574
+  Uncalled function              24         60
+
+
+Program entry
+  "__iar_program_start": 0xfffe6058
+
+  Maximum call chain                               574 bytes
+
+    "__iar_program_start"                            4
+    "___low_level_init"                              4
+    "__iar_main_call"                               50
+    "_main"                                          4
+    "_user_init"                                     4
+    "_rs485_init"                                   24
+    "_rs485_tx_stop"                                 8
+    "_R_SCI_Control"                                16
+    "_sci_sync_cmds"                                20
+    "_rs485_sci_callback"                           16
+    "_rs485_tx"                                     16
+      + 1 cycles in nest 2                          76
+    "_rs485_tx_stop"                                 8
+    "_R_SCI_Control"                                16
+    "_sci_sync_cmds"                                20
+    "_rs485_sci_callback"                           16
+    "_lju_bus_processor"                            72
+    "_lju_bus_process_flash_data"                  112
+    "_flash_write_rom"                              40
+    "_R_FLASH_Write"                                 4
+    "_r_flash_write"                                24
+    "_flash_pe_mode_enter"                           8
+    "_R_CF_Enter_PE_Mode"                            4
+    "_r_flash_delay_us"                              4
+    "_r_flash_delay" in r_flash_type1.o [1]          4
+
+init
+  "__iar_div64u": 0xfffe5e5d
+
+  Maximum call chain                                12 bytes
+
+    "__iar_div64u"                                  12
+
+interrupt
+  "___NMI_handler": 0xfffe375b
+
+  Maximum call chain                               120 bytes
+
+    "___NMI_handler"                                52
+    "_R_BSP_InterruptControl"                       16
+    "_r_r_iwdt_rx_nmi_interrupt"                     4
+    "_reset_execute"                                 4
+    "_R_BSP_SoftwareReset"                           8
+      + 0 cycles in nest 1                           0
+    "_R_BSP_InterruptControl"                       16
+    "_r_r_lvd1_rx_lvd1_interrupt"                    4
+    "_error_set"                                    12
+    "_interrupt_disable"                             4
+
+interrupt
+  "___interrupt_16": 0xfffe3702
+
+  Maximum call chain                               120 bytes
+
+    "___interrupt_16"                               52
+    "_R_BSP_InterruptControl"                       16
+    "_r_r_iwdt_rx_nmi_interrupt"                     4
+    "_reset_execute"                                 4
+    "_R_BSP_SoftwareReset"                           8
+      + 0 cycles in nest 1                           0
+    "_R_BSP_InterruptControl"                       16
+    "_r_r_lvd1_rx_lvd1_interrupt"                    4
+    "_error_set"                                    12
+    "_interrupt_disable"                             4
+
+interrupt
+  "___privileged_handler": 0xfffe382e
+
+  Maximum call chain                               120 bytes
+
+    "___privileged_handler"                         52
+    "_R_BSP_InterruptControl"                       16
+    "_r_r_iwdt_rx_nmi_interrupt"                     4
+    "_reset_execute"                                 4
+    "_R_BSP_SoftwareReset"                           8
+      + 0 cycles in nest 1                           0
+    "_R_BSP_InterruptControl"                       16
+    "_r_r_lvd1_rx_lvd1_interrupt"                    4
+    "_error_set"                                    12
+    "_interrupt_disable"                             4
+
+interrupt
+  "___undefined_handler": 0xfffe3805
+
+  Maximum call chain                               120 bytes
+
+    "___undefined_handler"                          52
+    "_R_BSP_InterruptControl"                       16
+    "_r_r_iwdt_rx_nmi_interrupt"                     4
+    "_reset_execute"                                 4
+    "_R_BSP_SoftwareReset"                           8
+      + 0 cycles in nest 1                           0
+    "_R_BSP_InterruptControl"                       16
+    "_r_r_lvd1_rx_lvd1_interrupt"                    4
+    "_error_set"                                    12
+    "_interrupt_disable"                             4
+
+interrupt
+  "___undefined_interrupt_source_handler": 0xfffe3732
+
+  Maximum call chain                               120 bytes
+
+    "___undefined_interrupt_source_handler"         52
+    "_R_BSP_InterruptControl"                       16
+    "_r_r_iwdt_rx_nmi_interrupt"                     4
+    "_reset_execute"                                 4
+    "_R_BSP_SoftwareReset"                           8
+      + 0 cycles in nest 1                           0
+    "_R_BSP_InterruptControl"                       16
+    "_r_r_lvd1_rx_lvd1_interrupt"                    4
+    "_error_set"                                    12
+    "_interrupt_disable"                             4
+
+interrupt
+  "___interrupt_28": 0xfffe464b
+
+  Maximum call chain                               152 bytes
+
+    "___interrupt_28"                               52
+    "_cmt_isr_common" in r_cmt_rx.o [1]              8
+    "_R_CMT_Stop"                                   12
+    "_R_BSP_RegisterProtectDisable"                 12
+    "_R_BSP_InterruptControl"                       16
+    "_r_r_iwdt_rx_nmi_interrupt"                     4
+    "_reset_execute"                                 4
+    "_R_BSP_SoftwareReset"                           8
+      + 0 cycles in nest 1                           0
+    "_R_BSP_InterruptControl"                       16
+    "_r_r_lvd1_rx_lvd1_interrupt"                    4
+    "_error_set"                                    12
+    "_interrupt_disable"                             4
+
+interrupt
+  "___interrupt_29": 0xfffe462a
+
+  Maximum call chain                               152 bytes
+
+    "___interrupt_29"                               52
+    "_cmt_isr_common" in r_cmt_rx.o [1]              8
+    "_R_CMT_Stop"                                   12
+    "_R_BSP_RegisterProtectDisable"                 12
+    "_R_BSP_InterruptControl"                       16
+    "_r_r_iwdt_rx_nmi_interrupt"                     4
+    "_reset_execute"                                 4
+    "_R_BSP_SoftwareReset"                           8
+      + 0 cycles in nest 1                           0
+    "_R_BSP_InterruptControl"                       16
+    "_r_r_lvd1_rx_lvd1_interrupt"                    4
+    "_error_set"                                    12
+    "_interrupt_disable"                             4
+
+interrupt
+  "___interrupt_27": 0xfffe498c
+
+  Maximum call chain                               568 bytes
+
+    "___interrupt_27"                               52
+    "_timer_processing_callback"                    20
+    "_rs485_timeout_check_callback"                 12
+    "_rs485_response_timeout_callback"               8
+    "_R_SCI_Control"                                16
+    "_sci_sync_cmds"                                20
+    "_rs485_sci_callback"                           16
+    "_rs485_tx"                                     16
+    "_rs485_tx_stop"                                 8
+      + 1 cycles in nest 2                          76
+    "_R_SCI_Control"                                16
+    "_sci_sync_cmds"                                20
+    "_rs485_sci_callback"                           16
+    "_lju_bus_processor"                            72
+    "_lju_bus_process_flash_data"                  112
+    "_flash_write_rom"                              40
+    "_R_FLASH_Write"                                 4
+    "_r_flash_write"                                24
+    "_flash_pe_mode_enter"                           8
+    "_R_CF_Enter_PE_Mode"                            4
+    "_r_flash_delay_us"                              4
+    "_r_flash_delay" in r_flash_type1.o [1]          4
+
+interrupt
+  "___interrupt_65": 0xfffe495d
+
+  Maximum call chain                                68 bytes
+
+    "___interrupt_65"                               52
+    "_sync_detected_callback"                       12
+    "_interrupt_disable_neasted"                     4
+
+interrupt
+  "___interrupt_68": 0xfffe4932
+
+  Maximum call chain                                96 bytes
+
+    "___interrupt_68"                               52
+    "_freq_edge_detected_callback"                  20
+    "_sync_zero_cross_callback"                      8
+    "_error_set"                                    12
+    "_interrupt_disable"                             4
+
+interrupt
+  "___interrupt_71": 0xfffe4930
+
+  Maximum call chain                                 8 bytes
+
+    "___interrupt_71"                                8
+
+interrupt
+  "___interrupt_121": 0xfffe4065
+
+  Maximum call chain                                64 bytes
+
+    "___interrupt_121"                              52
+    "_sync_puls_set"                                 8
+    "_R_r_mtu1_rx_Stop"                              4
+
+interrupt
+  "___interrupt_122": 0xfffe4043
+
+  Maximum call chain                                64 bytes
+
+    "___interrupt_122"                              52
+    "_sync_puls_set"                                 8
+    "_R_r_mtu1_rx_Stop"                              4
+
+interrupt
+  "___interrupt_102": 0xfffe5225
+
+  Maximum call chain                                84 bytes
+
+    "___interrupt_102"                              56
+    "_adc_ready_callback"                           12
+    "_error_set"                                    12
+    "_interrupt_disable"                             4
+
+interrupt
+  "___interrupt_218": 0xfffe4d9c
+
+  Maximum call chain                               504 bytes
+
+    "___interrupt_218"                              52
+    "_eri_handler"                                  12
+    "_rs485_sci_callback"                           16
+    "_rs485_tx"                                     16
+    "_rs485_tx_stop"                                 8
+    "_R_SCI_Control"                                16
+    "_sci_sync_cmds"                                20
+      + 1 cycles in nest 2                          76
+    "_rs485_sci_callback"                           16
+    "_lju_bus_processor"                            72
+    "_lju_bus_process_flash_data"                  112
+    "_flash_write_rom"                              40
+    "_R_FLASH_Write"                                 4
+    "_r_flash_write"                                24
+    "_flash_pe_mode_enter"                           8
+    "_R_CF_Enter_PE_Mode"                            4
+    "_r_flash_delay_us"                              4
+    "_r_flash_delay" in r_flash_type1.o [1]          4
+
+interrupt
+  "___interrupt_219": 0xfffe4e0b
+
+  Maximum call chain                               512 bytes
+
+    "___interrupt_219"                              52
+    "_sci_receive" in r_sci_rx.o [1]                20
+    "_rs485_sci_callback"                           16
+    "_rs485_tx"                                     16
+    "_rs485_tx_stop"                                 8
+    "_R_SCI_Control"                                16
+    "_sci_sync_cmds"                                20
+      + 1 cycles in nest 2                          76
+    "_rs485_sci_callback"                           16
+    "_lju_bus_processor"                            72
+    "_lju_bus_process_flash_data"                  112
+    "_flash_write_rom"                              40
+    "_R_FLASH_Write"                                 4
+    "_r_flash_write"                                24
+    "_flash_pe_mode_enter"                           8
+    "_R_CF_Enter_PE_Mode"                            4
+    "_r_flash_delay_us"                              4
+    "_r_flash_delay" in r_flash_type1.o [1]          4
+
+interrupt
+  "___interrupt_220": 0xfffe4ee9
+
+  Maximum call chain                                72 bytes
+
+    "___interrupt_220"                              52
+    "_txi_handler"                                  16
+    "_R_BYTEQ_Get"                                   4
+
+interrupt
+  "___interrupt_221": 0xfffe4e7a
+
+  Maximum call chain                               504 bytes
+
+    "___interrupt_221"                              52
+    "_tei_handler"                                  12
+    "_rs485_sci_callback"                           16
+    "_rs485_tx"                                     16
+    "_rs485_tx_stop"                                 8
+    "_R_SCI_Control"                                16
+    "_sci_sync_cmds"                                20
+      + 1 cycles in nest 2                          76
+    "_rs485_sci_callback"                           16
+    "_lju_bus_processor"                            72
+    "_lju_bus_process_flash_data"                  112
+    "_flash_write_rom"                              40
+    "_R_FLASH_Write"                                 4
+    "_r_flash_write"                                24
+    "_flash_pe_mode_enter"                           8
+    "_R_CF_Enter_PE_Mode"                            4
+    "_r_flash_delay_us"                              4
+    "_r_flash_delay" in r_flash_type1.o [1]          4
+
+interrupt
+  "___interrupt_222": 0xfffe4d77
+
+  Maximum call chain                               504 bytes
+
+    "___interrupt_222"                              52
+    "_eri_handler"                                  12
+    "_rs485_sci_callback"                           16
+    "_rs485_tx"                                     16
+    "_rs485_tx_stop"                                 8
+    "_R_SCI_Control"                                16
+    "_sci_sync_cmds"                                20
+      + 1 cycles in nest 2                          76
+    "_rs485_sci_callback"                           16
+    "_lju_bus_processor"                            72
+    "_lju_bus_process_flash_data"                  112
+    "_flash_write_rom"                              40
+    "_R_FLASH_Write"                                 4
+    "_r_flash_write"                                24
+    "_flash_pe_mode_enter"                           8
+    "_R_CF_Enter_PE_Mode"                            4
+    "_r_flash_delay_us"                              4
+    "_r_flash_delay" in r_flash_type1.o [1]          4
+
+interrupt
+  "___interrupt_223": 0xfffe4de6
+
+  Maximum call chain                               512 bytes
+
+    "___interrupt_223"                              52
+    "_sci_receive" in r_sci_rx.o [1]                20
+    "_rs485_sci_callback"                           16
+    "_rs485_tx"                                     16
+    "_rs485_tx_stop"                                 8
+    "_R_SCI_Control"                                16
+    "_sci_sync_cmds"                                20
+      + 1 cycles in nest 2                          76
+    "_rs485_sci_callback"                           16
+    "_lju_bus_processor"                            72
+    "_lju_bus_process_flash_data"                  112
+    "_flash_write_rom"                              40
+    "_R_FLASH_Write"                                 4
+    "_r_flash_write"                                24
+    "_flash_pe_mode_enter"                           8
+    "_R_CF_Enter_PE_Mode"                            4
+    "_r_flash_delay_us"                              4
+    "_r_flash_delay" in r_flash_type1.o [1]          4
+
+interrupt
+  "___interrupt_224": 0xfffe4ec4
+
+  Maximum call chain                                72 bytes
+
+    "___interrupt_224"                              52
+    "_txi_handler"                                  16
+    "_R_BYTEQ_Get"                                   4
+
+interrupt
+  "___interrupt_225": 0xfffe4e55
+
+  Maximum call chain                               504 bytes
+
+    "___interrupt_225"                              52
+    "_tei_handler"                                  12
+    "_rs485_sci_callback"                           16
+    "_rs485_tx"                                     16
+    "_rs485_tx_stop"                                 8
+    "_R_SCI_Control"                                16
+    "_sci_sync_cmds"                                20
+      + 1 cycles in nest 2                          76
+    "_rs485_sci_callback"                           16
+    "_lju_bus_processor"                            72
+    "_lju_bus_process_flash_data"                  112
+    "_flash_write_rom"                              40
+    "_R_FLASH_Write"                                 4
+    "_r_flash_write"                                24
+    "_flash_pe_mode_enter"                           8
+    "_R_CF_Enter_PE_Mode"                            4
+    "_r_flash_delay_us"                              4
+    "_r_flash_delay" in r_flash_type1.o [1]          4
+
+interrupt
+  "___interrupt_238": 0xfffe4d52
+
+  Maximum call chain                               504 bytes
+
+    "___interrupt_238"                              52
+    "_eri_handler"                                  12
+    "_rs485_sci_callback"                           16
+    "_rs485_tx"                                     16
+    "_rs485_tx_stop"                                 8
+    "_R_SCI_Control"                                16
+    "_sci_sync_cmds"                                20
+      + 1 cycles in nest 2                          76
+    "_rs485_sci_callback"                           16
+    "_lju_bus_processor"                            72
+    "_lju_bus_process_flash_data"                  112
+    "_flash_write_rom"                              40
+    "_R_FLASH_Write"                                 4
+    "_r_flash_write"                                24
+    "_flash_pe_mode_enter"                           8
+    "_R_CF_Enter_PE_Mode"                            4
+    "_r_flash_delay_us"                              4
+    "_r_flash_delay" in r_flash_type1.o [1]          4
+
+interrupt
+  "___interrupt_239": 0xfffe4dc1
+
+  Maximum call chain                               512 bytes
+
+    "___interrupt_239"                              52
+    "_sci_receive" in r_sci_rx.o [1]                20
+    "_rs485_sci_callback"                           16
+    "_rs485_tx"                                     16
+    "_rs485_tx_stop"                                 8
+    "_R_SCI_Control"                                16
+    "_sci_sync_cmds"                                20
+      + 1 cycles in nest 2                          76
+    "_rs485_sci_callback"                           16
+    "_lju_bus_processor"                            72
+    "_lju_bus_process_flash_data"                  112
+    "_flash_write_rom"                              40
+    "_R_FLASH_Write"                                 4
+    "_r_flash_write"                                24
+    "_flash_pe_mode_enter"                           8
+    "_R_CF_Enter_PE_Mode"                            4
+    "_r_flash_delay_us"                              4
+    "_r_flash_delay" in r_flash_type1.o [1]          4
+
+interrupt
+  "___interrupt_240": 0xfffe4e9f
+
+  Maximum call chain                                72 bytes
+
+    "___interrupt_240"                              52
+    "_txi_handler"                                  16
+    "_R_BYTEQ_Get"                                   4
+
+interrupt
+  "___interrupt_241": 0xfffe4e30
+
+  Maximum call chain                               504 bytes
+
+    "___interrupt_241"                              52
+    "_tei_handler"                                  12
+    "_rs485_sci_callback"                           16
+    "_rs485_tx"                                     16
+    "_rs485_tx_stop"                                 8
+    "_R_SCI_Control"                                16
+    "_sci_sync_cmds"                                20
+      + 1 cycles in nest 2                          76
+    "_rs485_sci_callback"                           16
+    "_lju_bus_processor"                            72
+    "_lju_bus_process_flash_data"                  112
+    "_flash_write_rom"                              40
+    "_R_FLASH_Write"                                 4
+    "_r_flash_write"                                24
+    "_flash_pe_mode_enter"                           8
+    "_R_CF_Enter_PE_Mode"                            4
+    "_r_flash_delay_us"                              4
+    "_r_flash_delay" in r_flash_type1.o [1]          4
+
+interrupt
+  "_default_handler": 0xfffe60e8
+
+  Maximum call chain                                60 bytes
+
+    "_default_handler"                              52
+    "_abort"                                         4
+    "___exit"                                        4
+
+interrupt
+  "___floating_point_handler": 0xfffe6172
+    (also: "__float_placeholder")
+
+  Maximum call chain                                 8 bytes
+
+    "___floating_point_handler"                      8
+
+Uncalled function
+  "__COM_AEXPf": 0xfffe52bf
+
+  Maximum call chain                                 4 bytes
+
+    "__COM_AEXPf"                                    4
+
+Uncalled function
+  "__COM_CONV32sf": 0xfffe3238
+
+  Maximum call chain                                 4 bytes
+
+    "__COM_CONV32sf"                                 4
+
+Uncalled function
+  "__COM_CONV32uf": 0xfffe3244
+
+  Maximum call chain                                 4 bytes
+
+    "__COM_CONV32uf"                                 4
+
+Uncalled function
+  "__COM_DIVf": 0xfffe32ea
+
+  Maximum call chain                                24 bytes
+
+    "__COM_DIVf"                                    24
+
+Uncalled function
+  "__iar_cmple32f": 0xfffe33a0
+
+  Maximum call chain                                 4 bytes
+
+    "__iar_cmple32f"                                 4
+
+Uncalled function
+  "__COM_ADDf": 0xfffe3401
+
+  Maximum call chain                                16 bytes
+
+    "__COM_ADDf"                                    16
+
+Uncalled function
+  "__COM_CONVf32s": 0xfffe34f1
+
+  Maximum call chain                                 4 bytes
+
+    "__COM_CONVf32s"                                 4
+
+The following functions make up recursion nest 0, which has a maximum
+recursion depth of 4:
+
+  "_led_set": 0xfffe4340
+
+The following functions make up recursion nest 1, which has a maximum
+recursion depth of 1:
+
+  "_R_BSP_InterruptControl": 0xfffe3857
+  "_R_BSP_SoftwareReset": 0xfffe2571
+  "_r_r_iwdt_rx_nmi_interrupt": 0xfffe5220
+  "_reset_execute": 0xfffe1b69
+
+The following functions make up recursion nest 2, which has a maximum
+recursion depth of 2:
+
+  "_R_SCI_Control": 0xfffe3957
+  "_rs485_sci_callback": 0xfffe4148
+  "_rs485_tx": 0xfffe4097
+  "_rs485_tx_stop": 0xfffe41ce
+  "_sci_sync_cmds": 0xfffe4a45
+
+
+*******************************************************************************
+*** MODULE SUMMARY
+***
+
+    Module                      ro code  rw code  ro data  rw data
+    ------                      -------  -------  -------  -------
+D:\projects\PCS\PCM8_SM_FW\Release\Obj: [1]
+    adc.o                           363                28       20
+    application.o                   294                          5
+    bcc.o                           109
+    cache.o                       1 025                         44
+    data.o                           96                 8
+    eeprom.o                      1 522                20       86
+    error.o                         272                        140
+    fcs.o                           100               512
+    flash.o                         483                      1 044
+    freq.o                          438                 5       48
+    hwsetup.o                        10
+    interrupt.o                     113
+    led.o                           438                 4       22
+    lju_bus_handler.o             2 966               204      858
+    lju_bus_protocol.o              270                32      240
+    main.o                           10
+    mcu_clocks.o                    220
+    mcu_init.o                       71
+    mcu_interrupts.o                 82
+    mcu_locks.o                                                140
+    r_bsc_rx.o                       15
+    r_bsc_rx_user.o                   1
+    r_bsp_common.o                  219
+    r_bsp_cpu.o                     411                24       10
+    r_bsp_interrupts.o              597                         40
+    r_bsp_locking.o                  49
+    r_byteq.o                       334                        385
+    r_cg_hardware_setup.o            98
+    r_cmt_rx.o                      774                24       10
+    r_codeflash.o                            688      688       12
+    r_flash_group.o                 197      371      371       38
+    r_flash_rx.o                     20       70       70        5
+    r_flash_type1.o                           37       37
+    r_flash_utils.o                          142      142
+    r_icu_rx.o                      272
+    r_icu_rx_user.o                 187
+    r_iwdt_rx.o                      16
+    r_iwdt_rx_user.o                  5
+    r_lvd1_rx.o                      32
+    r_lvd1_rx_user.o                  9
+    r_mtu1_rx.o                     185
+    r_mtu1_rx_user.o                 84
+    r_rx_intrinsic_functions.o        8
+    r_s12ad_rx.o                    138                 8        8
+    r_s12ad_rx110.o               1 022               140
+    r_sci_rx.o                    1 657                        820
+    r_sci_rx110.o                 1 677                18
+    r_sci_rx110_data.o                                376      120
+    r_sci_rx_pinset.o                99
+    r_smc_cgc.o                      31
+    r_smc_cgc_user.o                  1
+    reset.o                           6
+    resetprg.o                       51
+    rs485.o                         626                12       48
+    switches.o                       16
+    sync.o                          774                 5       49
+    timer.o                         929                 7       53
+    tp.o                             36
+    version.o                                         140
+    watchdog.o                      149                          8
+    --------------------------------------------------------------
+    Total:                       19 607    1 308    2 875    4 253
+
+command line: [2]
+    --------------------------------------------------------------
+    Total:
+
+dbgrxlln.a: [3]
+    abort.o                           6
+    xxexit.o                          2
+    --------------------------------------------------------------
+    Total:                            8
+
+dlrxfllsn.a: [4]
+    add32f.o                        301
+    adjexp32f.o                     109
+    cexit.o                           8
+    copy_init2.o                     28
+    data_init2.o                     21
+    div32f.o                        260
+    exit.o                            4
+    f32toi32.o                       36
+    i32tof32.o                      100
+    interrupt_table.o                32             1 024
+    memcmp.o                         30
+    strcspn.o                        30
+    strspn.o                         28
+    strtok.o                         80                 4        4
+    zero_init2.o                     24
+    --------------------------------------------------------------
+    Total:                        1 091             1 028        4
+
+rtrxfl.a: [5]
+    cmple32f.o                       36
+    div64u.o                        165
+    --------------------------------------------------------------
+    Total:                          201
+
+strxl.a: [6]
+    cstartup.o                       42
+    def_nmi_handlers.o                2
+    nmivec.o                                          128
+    --------------------------------------------------------------
+    Total:                           44               128
+
+    Gaps                                                4
+    Linker created                   40                79    8 192
+------------------------------------------------------------------
+    Grand Total:                 20 991    1 308    4 116   12 449
+
+
+*******************************************************************************
+*** ENTRY LIST
+***
+
+Entry                      Address   Size  Type      Object
+-----                      -------   ----  ----      ------
+.iar.init_table$$Base   0xfffe609c          --   Gb  - Linker created -
+.iar.init_table$$Limit  0xfffe60e8          --   Gb  - Linker created -
+.inttable$$Base         0xfffe574c          --   Gb  - Linker created -
+.inttable$$Limit        0xfffe5b4c          --   Gb  - Linker created -
+ISTACK$$Base            0x000015c0          --   Gb  - Linker created -
+ISTACK$$Limit           0x00002ec0          --   Gb  - Linker created -
+ROM_IDENT$$Base         0xfffe0000          --   Gb  - Linker created -
+ROM_IDENT$$Limit        0xfffe0080          --   Gb  - Linker created -
+RamCode$$Base           0x00000000          --   Gb  - Linker created -
+RamCode$$Limit          0x0000051c          --   Gb  - Linker created -
+RamCodeInit$$Base       0xfffe0080          --   Gb  - Linker created -
+RamCodeInit$$Limit      0xfffe059c          --   Gb  - Linker created -
+Region$$Table$$Base     0xfffe609c          --   Gb  - Linker created -
+Region$$Table$$Limit    0xfffe60e8          --   Gb  - Linker created -
+STACKS$$Base            0x000015c0          --   Gb  - Linker created -
+STACKS$$Limit           0x000035c0          --   Gb  - Linker created -
+USTACK$$Base            0x00002ec0          --   Gb  - Linker created -
+USTACK$$Limit           0x000035c0          --   Gb  - Linker created -
+_BOOTLOADER_MAX {Abs}   0xffffffff          --   Gb  command line/config [2]
+_BOOTLOADER_MIN {Abs}   0xffffc000          --   Gb  command line/config [2]
+_BOOTLOADER_SIZE {Abs}  0x00004000          --   Gb  command line/config [2]
+_FIRMWARE_SIZE {Abs}    0x0001c000          --   Gb  command line/config [2]
+_FIRMWARE_max           0xfffe6184    0x4  Data  Gb  version.o [1]
+_FIRMWARE_min           0xfffe6188    0x4  Data  Gb  version.o [1]
+_FIRMWARE_size          0xfffe618c    0x4  Data  Gb  version.o [1]
+_RAM_NULL_RESERVED_MAX {Abs}
+                        0x00000010          --   Gb  command line/config [2]
+_RAM_NULL_RESERVED_MIN {Abs}
+                        0x00000000          --   Gb  command line/config [2]
+_RESET_VECTOR_OFFSET {Abs}
+                        0x00000004          --   Gb  command line/config [2]
+_R_ADC_Control          0xfffe52a7    0x4  Code  Gb  r_s12ad_rx.o [1]
+_R_ADC_Open             0xfffe52ab    0x4  Code  Gb  r_s12ad_rx.o [1]
+_R_ADC_Read             0xfffe5283   0x24  Code  Gb  r_s12ad_rx.o [1]
+_R_BSP_BitClear         0xfffe4a3d    0x4  Code  Gb  r_rx_intrinsic_functions.o [1]
+_R_BSP_BitSet           0xfffe4a41    0x4  Code  Gb  r_rx_intrinsic_functions.o [1]
+_R_BSP_CpuInterruptLevelRead
+                        0xfffe26eb    0x8  Code  Gb  r_bsp_cpu.o [1]
+_R_BSP_CpuInterruptLevelWrite
+                        0xfffe267e   0x6d  Code  Gb  r_bsp_cpu.o [1]
+_R_BSP_HardwareLock     0xfffe5329   0x24  Code  Gb  r_bsp_locking.o [1]
+_R_BSP_HardwareUnlock   0xfffe531c    0xd  Code  Gb  r_bsp_locking.o [1]
+_R_BSP_InterruptControl
+                        0xfffe3857   0xa6  Code  Gb  r_bsp_interrupts.o [1]
+_R_BSP_InterruptRequestDisable
+                        0xfffe3933   0x12  Code  Gb  r_bsp_interrupts.o [1]
+_R_BSP_InterruptRequestEnable
+                        0xfffe3945   0x12  Code  Gb  r_bsp_interrupts.o [1]
+_R_BSP_InterruptWrite   0xfffe38fd   0x1c  Code  Gb  r_bsp_interrupts.o [1]
+_R_BSP_RegisterProtectDisable
+                        0xfffe25b9   0x59  Code  Gb  r_bsp_cpu.o [1]
+_R_BSP_RegisterProtectEnable
+                        0xfffe2612   0x6c  Code  Gb  r_bsp_cpu.o [1]
+_R_BSP_SoftwareDelay    0xfffe5d82   0xd2  Code  Gb  r_bsp_common.o [1]
+_R_BSP_SoftwareReset    0xfffe2571   0x48  Code  Gb  r_bsp_cpu.o [1]
+_R_BYTEQ_Flush          0xfffe50fc    0xf  Code  Gb  r_byteq.o [1]
+_R_BYTEQ_Get            0xfffe510b   0x38  Code  Gb  r_byteq.o [1]
+_R_BYTEQ_Open           0xfffe5189   0x97  Code  Gb  r_byteq.o [1]
+_R_BYTEQ_Put            0xfffe5143   0x46  Code  Gb  r_byteq.o [1]
+_R_BYTEQ_Unused         0xfffe50d2   0x17  Code  Gb  r_byteq.o [1]
+_R_BYTEQ_Used           0xfffe50e9   0x13  Code  Gb  r_byteq.o [1]
+_R_CF_Enter_PE_Mode     0x0000020c   0xa4  Code  Gb  r_codeflash.o [1]
+_R_CF_Enter_Read_Mode   0x0000018e   0x7e  Code  Gb  r_codeflash.o [1]
+_R_CF_Erase             0x0000005d   0x54  Code  Gb  r_codeflash.o [1]
+_R_CF_Erase_Check       0x00000022   0x3b  Code  Gb  r_codeflash.o [1]
+_R_CF_Write             0x0000013b   0x53  Code  Gb  r_codeflash.o [1]
+_R_CF_Write_Check       0x000000b1   0x65  Code  Gb  r_codeflash.o [1]
+_R_CF_Write_Operation   0x00000116   0x25  Code  Gb  r_codeflash.o [1]
+_R_CGC_Create           0xfffe5f64   0x1f  Code  Gb  r_smc_cgc.o [1]
+_R_CGC_Create_UserInit  0xfffe5fb2    0x1  Code  Gb  r_smc_cgc_user.o [1]
+_R_CMT_CreatePeriodicAssignChannelPriority
+                        0xfffe4923    0xd  Code  Gb  r_cmt_rx.o [1]
+_R_CMT_Stop             0xfffe4840   0xe3  Code  Gb  r_cmt_rx.o [1]
+_R_FLASH_Close          0xfffe249d    0x4  Code  Gb  r_flash_rx.o [1]
+_R_FLASH_Erase          0x00000465    0x4  Code  Gb  r_flash_rx.o [1]
+_R_FLASH_Open           0xfffe24a1   0x10  Code  Gb  r_flash_rx.o [1]
+_R_FLASH_Write          0x00000461    0x4  Code  Gb  r_flash_rx.o [1]
+_R_SCI_Control          0xfffe3957   0xcf  Code  Gb  r_sci_rx.o [1]
+_R_SCI_Open             0xfffe3e96  0x13a  Code  Gb  r_sci_rx.o [1]
+_R_SCI_PinSet_SCI1      0xfffe3ffa   0x39  Code  Gb  r_sci_rx_pinset.o [1]
+_R_SCI_PinSet_SCI5      0xfffe3fd0   0x2a  Code  Gb  r_sci_rx_pinset.o [1]
+_R_SCI_Send             0xfffe3c40   0xc7  Code  Gb  r_sci_rx.o [1]
+_R_SCI_SendReceive      0xfffe3bd4   0x6c  Code  Gb  r_sci_rx.o [1]
+_R_Systeminit           0xfffe5f02   0x61  Code  Gb  r_cg_hardware_setup.o [1]
+_R_r_bsc_rx_Create      0xfffe5fa3    0xf  Code  Gb  r_bsc_rx.o [1]
+_R_r_bsc_rx_Create_UserInit
+                        0xfffe5fbc    0x1  Code  Gb  r_bsc_rx_user.o [1]
+_R_r_icu_rx_Create      0xfffe353d   0xe8  Code  Gb  r_icu_rx.o [1]
+_R_r_icu_rx_Create_UserInit
+                        0xfffe49ac   0x3f  Code  Gb  r_icu_rx_user.o [1]
+_R_r_icu_rx_IRQ1_Start  0xfffe3525    0x8  Code  Gb  r_icu_rx.o [1]
+_R_r_icu_rx_IRQ4_Start  0xfffe351d    0x8  Code  Gb  r_icu_rx.o [1]
+_R_r_icu_rx_IRQ7_Start  0xfffe3515    0x8  Code  Gb  r_icu_rx.o [1]
+_R_r_icu_rx_SoftwareInterrupt_Generate
+                        0xfffe352d    0x8  Code  Gb  r_icu_rx.o [1]
+_R_r_icu_rx_Software_Start
+                        0xfffe3535    0x8  Code  Gb  r_icu_rx.o [1]
+_R_r_iwdt_rx_Create     0xfffe403f    0x4  Code  Gb  r_iwdt_rx.o [1]
+_R_r_iwdt_rx_Create_UserInit
+                        0xfffe5224    0x1  Code  Gb  r_iwdt_rx_user.o [1]
+_R_r_iwdt_rx_Restart    0xfffe4033    0xc  Code  Gb  r_iwdt_rx.o [1]
+_R_r_lvd1_rx_Create     0xfffe5f83   0x20  Code  Gb  r_lvd1_rx.o [1]
+_R_r_lvd1_rx_Create_UserInit
+                        0xfffe5fbb    0x1  Code  Gb  r_lvd1_rx_user.o [1]
+_R_r_mtu1_rx_Create     0xfffe2e54   0x43  Code  Gb  r_mtu1_rx.o [1]
+_R_r_mtu1_rx_Create_UserInit
+                        0xfffe4087   0x10  Code  Gb  r_mtu1_rx_user.o [1]
+_R_r_mtu1_rx_Start      0xfffe2def   0x65  Code  Gb  r_mtu1_rx.o [1]
+_R_r_mtu1_rx_Stop       0xfffe2dde   0x11  Code  Gb  r_mtu1_rx.o [1]
+_SW_INFO_LEN {Abs}      0x00000080          --   Gb  command line/config [2]
+_THIS_CODE_MAX {Abs}    0xffffbfff          --   Gb  command line/config [2]
+_THIS_CODE_MIN {Abs}    0xfffe0000          --   Gb  command line/config [2]
+_THIS_RESET_VECTOR {Abs}
+                        0xffffbffc          --   Gb  command line/config [2]
+_THIS_VECTOR_TABLE {Abs}
+                        0xffffbf80          --   Gb  command line/config [2]
+_UPDATE_MAX {Abs}       0xfffedfff          --   Gb  command line/config [2]
+_UPDATE_MIN {Abs}       0xfffe0000          --   Gb  command line/config [2]
+_UPDATE_SIZE {Abs}      0x0000e000          --   Gb  command line/config [2]
+_VECTOR_TABLE_LEN {Abs}
+                        0x00000080          --   Gb  command line/config [2]
+__COM_ADDf              0xfffe3401         Code  Gb  add32f.o [4]
+__COM_AEXPf             0xfffe52bf         Code  Gb  adjexp32f.o [4]
+__COM_CONV32sf          0xfffe3238         Code  Gb  i32tof32.o [4]
+__COM_CONV32uf          0xfffe3244         Code  Gb  i32tof32.o [4]
+__COM_CONVf32s          0xfffe34f1         Code  Gb  f32toi32.o [4]
+__COM_CONVf32u          0xfffe34f1         Code  Gb  f32toi32.o [4]
+__COM_DIVf              0xfffe32ea         Code  Gb  div32f.o [4]
+__ID_BYTES_13_16 {Abs}  0xffffffff          --   Gb  vecttbl.o [1]
+__ID_BYTES_1_4 {Abs}    0xffffffff          --   Gb  vecttbl.o [1]
+__ID_BYTES_5_8 {Abs}    0xffffffff          --   Gb  vecttbl.o [1]
+__ID_BYTES_9_12 {Abs}   0xffffffff          --   Gb  vecttbl.o [1]
+__MDES {Abs}            0xffffffff          --   Gb  vecttbl.o [1]
+__OFS0 {Abs}            0xffffef2d          --   Gb  vecttbl.o [1]
+__OFS1 {Abs}            0xffffffff          --   Gb  vecttbl.o [1]
+__Strtok_ssave          0x0000051c    0x4  Data  Lc  strtok.o [4]
+___NMI_handler          0xfffe375b   0xaa  Code  Gb  r_bsp_interrupts.o [1]
+___exit                 0xfffe6098    0x2  Code  Gb  xxexit.o [3]
+___iar_ForwardingLockFunctions {Abs}
+                        0x00000000          --   Gb  xsyslock.o [4]
+___iar_copy_init2       0xfffe612c   0x1c  Code  Gb  copy_init2.o [4]
+___iar_data_init2       0xfffe6037   0x15  Code  Gb  data_init2.o [4]
+___iar_zero_init2       0xfffe6148   0x18  Code  Gb  zero_init2.o [4]
+___interrupt_0          0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_1          0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_10         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_100        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_101        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_102        0xfffe5225         Code  Gb  r_s12ad_rx.o [1]
+___interrupt_103        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_104        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_105        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_106        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_107        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_108        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_109        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_11         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_110        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_111        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_112        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_113        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_114        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_115        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_116        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_117        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_118        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_119        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_12         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_120        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_121        0xfffe4065         Code  Gb  r_mtu1_rx_user.o [1]
+___interrupt_122        0xfffe4043         Code  Gb  r_mtu1_rx_user.o [1]
+___interrupt_123        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_124        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_125        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_126        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_127        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_128        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_129        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_13         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_130        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_131        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_132        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_133        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_134        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_135        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_136        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_137        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_138        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_139        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_14         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_140        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_141        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_142        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_143        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_144        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_145        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_146        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_147        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_148        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_149        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_15         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_150        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_151        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_152        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_153        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_154        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_155        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_156        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_157        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_158        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_159        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_16         0xfffe3702         Code  Gb  r_bsp_interrupts.o [1]
+___interrupt_160        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_161        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_162        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_163        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_164        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_165        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_166        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_167        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_168        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_169        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_17         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_170        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_171        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_172        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_173        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_174        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_175        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_176        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_177        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_178        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_179        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_18         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_180        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_181        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_182        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_183        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_184        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_185        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_186        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_187        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_188        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_189        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_19         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_190        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_191        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_192        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_193        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_194        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_195        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_196        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_197        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_198        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_199        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_2          0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_20         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_200        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_201        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_202        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_203        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_204        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_205        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_206        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_207        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_208        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_209        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_21         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_210        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_211        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_212        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_213        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_214        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_215        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_216        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_217        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_218        0xfffe4d9c         Code  Gb  r_sci_rx110.o [1]
+___interrupt_219        0xfffe4e0b         Code  Gb  r_sci_rx110.o [1]
+___interrupt_22         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_220        0xfffe4ee9         Code  Gb  r_sci_rx110.o [1]
+___interrupt_221        0xfffe4e7a         Code  Gb  r_sci_rx110.o [1]
+___interrupt_222        0xfffe4d77         Code  Gb  r_sci_rx110.o [1]
+___interrupt_223        0xfffe4de6         Code  Gb  r_sci_rx110.o [1]
+___interrupt_224        0xfffe4ec4         Code  Gb  r_sci_rx110.o [1]
+___interrupt_225        0xfffe4e55         Code  Gb  r_sci_rx110.o [1]
+___interrupt_226        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_227        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_228        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_229        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_23         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_230        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_231        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_232        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_233        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_234        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_235        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_236        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_237        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_238        0xfffe4d52         Code  Gb  r_sci_rx110.o [1]
+___interrupt_239        0xfffe4dc1         Code  Gb  r_sci_rx110.o [1]
+___interrupt_24         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_240        0xfffe4e9f         Code  Gb  r_sci_rx110.o [1]
+___interrupt_241        0xfffe4e30         Code  Gb  r_sci_rx110.o [1]
+___interrupt_242        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_243        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_244        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_245        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_246        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_247        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_248        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_249        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_25         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_250        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_251        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_252        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_253        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_254        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_255        0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_26         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_27         0xfffe498c         Code  Gb  r_icu_rx_user.o [1]
+___interrupt_28         0xfffe464b         Code  Gb  r_cmt_rx.o [1]
+___interrupt_29         0xfffe462a         Code  Gb  r_cmt_rx.o [1]
+___interrupt_3          0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_30         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_31         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_32         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_33         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_34         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_35         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_36         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_37         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_38         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_39         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_4          0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_40         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_41         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_42         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_43         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_44         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_45         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_46         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_47         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_48         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_49         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_5          0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_50         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_51         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_52         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_53         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_54         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_55         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_56         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_57         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_58         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_59         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_6          0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_60         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_61         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_62         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_63         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_64         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_65         0xfffe495d         Code  Gb  r_icu_rx_user.o [1]
+___interrupt_66         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_67         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_68         0xfffe4932         Code  Gb  r_icu_rx_user.o [1]
+___interrupt_69         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_7          0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_70         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_71         0xfffe4930         Code  Gb  r_icu_rx_user.o [1]
+___interrupt_72         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_73         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_74         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_75         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_76         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_77         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_78         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_79         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_8          0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_80         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_81         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_82         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_83         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_84         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_85         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_86         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_87         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_88         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_89         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_9          0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_90         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_91         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_92         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_93         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_94         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_95         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_96         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_97         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_98         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___interrupt_99         0xfffe60e8   0x20  Code  Wk  interrupt_table.o [4]
+___low_level_init       0xfffe6004   0x33  Code  Gb  resetprg.o [1]
+___privileged_handler   0xfffe382e   0x29  Code  Gb  r_bsp_interrupts.o [1]
+___undefined_handler    0xfffe3805   0x29  Code  Gb  r_bsp_interrupts.o [1]
+___undefined_interrupt_source_handler
+                        0xfffe3732   0x29  Code  Gb  r_bsp_interrupts.o [1]
+__cache_poll            0xfffe1c6a  0x27e  Code  Lc  cache.o [1]
+__checksum              0xfffe6056    0x2  Data  Gb  Place holder __checksum
+__checksum_begin {Abs}  0xfffee000          --   Gb  command line/config [2]
+__checksum_end {Abs}    0xffffbfff          --   Gb  command line/config [2]
+__eeprom_limit_length   0xfffe2a50   0x1c  Code  Gb  eeprom.o [1]
+__eeprom_tx_data_and_wait
+                        0xfffe2a6c  0x100  Code  Gb  eeprom.o [1]
+__eeprom_tx_data_and_wait_rx
+                        0xfffe2b6c  0x115  Code  Gb  eeprom.o [1]
+__exit                  0xfffe6090         Code  Gb  cexit.o [4]
+__float_placeholder     0xfffe6172         Code  Wk  def_nmi_handlers.o [6]
+__iar_call_low_level_init
+                        0xfffe606d         Code  Gb  cstartup.o [6]
+__iar_cmple32f          0xfffe33a0         Code  Gb  cmple32f.o [5]
+__iar_cstart_end        0xfffe6082         Code  Gb  cstartup.o [6]
+__iar_div64u            0xfffe5e5d         Code  Gb  div64u.o [5]
+__iar_main_call         0xfffe607a         Code  Gb  cstartup.o [6]
+__iar_program_start     0xfffe6058         Code  Gb  cstartup.o [6]
+__iar_reset_vector      0xffffbffc         Data  Gb  nmivec.o [6]
+__lju_bus_is_type_code_valid
+                        0xfffe0cf1   0x6a  Code  Gb  lju_bus_handler.o [1]
+__lju_bus_load_config   0xfffe1150   0x72  Code  Gb  lju_bus_handler.o [1]
+__timer_100ms_callback  0xfffe3077   0xe0  Code  Gb  timer.o [1]
+__timer_1s_callback     0xfffe3157   0x8b  Code  Gb  timer.o [1]
+__timer_tick_callback   0xfffe2f53   0x1e  Code  Gb  timer.o [1]
+_abort                  0xfffe6108    0x6  Code  Gb  abort.o [3]
+_adc_control            0xfffe5453  0x10e  Code  Gb  r_s12ad_rx110.o [1]
+_adc_enable_chans       0xfffe534d  0x106  Code  Lc  r_s12ad_rx110.o [1]
+_adc_enable_s12adi0     0xfffe525f   0x24  Code  Gb  r_s12ad_rx.o [1]
+_adc_init               0xfffe44ef   0x94  Code  Gb  adc.o [1]
+_adc_open               0xfffe5561  0x1ea  Code  Gb  r_s12ad_rx110.o [1]
+_adc_private            0x00001528   0x14  Data  Lc  adc.o [1]
+_adc_ready_callback     0xfffe4583   0xa7  Code  Gb  adc.o [1]
+_adc_request_update     0xfffe44bf   0x30  Code  Gb  adc.o [1]
+_adc_s12adi0_isr        0xfffe5225   0x3a  Code  Lc  r_s12ad_rx.o [1]
+_app_command_rx_cnt     0x000015b0    0x4  Data  Gb  application.o [1]
+_async_baud             0xfffe096c   0x20  Data  Gb  r_sci_rx110_data.o [1]
+_bccCalc8               0xfffe24b1   0x6d  Code  Gb  bcc.o [1]
+_body_checksum          0xfffe007e    0x2  Data  Gb  version.o [1]
+_bsp_interrupt_enable_disable
+                        0xfffe49eb   0x52  Code  Gb  mcu_interrupts.o [1]
+_bsp_interrupt_open     0xfffe3919   0x1a  Code  Gb  r_bsp_interrupts.o [1]
+_bsp_non_existent_port_init
+                        0xfffe5fbd   0x47  Code  Gb  mcu_init.o [1]
+_bsp_ram_initialize     0xfffe2558    0xd  Code  Gb  r_bsp_cpu.o [1]
+_bsp_register_protect_open
+                        0xfffe2565    0xc  Code  Gb  r_bsp_cpu.o [1]
+_bus_error_isr          0xfffe3702   0x30  Code  Gb  r_bsp_interrupts.o [1]
+_cache_config           0x000015b4    0x4  Data  Lc  lju_bus_handler.o [1]
+_cache_init             0xfffe1f58   0x18  Code  Gb  cache.o [1]
+_cache_init_sector      0xfffe1ee8   0x70  Code  Gb  cache.o [1]
+_cache_is_valid         0xfffe1bff   0x56  Code  Gb  cache.o [1]
+_cache_poll             0xfffe1c55   0x15  Code  Gb  cache.o [1]
+_cache_private          0x00001418   0x2c  Data  Lc  cache.o [1]
+_cache_prod             0x0000149a   0x26  Data  Lc  lju_bus_handler.o [1]
+_cache_write            0xfffe1b6f   0x90  Code  Gb  cache.o [1]
+_ch12_ctrl              0x00000570   0x28  Data  Gb  r_sci_rx110_data.o [1]
+_ch12_rom               0xfffe0898   0x34  Data  Gb  r_sci_rx110_data.o [1]
+_ch12_rx_buf            0x00001338   0x50  Data  Lc  r_sci_rx.o [1]
+_ch12_tx_buf            0x000012e8   0x50  Data  Lc  r_sci_rx.o [1]
+_ch1_ctrl               0x00000520   0x28  Data  Gb  r_sci_rx110_data.o [1]
+_ch1_rom                0xfffe0830   0x34  Data  Gb  r_sci_rx110_data.o [1]
+_ch1_rx_buf             0x00001298   0x50  Data  Lc  r_sci_rx.o [1]
+_ch1_tx_buf             0x00001248   0x50  Data  Lc  r_sci_rx.o [1]
+_ch5_ctrl               0x00000548   0x28  Data  Gb  r_sci_rx110_data.o [1]
+_ch5_rom                0xfffe0864   0x34  Data  Gb  r_sci_rx110_data.o [1]
+_ch5_rx_buf             0x00000ed2   0xfa  Data  Lc  r_sci_rx.o [1]
+_ch5_tx_buf             0x00000dd8   0xfa  Data  Lc  r_sci_rx.o [1]
+_cmt0_isr               0xfffe464b   0x21  Code  Lc  r_cmt_rx.o [1]
+_cmt1_isr               0xfffe462a   0x21  Code  Lc  r_cmt_rx.o [1]
+_cmt_create_priority    0xfffe4762   0xde  Code  Lc  r_cmt_rx.o [1]
+_cmt_isr_common         0xfffe466c   0x2f  Code  Lc  r_cmt_rx.o [1]
+_cmt_setup_channel      0xfffe469b   0xc7  Code  Lc  r_cmt_rx.o [1]
+_code_flash_info        0x00001584    0xc  Data  Lc  r_codeflash.o [1]
+_data_create            0xfffe19d3   0x1a  Code  Gb  data.o [1]
+_data_is_area_valid     0xfffe198d   0x34  Code  Gb  data.o [1]
+_data_is_empty          0xfffe19c1   0x12  Code  Gb  data.o [1]
+_default_handler        0xfffe60e8   0x20  Code  Gb  interrupt_table.o [4]
+_delay_wait             0xfffe5e54    0x9  Code  Lc  r_bsp_common.o [1]
+_dreg_ptrs              0xfffe079c   0x4c  Data  Gb  r_s12ad_rx110.o [1]
+_eeprom_buffer          0x00001470   0x2a  Data  Gb  eeprom.o [1]
+_eeprom_empty_pattern   0x000014e8   0x20  Data  Gb  eeprom.o [1]
+_eeprom_init            0xfffe2cbc   0x8d  Code  Gb  eeprom.o [1]
+_eeprom_private         0x0000156c    0xc  Data  Lc  eeprom.o [1]
+_eeprom_read            0xfffe2926  0x12a  Code  Gb  eeprom.o [1]
+_eeprom_sci_callback    0xfffe2c81   0x3b  Code  Gb  eeprom.o [1]
+_eeprom_write           0xfffe2757  0x1cf  Code  Gb  eeprom.o [1]
+_eri_handler            0xfffe3a26   0x6a  Code  Gb  r_sci_rx.o [1]
+_error_clear            0xfffe16dc   0x24  Code  Gb  error.o [1]
+_error_clear_all_request
+                        0xfffe1708   0x23  Code  Gb  error.o [1]
+_error_clr_request_flag
+                        0x00001578    0x1  Data  Lc  error.o [1]
+_error_diag_buff        0x00001148   0x80  Data  Lc  error.o [1]
+_error_diag_idx         0x0000157c    0x2  Data  Lc  error.o [1]
+_error_diag_val         0x0000157a    0x2  Data  Lc  error.o [1]
+_error_get_diag         0xfffe168a   0x49  Code  Gb  error.o [1]
+_error_get_mask         0xfffe16d3    0x9  Code  Gb  error.o [1]
+_error_init             0xfffe178e    0xc  Code  Gb  error.o [1]
+_error_is_active        0xfffe1770    0xe  Code  Gb  error.o [1]
+_error_is_clar_all_request
+                        0xfffe1700    0x8  Code  Gb  error.o [1]
+_error_is_set           0xfffe177e   0x10  Code  Gb  error.o [1]
+_error_mask             0x00001580    0x4  Data  Lc  error.o [1]
+_error_set              0xfffe172b   0x45  Code  Gb  error.o [1]
+_exit                   0xfffe608c    0x4  Code  Gb  exit.o [4]
+_fcs_calc               0xfffe26f3   0x64  Code  Gb  fcs.o [1]
+_fcstab                 0xfffe059c  0x200  Data  Lc  fcs.o [1]
+_flash_deinit           0xfffe1961   0x2c  Code  Gb  flash.o [1]
+_flash_erase            0x000004db   0x2a  Code  Gb  r_flash_utils.o [1]
+_flash_erase_rom        0xfffe18b2   0x6b  Code  Gb  flash.o [1]
+_flash_error_isr_handler
+                        0x0000159c    0x4  Data  Gb  r_flash_group.o [1]
+_flash_init             0xfffe191d   0x44  Code  Gb  flash.o [1]
+_flash_interrupt_config
+                        0xfffe3665   0x59  Code  Lc  r_flash_group.o [1]
+_flash_lock_state       0x0000043a   0x27  Code  Gb  r_flash_rx.o [1]
+_flash_pe_mode_enter    0x00000505   0x17  Code  Gb  r_flash_utils.o [1]
+_flash_pe_mode_exit     0x0000049a   0x17  Code  Gb  r_flash_utils.o [1]
+_flash_private          0x0000153c   0x14  Data  Lc  flash.o [1]
+_flash_ready_isr_handler
+                        0x00001598    0x4  Data  Gb  r_flash_group.o [1]
+_flash_release_state    0x00000429   0x11  Code  Gb  r_flash_rx.o [1]
+_flash_reset            0x0000048e    0xc  Code  Gb  r_flash_utils.o [1]
+_flash_softwareUnlock   0x00000423    0x6  Code  Gb  r_flash_rx.o [1]
+_flash_write            0x000004b1   0x2a  Code  Gb  r_flash_utils.o [1]
+_flash_write_rom        0xfffe17aa  0x108  Code  Gb  flash.o [1]
+_freq_edge_detected_callback
+                        0xfffe22f8  0x134  Code  Gb  freq.o [1]
+_freq_get               0xfffe2298    0x9  Code  Gb  freq.o [1]
+_freq_get_expected      0xfffe2276   0x10  Code  Gb  freq.o [1]
+_freq_init              0xfffe22a1   0x38  Code  Gb  freq.o [1]
+_freq_private           0x00001388   0x30  Data  Lc  freq.o [1]
+_freq_set_expected      0xfffe2286   0x12  Code  Gb  freq.o [1]
+_freq_tout_tmr          0xfffe22d9   0x1f  Code  Gb  freq.o [1]
+_g_bsp_Locks            0x000010bc   0x8c  Data  Gb  mcu_locks.o [1]
+_g_bsp_vectors          0x000014c0   0x28  Data  Lc  r_bsp_interrupts.o [1]
+_g_cmt_callbacks        0x00001590    0x8  Data  Lc  r_cmt_rx.o [1]
+_g_cmt_channels         0xfffe0a44    0x8  Data  Lc  r_cmt_rx.o [1]
+_g_cmt_clock_dividers   0xfffe09ec   0x10  Data  Lc  r_cmt_rx.o [1]
+_g_cmt_modes            0x00001525    0x2  Data  Lc  r_cmt_rx.o [1]
+_g_current_parameters   0x00001508   0x1c  Data  Gb  r_flash_group.o [1]
+_g_dcb                  0x00000598    0x8  Data  Gb  r_s12ad_rx.o [1]
+_g_driver_opened        0x00001524    0x1  Data  Lc  r_flash_group.o [1]
+_g_flash_int_ready_cb_args
+                        0x000015bd    0x1  Data  Gb  r_flash_group.o [1]
+_g_flash_lock           0x000015b8    0x4  Data  Gb  r_flash_rx.o [1]
+_g_flash_state          0x000015be    0x1  Data  Gb  r_flash_rx.o [1]
+_g_handles              0xfffe08cc   0x34  Data  Gb  r_sci_rx110_data.o [1]
+_g_qcb                  0x00000c58  0x180  Data  Lc  r_byteq.o [1]
+_get_iclk_freq_hz       0xfffe5d41   0x41  Code  Gb  mcu_clocks.o [1]
+_hardware_setup         0xfffe604c    0xa  Code  Gb  hwsetup.o [1]
+_header_checksum        0xfffe007c    0x2  Data  Gb  version.o [1]
+_interrupt_disable      0xfffe2442    0xa  Code  Gb  interrupt.o [1]
+_interrupt_disable_neasted
+                        0xfffe243a    0x3  Code  Gb  interrupt.o [1]
+_interrupt_enable       0xfffe244c    0xa  Code  Gb  interrupt.o [1]
+_interrupt_enable_neasted
+                        0xfffe243d    0x5  Code  Gb  interrupt.o [1]
+_interrupt_enable_software_interrupt
+                        0xfffe242c    0x7  Code  Gb  interrupt.o [1]
+_interrupt_get_interrupt_level
+                        0xfffe2481    0x8  Code  Gb  interrupt.o [1]
+_interrupt_is_possible  0xfffe2489   0x14  Code  Gb  interrupt.o [1]
+_interrupt_request_software_interrupt
+                        0xfffe2433    0x7  Code  Gb  interrupt.o [1]
+_interrupt_set_interrupt_level
+                        0xfffe2456   0x2b  Code  Gb  interrupt.o [1]
+_led_init               0xfffe446f   0x50  Code  Gb  led.o [1]
+_led_private            0x00001550   0x12  Data  Lc  led.o [1]
+_led_set                0xfffe4340   0x60  Code  Gb  led.o [1]
+_led_set_blink_interval
+                        0xfffe4309   0x37  Code  Gb  led.o [1]
+_led_update             0xfffe43a0   0xcf  Code  Gb  led.o [1]
+_ljuBusPacketDecode     0xfffe1a64   0x97  Code  Gb  lju_bus_protocol.o [1]
+_ljuBusPacketEncode     0xfffe19ed   0x77  Code  Gb  lju_bus_protocol.o [1]
+_lju_bus_command_rx_cnt
+                        0x00000c54    0x4  Data  Gb  lju_bus_handler.o [1]
+_lju_bus_default_config
+                        0xfffe0a65    0x2  Data  Gb  lju_bus_handler.o [1]
+_lju_bus_encoded_data   0x00000fcc   0xf0  Data  Lc  lju_bus_protocol.o [1]
+_lju_bus_error_diag_buff
+                        0x000011c8   0x80  Data  Lc  lju_bus_handler.o [1]
+_lju_bus_init           0xfffe1404  0x286  Code  Gb  lju_bus_handler.o [1]
+_lju_bus_private        0x000009a8  0x2ac  Data  Lc  lju_bus_handler.o [1]
+_lju_bus_process_command
+                        0xfffe108b   0xc5  Code  Gb  lju_bus_handler.o [1]
+_lju_bus_process_config
+                        0xfffe0fc2   0xc9  Code  Gb  lju_bus_handler.o [1]
+_lju_bus_process_factory
+                        0xfffe0e8c   0x79  Code  Gb  lju_bus_handler.o [1]
+_lju_bus_process_flash_data
+                        0xfffe0b22  0x1cf  Code  Gb  lju_bus_handler.o [1]
+_lju_bus_process_flash_start
+                        0xfffe0d5b  0x131  Code  Gb  lju_bus_handler.o [1]
+_lju_bus_process_info   0xfffe0f05   0xbd  Code  Gb  lju_bus_handler.o [1]
+_lju_bus_processor      0xfffe11c2  0x242  Code  Gb  lju_bus_handler.o [1]
+_lju_bus_update_finished
+                        0xfffe0af4   0x19  Code  Gb  lju_bus_handler.o [1]
+_lju_bus_update_in_progress
+                        0xfffe0b0d   0x15  Code  Gb  lju_bus_handler.o [1]
+_main                   0xfffe6082    0xa  Code  Gb  main.o [1]
+_mcu_clock_setup        0xfffe5ca6   0x9b  Code  Gb  mcu_clocks.o [1]
+_memcmp                 0xfffe1b4b   0x1e  Code  Gb  memcmp.o [4]
+_r_cf_write_fpmcr       0x00000000   0x22  Code  Lc  r_codeflash.o [1]
+_r_flash_close          0xfffe363d   0x28  Code  Gb  r_flash_group.o [1]
+_r_flash_delay          0x00000485    0x9  Code  Lc  r_flash_type1.o [1]
+_r_flash_delay_us       0x00000469   0x1c  Code  Gb  r_flash_type1.o [1]
+_r_flash_erase          0x0000036e   0xb5  Code  Gb  r_flash_group.o [1]
+_r_flash_open           0xfffe36be   0x44  Code  Gb  r_flash_group.o [1]
+_r_flash_write          0x000002b0   0xbe  Code  Gb  r_flash_group.o [1]
+_r_r_icu_rx_irq1_interrupt
+                        0xfffe495d   0x2f  Code  Lc  r_icu_rx_user.o [1]
+_r_r_icu_rx_irq4_interrupt
+                        0xfffe4932   0x2b  Code  Lc  r_icu_rx_user.o [1]
+_r_r_icu_rx_irq7_interrupt
+                        0xfffe4930    0x2  Code  Lc  r_icu_rx_user.o [1]
+_r_r_icu_rx_software_interrupt
+                        0xfffe498c   0x20  Code  Lc  r_icu_rx_user.o [1]
+_r_r_iwdt_rx_nmi_interrupt
+                        0xfffe5220    0x4  Code  Gb  r_iwdt_rx_user.o [1]
+_r_r_lvd1_rx_lvd1_interrupt
+                        0xfffe5fb3    0x8  Code  Gb  r_lvd1_rx_user.o [1]
+_r_r_mtu1_rx_tgia1_interrupt
+                        0xfffe4065   0x22  Code  Lc  r_mtu1_rx_user.o [1]
+_r_r_mtu1_rx_tgib1_interrupt
+                        0xfffe4043   0x22  Code  Lc  r_mtu1_rx_user.o [1]
+_r_undefined_exception  0xfffe5f63    0x1  Code  Gb  r_cg_hardware_setup.o [1]
+_reset_after_update     0x00001527    0x1  Data  Lc  application.o [1]
+_reset_execute          0xfffe1b69    0x6  Code  Gb  reset.o [1]
+_rs485_init             0xfffe426c   0x9d  Code  Gb  rs485.o [1]
+_rs485_is_rx_timeout    0xfffe4133   0x15  Code  Gb  rs485.o [1]
+_rs485_offline_timeout_callback
+                        0xfffe4220    0x1  Code  Gb  rs485.o [1]
+_rs485_private          0x000013b8   0x30  Data  Lc  rs485.o [1]
+_rs485_response_timeout_callback
+                        0xfffe41f9   0x26  Code  Gb  rs485.o [1]
+_rs485_rx_timeout_callback
+                        0xfffe421f    0x1  Code  Gb  rs485.o [1]
+_rs485_sci_callback     0xfffe4148   0x86  Code  Gb  rs485.o [1]
+_rs485_timeout_check_callback
+                        0xfffe4221   0x4b  Code  Gb  rs485.o [1]
+_rs485_tx               0xfffe4097   0x9c  Code  Gb  rs485.o [1]
+_rs485_tx_stop          0xfffe41ce   0x2b  Code  Gb  rs485.o [1]
+_rxi_handler            0xfffe3a90         Code  Gb  r_sci_rx.o [1]
+_s_prcr_masks           0xfffe0a3c    0x8  Data  Lc  r_bsp_cpu.o [1]
+_s_protect_counters     0x00001562    0xa  Data  Lc  r_bsp_cpu.o [1]
+_sci12_eri12_isr        0xfffe4d52   0x25  Code  Lc  r_sci_rx110.o [1]
+_sci12_rxi12_isr        0xfffe4dc1   0x25  Code  Lc  r_sci_rx110.o [1]
+_sci12_tei12_isr        0xfffe4e30   0x25  Code  Lc  r_sci_rx110.o [1]
+_sci12_txi12_isr        0xfffe4e9f   0x25  Code  Lc  r_sci_rx110.o [1]
+_sci1_eri1_isr          0xfffe4d9c   0x25  Code  Lc  r_sci_rx110.o [1]
+_sci1_rxi1_isr          0xfffe4e0b   0x25  Code  Lc  r_sci_rx110.o [1]
+_sci1_tei1_isr          0xfffe4e7a   0x25  Code  Lc  r_sci_rx110.o [1]
+_sci1_txi1_isr          0xfffe4ee9   0x25  Code  Lc  r_sci_rx110.o [1]
+_sci5_eri5_isr          0xfffe4d77   0x25  Code  Lc  r_sci_rx110.o [1]
+_sci5_rxi5_isr          0xfffe4de6   0x25  Code  Lc  r_sci_rx110.o [1]
+_sci5_tei5_isr          0xfffe4e55   0x25  Code  Lc  r_sci_rx110.o [1]
+_sci5_txi5_isr          0xfffe4ec4   0x25  Code  Lc  r_sci_rx110.o [1]
+_sci_async_cmds         0xfffe4bbe  0x194  Code  Gb  r_sci_rx110.o [1]
+_sci_init_async         0xfffe3dac   0xea  Code  Lc  r_sci_rx.o [1]
+_sci_init_bit_rate      0xfffe4f87   0xa1  Code  Gb  r_sci_rx110.o [1]
+_sci_init_register      0xfffe5028   0x9b  Code  Gb  r_sci_rx110.o [1]
+_sci_init_sync          0xfffe3d07   0xa5  Code  Lc  r_sci_rx.o [1]
+_sci_initialize_ints    0xfffe4f0e   0x79  Code  Gb  r_sci_rx110.o [1]
+_sci_mcu_param_check    0xfffe50c3    0xf  Code  Gb  r_sci_rx110.o [1]
+_sci_receive            0xfffe3a90   0xbb  Code  Lc  r_sci_rx.o [1]
+_sci_sync_cmds          0xfffe4a45  0x179  Code  Gb  r_sci_rx110.o [1]
+_software_watchdog_init
+                        0xfffe2d9e   0x2b  Code  Gb  watchdog.o [1]
+_software_watchdog_reset
+                        0xfffe2d49   0x19  Code  Gb  watchdog.o [1]
+_software_watchdog_start
+                        0xfffe2d82   0x1c  Code  Gb  watchdog.o [1]
+_software_watchdog_stop
+                        0xfffe2d62   0x20  Code  Gb  watchdog.o [1]
+_sreg_ptrs              0xfffe0928   0x24  Data  Gb  r_s12ad_rx110.o [1]
+_strcspn                0xfffe253a   0x1e  Code  Gb  strcspn.o [4]
+_strspn                 0xfffe251e   0x1c  Code  Gb  strspn.o [4]
+_strtok                 0xfffe1afb   0x50  Code  Gb  strtok.o [4]
+_switches_init          0xfffe5c96   0x10  Code  Gb  switches.o [1]
+_sync_baud              0xfffe09fc   0x10  Data  Gb  r_sci_rx110_data.o [1]
+_sync_config            0xfffe1f97   0xdd  Code  Gb  sync.o [1]
+_sync_detected_callback
+                        0xfffe2226   0x50  Code  Gb  sync.o [1]
+_sync_gen_pulse         0xfffe2074   0x67  Code  Gb  sync.o [1]
+_sync_init              0xfffe20db   0x4b  Code  Gb  sync.o [1]
+_sync_private           0x000013e8   0x30  Data  Lc  sync.o [1]
+_sync_puls_set          0xfffe2126   0x4e  Code  Gb  sync.o [1]
+_sync_was_detected      0xfffe1f85   0x12  Code  Gb  sync.o [1]
+_sync_was_generated     0xfffe1f70   0x15  Code  Gb  sync.o [1]
+_sync_zero_cross_callback
+                        0xfffe2174   0xb2  Code  Gb  sync.o [1]
+_tei_handler            0xfffe3b4b   0x2e  Code  Gb  r_sci_rx.o [1]
+_this_ident             0xfffe0000   0x40  Data  Gb  version.o [1]
+_this_info              0xfffe0040   0x3c  Data  Gb  version.o [1]
+_time_get_diff          0xfffe2ee8    0x3  Code  Gb  timer.o [1]
+_time_get_s             0xfffe2e97    0x9  Code  Gb  timer.o [1]
+_time_get_us            0xfffe2eeb   0x68  Code  Gb  timer.o [1]
+_timer_init             0xfffe31e2   0x56  Code  Gb  timer.o [1]
+_timer_private          0x00001444   0x2c  Data  Lc  timer.o [1]
+_timer_processing_callback
+                        0xfffe2f71  0x106  Code  Gb  timer.o [1]
+_timer_sleep_ms         0xfffe2ea0   0x48  Code  Gb  timer.o [1]
+_tp_init                0xfffe5c72   0x24  Code  Gb  tp.o [1]
+_txi_handler            0xfffe3b79   0x5b  Code  Gb  r_sci_rx.o [1]
+_user_application       0xfffe5b4c   0x62  Code  Gb  application.o [1]
+_user_init              0xfffe5bae   0xc4  Code  Gb  application.o [1]
+_vector_table           0xfffe574c  0x400  Data  Gb  interrupt_table.o [4]
+_watchdog_init          0xfffe2dd0    0xe  Code  Gb  watchdog.o [1]
+_watchdog_is_init       0x000015a8    0x1  Data  Gb  watchdog.o [1]
+_watchdog_private       0x000015ac    0x4  Data  Gb  watchdog.o [1]
+_watchdog_reset         0xfffe2dc9    0x7  Code  Gb  watchdog.o [1]
+
+
+[1] = D:\projects\PCS\PCM8_SM_FW\Release\Obj
+[2] = command line
+[3] = dbgrxlln.a
+[4] = dlrxfllsn.a
+[5] = rtrxfl.a
+[6] = strxl.a
+
+  20 991 bytes of readonly  code memory
+   1 308 bytes of readwrite code memory
+   4 116 bytes of readonly  data memory
+  12 449 bytes of readwrite data memory
+
+Errors: none
+Warnings: 2

@@ -9,267 +9,199 @@
 //******************************************************************************
 #include "ConfFile.h"
 
-#include <fstream>
-#include <algorithm>
 #include <sstream>
+#include <cstdlib>
+#include <cerrno>
+#include <climits>
+#include <QFile>
+#include <QSaveFile>
 #include "debug_cout.h"
+#include "utils.h"
 
 //******************************************************************************
-// assigmnet operator
+// Replace line breaks, they would break the "one entry per line" format
 //******************************************************************************
-ConfFile::ConfObj& ConfFile::ConfObj::operator=(const int& other){
-
-    type = ConfFile::ConfObj::INTEGER;
-    varInteger = other;
-    varString.clear();
-
-    return *this;
+static std::string singleLine(const std::string & str){
+    std::string out(str);
+    for(std::string::size_type i = 0; i < out.size(); ++i)
+        if((out[i] == '\r') || (out[i] == '\n'))
+            out[i] = ' ';
+    return out;
 }
 
 //******************************************************************************
-// assigment operator
-//******************************************************************************
-ConfFile::ConfObj& ConfFile::ConfObj::operator=(const string& other){
-
-    type = ConfFile::ConfObj::STRING;
-    varString = other;
-    varInteger = 0;
-
-    return *this;
+ConfFile::ConfFile(){
 }
 
 //******************************************************************************
-// conversion operator
-//******************************************************************************
-ConfFile::ConfObj::operator int() {
-
-    if(type == ConfObj::STRING){
-        char * offset;
-        varInteger = (int) strtol(varString.c_str(), &offset, 10);
-        varString.clear();
-    }
-    type = ConfObj::INTEGER;
-    return varInteger;
+ConfFile::ConfFile(const QString & filename){
+    load(filename);
 }
 
 //******************************************************************************
-// conversion operator
-//******************************************************************************
-ConfFile::ConfObj::operator string(){
+bool ConfFile::load(const QString & filename){
 
-    if(type == ConfObj::INTEGER){
-        stringstream ss;
-        ss << varInteger;
-        varString = ss.str();
-        varInteger = 0;
-    }
-    type = ConfObj::STRING;
-    return varString;
-}
-
-//******************************************************************************
-std::ostream& operator<<(std::ostream& os, const ConfFile::ConfObj & obj){
-    if(obj.type == ConfFile::ConfObj::STRING)
-        return os << obj.varString;
-    return os << obj.varInteger;
-}
-
-//******************************************************************************
-//******************************************************************************
-//******************************************************************************
-ConfFile::~ConfFile(){
-
-    // Check if map must be dumped to a file
-    if(filename.empty())
-        return;
-
-    // Create output file
-    ofstream ofstr(filename.c_str());
-    if(!ofstr.is_open())
-        return;
-
-    for(MapCatName::iterator cat = varMap.begin(); cat != varMap.end(); cat++){
-        for(MapNameObj::iterator var = (*cat).second.begin(); var != (*cat).second.end(); var++){
-            ofstr << (*cat).first << ":" << (*var).first << "=" << (*var).second << endl;
-        }
-    }
-}
-
-//******************************************************************************
-ConfFile::ConfFile(const ConfFile& other){
-    // copy map
-    varMap = other.varMap;
-}
-
-//******************************************************************************
-ConfFile& ConfFile::operator=(const ConfFile& rhs){
-
-    if (this == &rhs)
-        return *this; // handle self assignment
-
-    varMap = rhs.varMap;
-
-    return *this;
-}
-
-//******************************************************************************
-ConfFile::ConfFile(const char * filename){
-
-    string line, category, name, value;
-    ifstream ifstr(filename);
-
+    varMap.clear();
     this->filename = filename;
 
-    // Check if file is open
-    if(!ifstr.is_open())
-        return;
+    QFile file(filename);
+    if(!file.open(QIODevice::ReadOnly))
+        return false;
 
-    size_t pos1, pos2;
+    QByteArray content = file.readAll();
+    std::istringstream istr(std::string(content.constData(), content.size()));
+
+    std::string line;
+    std::string::size_type pos1, pos2;
 
     // Extract all variables/lines from file
-    while(getline(ifstr, line)){
+    while(std::getline(istr, line)){
 
-        //----------------------------------------------------------------------
+        trimLineEnd(line);
+
         // Get category
-        //----------------------------------------------------------------------
         pos1 = line.find(':');
-        if(pos1 != string::npos){
-            // Extract category and trim spaces
-            category = line.substr(0, pos1);
-            category.erase(remove_if(category.begin(), category.end(),
-                    (int(*)(int))isspace), category.end());
-        }
-        else
-            // No category in this line, ignore it
-            continue;
+        if(pos1 == std::string::npos)
+            continue;   // No category in this line, ignore it
+        std::string category = trim(line.substr(0, pos1));
 
-        //----------------------------------------------------------------------
         // Get name
-        //----------------------------------------------------------------------
         pos2 = line.find('=', pos1 + 1);
-        if(pos2 != string::npos){
-            // Extract name and trim spaces
-            name = line.substr(pos1 + 1, pos2 - pos1 - 1);
-            name.erase(remove_if(name.begin(), name.end(),
-                    (int(*)(int))isspace), name.end());
-        }
-        else
-            // No name in this line, ignore it
-            continue;
+        if(pos2 == std::string::npos)
+            continue;   // No name in this line, ignore it
+        std::string name = trim(line.substr(pos1 + 1, pos2 - pos1 - 1));
 
-        //----------------------------------------------------------------------
-        // Get value
-        //----------------------------------------------------------------------
-        value = line.substr(pos2 + 1);
-        // remove spaces
-        //value.erase(remove_if(value.begin(), value.end(),
-        //            (int(*)(int))isspace), value.end());
-        varMap[category][name] = value;
-
-        //cout << "cat='" << category << "' name='" << name << "' value='" << value << "'" << endl;
+        // Get value (kept as is, may contain blanks)
+        varMap[category][name] = line.substr(pos2 + 1);
     }
+
+    return true;
 }
 
 //******************************************************************************
-bool ConfFile::exists(const string & cat){
+bool ConfFile::save() const{
 
+    if(filename.isEmpty())
+        return false;
+
+    std::ostringstream ostr;
+    for(MapCatName::const_iterator cat = varMap.begin(); cat != varMap.end(); ++cat){
+        for(MapNameValue::const_iterator var = cat->second.begin(); var != cat->second.end(); ++var){
+            ostr << cat->first << ":" << var->first << "=" << var->second << "\n";
+        }
+    }
+    std::string content = ostr.str();
+
+    // QSaveFile writes to a temporary file and replaces the target only on
+    // success (no corrupt configuration if writing fails)
+    QSaveFile file(filename);
+    if(!file.open(QIODevice::WriteOnly | QIODevice::Text)){
+        DBG_ERROR("ConfFile::save cannot open " << filename.toStdString());
+        return false;
+    }
+    if(file.write(content.c_str(), (qint64)content.size()) != (qint64)content.size()){
+        DBG_ERROR("ConfFile::save write error " << filename.toStdString());
+        file.cancelWriting();
+        return false;
+    }
+    return file.commit();
+}
+
+//******************************************************************************
+const std::string * ConfFile::find(const std::string & cat, const std::string & name) const{
+
+    MapCatName::const_iterator it = varMap.find(cat);
+    if(it == varMap.end())
+        return nullptr;
+
+    MapNameValue::const_iterator it2 = it->second.find(name);
+    if(it2 == it->second.end())
+        return nullptr;
+
+    return &it2->second;
+}
+
+//******************************************************************************
+bool ConfFile::exists(const std::string & cat) const{
     return (varMap.find(cat) != varMap.end());
 }
 
 //******************************************************************************
-bool ConfFile::exists(const string & cat, const string & name){
-
-    MapCatName::iterator it = varMap.find(cat);
-    if(it != varMap.end())
-        return ((*it).second.find(name) != (*it).second.end());
-
-    return false;
+bool ConfFile::exists(const std::string & cat, const std::string & name) const{
+    return find(cat, name) != nullptr;
 }
 
 //******************************************************************************
-void ConfFile::set(const string & cat, const string & name, const int val){
-    varMap[cat][name] = val;
+void ConfFile::set(const std::string & cat, const std::string & name, int val){
+    std::ostringstream ss;
+    ss << val;
+    varMap[cat][name] = ss.str();
 }
 
 //******************************************************************************
-void ConfFile::set_str(const string & cat, const string & name, const string & val){
-    varMap[cat][name] = val;
+void ConfFile::set_str(const std::string & cat, const std::string & name, const std::string & val){
+    varMap[cat][name] = singleLine(val);
 }
 
 //******************************************************************************
-void ConfFile::set_qstr(const char * cat, const char * name, const QString & qstr){
-    varMap[cat][name] = qstr.toStdString();
+void ConfFile::set_qstr(const std::string & cat, const std::string & name, const QString & qstr){
+    set_str(cat, name, qstr.toStdString());
 }
 
 //******************************************************************************
-bool ConfFile::get(const string & cat, const string & name, int * val){
+bool ConfFile::get(const std::string & cat, const std::string & name, int * val) const{
 
-    MapCatName::iterator it = varMap.find(cat);
-    if(it == varMap.end())
+    const std::string * str = find(cat, name);
+    if(str == nullptr)
         return false;
 
-    MapNameObj::iterator it2 = it->second.find(name);
-    if(it2 == it->second.end())
+    std::string txt = trim(*str);
+    if(txt.empty())
+        return false;
+
+    char * end = nullptr;
+    errno = 0;
+    long lval = strtol(txt.c_str(), &end, 10);
+    if((errno != 0) || (end == nullptr) || (*end != '\0')
+    || (lval < INT_MIN) || (lval > INT_MAX))
+        return false;   // not a (valid) number
+
+    if(val)
+        *val = (int)lval;
+
+    return true;
+}
+
+//******************************************************************************
+int ConfFile::get_or(const std::string & cat, const std::string & name, int default_value) const{
+
+    int val;
+    if(get(cat, name, &val))
+        return val;
+    return default_value;
+}
+
+//******************************************************************************
+bool ConfFile::get_str(const std::string & cat, const std::string & name, std::string * val) const{
+
+    const std::string * str = find(cat, name);
+    if(str == nullptr)
         return false;
 
     if(val)
-        *val = it2->second;
+        *val = *str;
 
     return true;
 }
 
 //******************************************************************************
-int ConfFile::get(const string & cat, const string & name, int default_value){
+QString ConfFile::get_qstr(const std::string & cat, const std::string & name, const QString & def) const{
 
-    MapCatName::iterator it = varMap.find(cat);
-    if(it == varMap.end())
-        return default_value;
+    const std::string * str = find(cat, name);
+    if(str == nullptr)
+        return def;
 
-    MapNameObj::iterator it2 = it->second.find(name);
-    if(it2 == it->second.end())
-        return default_value;
-
-    return it2->second;
-}
-
-//******************************************************************************
-bool ConfFile::get_str(const string & cat, const string & name, string * val){
-
-    MapCatName::iterator it = varMap.find(cat);
-    if(it == varMap.end())
-        return false;
-
-    MapNameObj::iterator it2 = it->second.find(name);
-    if(it2 == it->second.end())
-        return false;
-
-    if(val){
-        (*val).assign(it2->second);
-    }
-
-    return true;
-}
-
-//******************************************************************************
-QString ConfFile::get_qstr(const char * cat, const char * name, const char * def){
-
-    MapCatName::iterator it = varMap.find(cat);
-    if(it == varMap.end()){
-        if(def)
-            return QString(def);
-        else
-            return QString();
-    }
-
-    MapNameObj::iterator it2 = it->second.find(name);
-    if(it2 == it->second.end()){
-        if(def)
-            return QString(def);
-        else
-            return QString();
-    }
-
-    return QString(it2->second.varString.c_str());
+    return QString::fromStdString(*str);
 }
 
 //******************************************************************************
@@ -278,16 +210,18 @@ void ConfFile::clear(){
 }
 
 //******************************************************************************
-void ConfFile::clear(const string & cat){
+void ConfFile::clear(const std::string & cat){
     varMap.erase(cat);
 }
 
 //******************************************************************************
-void ConfFile::clear(const string & cat, const string & name){
+void ConfFile::clear(const std::string & cat, const std::string & name){
 
     MapCatName::iterator it = varMap.find(cat);
     if(it == varMap.end())
         return;
 
-    (*it).second.erase(name);
+    it->second.erase(name);
 }
+
+//******************************************************************************

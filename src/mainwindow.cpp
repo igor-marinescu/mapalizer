@@ -10,37 +10,44 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "debug_cout.h"
+#include "map_loader.h"
+#include "map_models.h"
 #include <QFile>
-#include <QTextStream>
+#include <QFileInfo>
+#include <QDir>
+#include <QCloseEvent>
 #include <QDragEnterEvent>
+#include <QDropEvent>
 #include <QMimeData>
-#include "Windows.h"
+#include <QUrl>
+#include <QShortcut>
+#include <QStatusBar>
+#include <QLabel>
+#include <sstream>
 
 //******************************************************************************
-// Custom widget used to select size
-class IntTableWidgetItem : public QTableWidgetItem {
-    public:
-        bool operator <(const QTableWidgetItem &other) const
-        {
-            return text().toInt() < other.text().toInt();
-        }
-};
+// Defines
+//******************************************************************************
+static const char APP_TITLE[] = "mapalizer";
+static const char FILE_FILTER[] =
+    "IAR MAP File (*.map);;ST/Keil L166 MAP File (*.m66);;Any File (*.*)";
+static const int STATUS_TIMEOUT_MS = 3000;
 
 //******************************************************************************
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    iarMap(NULL),
-    stMap(NULL),
-    currMap(NULL){
+    objModel(nullptr),
+    objProxy(nullptr),
+    entryModel(nullptr),
+    entryProxy(nullptr),
+    lblCount(nullptr){
     DBG_ENTER("MainWindow::MainWindow");
 
     ui->setupUi(this);
 
     appInterface.loadWidgetGeometry(this, "WinPos");
 
-    // set window title
-    this->setWindowTitle("mapalizer");
     setAcceptDrops(true);
 
     // Filter
@@ -54,18 +61,60 @@ MainWindow::MainWindow(QWidget *parent) :
     if(appInterface.confFile.get("Filter", "Unknown", &val))
         ui->chkboxUnknown->setChecked(val != 0);
 
-/*
-    ui->chkboxCode->setStyleSheet("QCheckBox { background-color: #bee6ea }");
-    ui->chkboxData->setStyleSheet("QCheckBox { background-color: #ffd9ad }");
-    ui->chkboxUnknown->setStyleSheet("QCheckBox { background-color: #f0f0f0 }");
-*/
+    // Models
+    objModel = new ObjectTableModel(this);
+    objProxy = new ObjectSortProxy(this);
+    objProxy->setSourceModel(objModel);
 
+    entryModel = new EntryTableModel(this);
+    entryProxy = new QSortFilterProxyModel(this);
+    entryProxy->setSourceModel(entryModel);
+    entryProxy->setSortRole(SortRole);
+    entryProxy->setSortCaseSensitivity(Qt::CaseInsensitive);
+
+    // Table background
+    QPalette p = ui->tabObjects->palette();
+    p.setColor(QPalette::Base, Qt::gray);
+    ui->tabObjects->setPalette(p);
+    ui->tabEntries->setPalette(p);
+
+    // Objects table
+    ui->tabObjects->setModel(objProxy);
+    ui->tabObjects->setColumnWidth(ObjectTableModel::COL_NAME,    140);
+    ui->tabObjects->setColumnWidth(ObjectTableModel::COL_CODE,     60);
+    ui->tabObjects->setColumnWidth(ObjectTableModel::COL_DATA,     60);
+    ui->tabObjects->setColumnWidth(ObjectTableModel::COL_UNKNOWN,  60);
+    ui->tabObjects->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+    ui->tabObjects->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+    ui->tabObjects->sortByColumn(ObjectTableModel::COL_NAME, Qt::AscendingOrder);
     ui->tabObjects->setVisible(ui->chkboxObj->isChecked());
 
-    displayObj(currMap);
-    displayMap(objFilter, currMap);
+    // Entries table
+    ui->tabEntries->setModel(entryProxy);
+    ui->tabEntries->setColumnWidth(EntryTableModel::COL_NAME,   170);
+    ui->tabEntries->setColumnWidth(EntryTableModel::COL_ADDR,    80);
+    ui->tabEntries->setColumnWidth(EntryTableModel::COL_SIZE,    60);
+    ui->tabEntries->setColumnWidth(EntryTableModel::COL_TYPE,    60);
+    ui->tabEntries->setColumnWidth(EntryTableModel::COL_OBJECT, 120);
+    ui->tabEntries->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+    ui->tabEntries->sortByColumn(EntryTableModel::COL_NAME, Qt::AscendingOrder);
 
-    qApp->installEventFilter(this);
+    // Status bar: number of displayed symbols
+    lblCount = new QLabel(this);
+    statusBar()->addPermanentWidget(lblCount);
+
+    connect(ui->tabObjects->selectionModel(),
+            SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
+            this, SLOT(objectRowChanged(QModelIndex,QModelIndex)));
+
+    // Shortcuts: Ctrl+F (find), F3 (find next)
+    QShortcut * scFind = new QShortcut(QKeySequence::Find, this);
+    connect(scFind, SIGNAL(activated()), this, SLOT(focusFind()));
+    QShortcut * scFindNext = new QShortcut(QKeySequence::FindNext, this);
+    connect(scFindNext, SIGNAL(activated()), this, SLOT(findNext()));
+
+    refreshEntries();
+
     DBG_EXIT("MainWindow::MainWindow");
 }
 
@@ -73,38 +122,56 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow(){
     DBG_ENTER("MainWindow::~MainWindow");
 
-    appInterface.confFile.set("Filter", "Objects", (int) ui->chkboxObj->isChecked());
-    appInterface.confFile.set("Filter", "Code", (int) ui->chkboxCode->isChecked());
-    appInterface.confFile.set("Filter", "Data", (int) ui->chkboxData->isChecked());
-    appInterface.confFile.set("Filter", "Unknown", (int) ui->chkboxUnknown->isChecked());
+    // detach the models before the map is deleted
+    objModel->setMap(nullptr);
+    entryModel->setMap(nullptr);
+    currMap.reset();
 
-    appInterface.saveWidgetGeometry(this, "WinPos");
     delete ui;
-
-    if(iarMap)
-        delete iarMap;
-
-    if(stMap)
-        delete stMap;
 
     DBG_EXIT("MainWindow::~MainWindow");
 }
 
 //******************************************************************************
+void MainWindow::saveSettings(){
+
+    appInterface.confFile.set("Filter", "Objects", ui->chkboxObj->isChecked() ? 1 : 0);
+    appInterface.confFile.set("Filter", "Code",    ui->chkboxCode->isChecked() ? 1 : 0);
+    appInterface.confFile.set("Filter", "Data",    ui->chkboxData->isChecked() ? 1 : 0);
+    appInterface.confFile.set("Filter", "Unknown", ui->chkboxUnknown->isChecked() ? 1 : 0);
+
+    appInterface.saveWidgetGeometry(this, "WinPos");
+    appInterface.saveConfig();
+}
+
+//******************************************************************************
+void MainWindow::closeEvent(QCloseEvent *e){
+    saveSettings();
+    QMainWindow::closeEvent(e);
+}
+
+//******************************************************************************
 void MainWindow::dragEnterEvent(QDragEnterEvent *e){
 
-    if (e->mimeData()->hasUrls()) {
-        e->acceptProposedAction();
+    const QList<QUrl> urls = e->mimeData()->urls();
+    for(int i = 0; i < urls.size(); ++i){
+        if(urls.at(i).isLocalFile()){
+            e->acceptProposedAction();
+            return;
+        }
     }
 }
 
 //******************************************************************************
 void MainWindow::dropEvent(QDropEvent *e){
 
-    foreach (const QUrl &url, e->mimeData()->urls()) {
-
-        const QString &fileName = url.toLocalFile();
-        openFile(fileName);
+    // Only one map can be displayed: open the first local file
+    const QList<QUrl> urls = e->mimeData()->urls();
+    for(int i = 0; i < urls.size(); ++i){
+        if(urls.at(i).isLocalFile()){
+            openFile(urls.at(i).toLocalFile());
+            return;
+        }
     }
 }
 
@@ -116,376 +183,161 @@ void MainWindow::on_btnOpen_clicked(){
     QString last_fileFilter = appInterface.confFile.get_qstr("UI", "LastFileFilter");
 
     // show open file dialog
-    QString fileName = appInterface.OpenDialog(this,
-                last_filename, "Iar MAP File (*.map);;ST MAP File (*.m66);;Any File (*.*)",
-                &last_fileFilter);
+    QString fileName = AppInterface::OpenDialog(this,
+                last_filename, FILE_FILTER, &last_fileFilter);
 
     // cancel pressed
     if(fileName.isEmpty())
         return;
 
-    openFile(fileName);
-
-    // save last opened file name/filter
-    appInterface.confFile.set_qstr("UI", "LastFile", fileName);
+    // save last selected filter (the file name is saved by openFile)
     appInterface.confFile.set_qstr("UI", "LastFileFilter", last_fileFilter);
+
+    openFile(fileName);
 }
 
 //******************************************************************************
-void MainWindow::openFile(const QString &fileName){
+bool MainWindow::openFile(const QString &fileName){
 
-    // cancel pressed
     if(fileName.isEmpty())
-        return;
+        return false;
+
+    // Read the whole file (QFile handles Unicode file names)
+    QFile file(fileName);
+    if(!file.open(QIODevice::ReadOnly)){
+        AppInterface::MsgErr(this, tr("Cannot open file."),
+                QDir::toNativeSeparators(fileName) + "\n" + file.errorString());
+        return false;
+    }
+    QByteArray rawContent = file.readAll();
+    file.close();
+    std::string content(rawContent.constData(), rawContent.size());
+    rawContent.clear();
+
+    // Detect format and parse
+    MapFormat format = detectMapFormat(content, QFileInfo(fileName).suffix().toStdString());
+    std::unique_ptr<XMap> newMap(createMap(format));
+    std::istringstream in(content);
+    bool recognized = newMap->parse(in);
+
+    if(!recognized || newMap->entMap.empty()){
+        AppInterface::MsgErr(this, tr("No symbols found."),
+                QDir::toNativeSeparators(fileName) + "\n"
+                + tr("The file is not a supported map file (IAR, ST/Keil L166)."));
+        return false;
+    }
 
     // save last opened file
     appInterface.confFile.set_qstr("UI", "LastFile", fileName);
 
-    // open selected file
-    if(iarMap)
-        delete iarMap;
-    if(stMap)
-        delete stMap;
-    currMap = nullptr;
-
-    QByteArray ba = fileName.toLatin1();
-    if(fileName.endsWith(".M66", Qt::CaseInsensitive)){
-        currMap = stMap = new StMap(ba.data());
-    }
-    else{
-        currMap = iarMap = new IarMap(ba.data());
-    }
-
+    // Display the new map (models first, then delete the old map)
     objFilter.clear();
-    displayObj(currMap);
-    displayMap(objFilter, currMap);
+    objModel->setMap(newMap.get());
+    entryModel->setMap(newMap.get());
+    currMap = std::move(newMap);
 
-    // set window title
     openedFileName = fileName;
-    this->setWindowTitle("mapalizer - " + openedFileName);
+    refreshEntries();
+    return true;
 }
 
 //******************************************************************************
 void MainWindow::on_chkboxCode_clicked(){
-    displayMap(objFilter, currMap);
+    refreshEntries();
 }
 //******************************************************************************
 void MainWindow::on_chkboxData_clicked(){
-    displayMap(objFilter, currMap);
+    refreshEntries();
 }
 //******************************************************************************
 void MainWindow::on_chkboxUnknown_clicked(){
-    displayMap(objFilter, currMap);
+    refreshEntries();
 }
 //******************************************************************************
 void MainWindow::on_chkboxObj_clicked(){
     ui->tabObjects->setVisible(ui->chkboxObj->isChecked());
 }
-//******************************************************************************
-void MainWindow::on_tabObjects_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn){
 
-    (void) previousRow;
-    (void) previousColumn;
-    (void) currentColumn;
+//******************************************************************************
+void MainWindow::objectRowChanged(const QModelIndex &current, const QModelIndex &previous){
+
+    (void) previous;
 
     objFilter.clear();
+    if(current.isValid())
+        objFilter = objModel->objectAt(objProxy->mapToSource(current).row());
 
-    QTableWidgetItem * item = ui->tabObjects->item(currentRow, 0);
-    if(item != nullptr){
-        objFilter = item->text();
-        if(!objFilter.compare("< All >"))
-            objFilter.clear();
-    }
-
-    displayMap(objFilter, currMap);
-
-    // set window title to current object filter
-    QString txt = objFilter;
-    if(!txt.isEmpty())
-        txt = "::" + txt;
-    this->setWindowTitle("mapalizer - " + openedFileName + txt);
+    refreshEntries();
 }
 
 //******************************************************************************
-void MainWindow::displayObj(XMap * mmap){
+// Apply the object/type filter to the entries table and update title/status
+//******************************************************************************
+void MainWindow::refreshEntries(){
 
-    QTableWidgetItem * item;
-    QColor color(0xff, 0xe9, 0xbd);
+    entryModel->setFilter(objFilter,
+                          ui->chkboxCode->isChecked(),
+                          ui->chkboxData->isChecked(),
+                          ui->chkboxUnknown->isChecked());
 
-    // clear old table content
-    ui->tabObjects->clear();
-    ui->tabObjects->setRowCount(0);
-
-    // Columns names
-    QStringList tabEntriesHeader;
-    tabEntriesHeader << tr("Object") << tr("Code") << tr("Data");
-    ui->tabObjects->setHorizontalHeaderLabels(tabEntriesHeader);
-    ui->tabObjects->setColumnCount(3);
-    ui->tabObjects->setColumnWidth(0, 150); // Name
-    ui->tabObjects->setColumnWidth(1, 60);  // Address
-    ui->tabObjects->setColumnWidth(2, 60);  // Size
-    ui->tabObjects->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-    ui->tabObjects->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-
-    // Table background
-    QPalette p = ui->tabObjects->palette();
-    p.setColor(QPalette::Base, Qt::gray);
-    ui->tabObjects->setPalette(p);
-
-    // return if no data to display
-    if(!mmap)
-        return;
-
-    ui->tabObjects->setSortingEnabled(false);
-    ui->tabObjects->setRowCount(mmap->objCnt + 1 /*<All>*/);
-
-    // All
-    item = new QTableWidgetItem("< All >");
-    item->setFlags(item->flags() ^ Qt::ItemIsEditable);
-    item->setBackground(QColor(0xff, 0xff, 0xff));
-    ui->tabObjects->setItem(0, 0, item);
-
-    // Code
-    item = new IntTableWidgetItem();
-    item->setText(QString::number(mmap->codeSize));
-    item->setFlags(item->flags() ^ Qt::ItemIsEditable);
-    item->setBackground(QColor(0xff, 0xff, 0xff));
-    ui->tabObjects->setItem(0, 1, item);
-
-    // Data
-    item = new IntTableWidgetItem();
-    item->setText(QString::number(mmap->dataSize));
-    item->setFlags(item->flags() ^ Qt::ItemIsEditable);
-    item->setBackground(QColor(0xff, 0xff, 0xff));
-    ui->tabObjects->setItem(0, 2, item);
-
-    // Show entries
-    int idx = 1;
-    for(map<string,ObjEntry>::iterator it = mmap->objMap.begin(); it != mmap->objMap.end(); ++it){
-
-        // Name
-        item = new QTableWidgetItem(it->second.name.c_str());
-        item->setFlags(item->flags() ^ Qt::ItemIsEditable);
-        item->setBackground(color);
-        ui->tabObjects->setItem(idx, 0, item);
-
-        // Code
-        item = new IntTableWidgetItem();
-        item->setText(QString::number(it->second.code));
-        item->setFlags(item->flags() ^ Qt::ItemIsEditable);
-        item->setBackground(color);
-        ui->tabObjects->setItem(idx, 1, item);
-
-        // Data
-        item = new IntTableWidgetItem();
-        item->setText(QString::number(it->second.data));
-        item->setFlags(item->flags() ^ Qt::ItemIsEditable);
-        item->setBackground(color);
-        ui->tabObjects->setItem(idx, 2, item);
-
-        ++idx;
-    }
-
-    ui->tabObjects->setSortingEnabled(true);
+    lblCount->setText(tr("%1 of %2 symbols")
+                      .arg(entryModel->rowCount())
+                      .arg(entryModel->totalCount()));
+    updateTitle();
 }
 
 //******************************************************************************
-void MainWindow::displayMap(const QString &object, XMap * mmap){
+void MainWindow::updateTitle(){
 
-    QTableWidgetItem * item;
-    MapEntry * entry;
-    QColor color;
+    QString title = APP_TITLE;
+    if(!openedFileName.isEmpty())
+        title += " - " + QDir::toNativeSeparators(openedFileName);
+    if(!objFilter.isEmpty())
+        title += "::" + objFilter;
+    setWindowTitle(title);
+}
 
-    // clear old table content
-    ui->tabEntries->clear();
-    ui->tabEntries->setRowCount(0);
+//******************************************************************************
+void MainWindow::focusFind(){
+    ui->edtFind->setFocus();
+    ui->edtFind->selectAll();
+}
 
-    // Columns names
-    QStringList tabEntriesHeader;
-    tabEntriesHeader << tr("Name") << tr("Address") << tr("Size") << tr("Type") << tr("Object");
-    ui->tabEntries->setHorizontalHeaderLabels(tabEntriesHeader);
-    ui->tabEntries->setColumnCount(5);
-    ui->tabEntries->setColumnWidth(0, 170); // Name
-    ui->tabEntries->setColumnWidth(1, 80);  // Address
-    ui->tabEntries->setColumnWidth(2, 60);  // Size
-    ui->tabEntries->setColumnWidth(3, 60);  // Type
-    ui->tabEntries->setColumnWidth(4, 120); // Object
-//    ui->tabEntries->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-    ui->tabEntries->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+//******************************************************************************
+// Find the next entry (after the current row, wrapping around) whose name
+// contains the search text
+//******************************************************************************
+void MainWindow::findNext(){
 
-    // Table background
-    QPalette p = ui->tabEntries->palette();
-    p.setColor(QPalette::Base, Qt::gray);
-    ui->tabEntries->setPalette(p);
-
-    // return if no data to display
-    if(!mmap)
+    // Remove whitespaces from start and end
+    QString findTxt = ui->edtFind->text().trimmed();
+    int rows = entryProxy->rowCount();
+    if(findTxt.isEmpty() || (rows <= 0))
         return;
 
-    ui->tabEntries->setSortingEnabled(false);
+    int current = ui->tabEntries->currentIndex().row();    // -1 if none
 
-    bool obj_filter = !object.isEmpty();
-
-    // Count number of rows required to display content based on filter
-    int count = 0;
-    for(std::vector<MapEntry>::size_type i = 0; i != mmap->entMap.size(); i++){
-        entry = &mmap->entMap[i];
-
-        if(entry == nullptr)
-            continue;
-
-        if(obj_filter){
-            if(object.compare(entry->obj.c_str()) != 0)
-                continue;
-        }
-
-        if(entry->typ1 == MapEntry::CODE){
-            if(ui->chkboxCode->isChecked())
-                ++count;
-        }
-        else if(entry->typ1 == MapEntry::DATA){
-            if(ui->chkboxData->isChecked())
-                ++count;
-        }
-        else{
-            if(ui->chkboxUnknown->isChecked())
-                ++count;
+    for(int i = 1; i <= rows; ++i){
+        int row = (current + i) % rows;
+        QModelIndex idx = entryProxy->index(row, EntryTableModel::COL_NAME);
+        if(idx.data().toString().contains(findTxt, Qt::CaseInsensitive)){
+            ui->tabEntries->setCurrentIndex(idx);
+            ui->tabEntries->scrollTo(idx);
+            return;
         }
     }
 
-    // Show entries
-    ui->tabEntries->setRowCount(count);
-    int idx = 0;
-    for(std::vector<MapEntry>::size_type i = 0; i != mmap->entMap.size(); i++){
-        entry = &mmap->entMap[i];
-
-        if(entry == nullptr)
-            continue;
-
-        // Check object filter
-        if(obj_filter){
-            if(object.compare(entry->obj.c_str()) != 0)
-                continue;
-        }
-
-        // Type
-        if(entry->typ1 == MapEntry::CODE){
-            if(!ui->chkboxCode->isChecked())
-                continue;
-            item = new QTableWidgetItem("Code");
-            color = QColor(0xbe, 0xe6, 0xea);
-        }
-        else if(entry->typ1 == MapEntry::DATA){
-            if(!ui->chkboxData->isChecked())
-                continue;
-            item = new QTableWidgetItem("Data");
-            color = QColor(0xff, 0xd9, 0xad);
-        }
-        else{
-            if(!ui->chkboxUnknown->isChecked())
-                continue;
-            item = new QTableWidgetItem("");
-            color = QColor(0xe0, 0xe0, 0xe0);
-        }
-        item->setFlags(item->flags() ^ Qt::ItemIsEditable);
-        item->setBackground(color);
-        ui->tabEntries->setItem(idx, 3, item);
-
-        // Name
-        item = new QTableWidgetItem(entry->name.c_str());
-        item->setFlags(item->flags() ^ Qt::ItemIsEditable);
-        item->setBackground(color);
-        ui->tabEntries->setItem(idx, 0, item);
-
-        // Address
-        item = new QTableWidgetItem("0x" + QString("%1").arg(entry->addr, 8, 16, QChar('0')).toUpper());
-        item->setFlags(item->flags() ^ Qt::ItemIsEditable);
-        item->setBackground(color);
-        ui->tabEntries->setItem(idx, 1, item);
-
-        // Size
-        item = new IntTableWidgetItem();
-        item->setText(QString::number(entry->size, 10));
-        item->setFlags(item->flags() ^ Qt::ItemIsEditable);
-        item->setBackground(color);
-        ui->tabEntries->setItem(idx, 2, item);
-
-        // Object
-        item = new QTableWidgetItem(entry->obj.c_str());
-        item->setFlags(item->flags() ^ Qt::ItemIsEditable);
-        item->setBackground(color);
-        ui->tabEntries->setItem(idx, 4, item);
-
-        ++idx;
-    }
-
-    ui->tabEntries->setSortingEnabled(true);
+    statusBar()->showMessage(tr("'%1' not found").arg(findTxt), STATUS_TIMEOUT_MS);
 }
 
 //******************************************************************************
 void MainWindow::on_btnFind_clicked(){
-
-    QTableWidgetItem * item = nullptr;
-
-    // Remove whitespaces from start and end
-    QString findTxt = ui->edtFind->text().trimmed();
-    if(findTxt.isEmpty() || (ui->tabEntries->rowCount() <= 0))
-        return;
-
-    // Go through the rest of the table
-    int row = ui->tabEntries->currentRow() + 1;
-    while(row < ui->tabEntries->rowCount()){
-        item = ui->tabEntries->item(row, 0);
-        if(item != nullptr){
-            if(item->text().contains(findTxt, Qt::CaseInsensitive))
-                break;
-        }
-        row++;
-    }
-
-    // Found?
-    if(row < ui->tabEntries->rowCount()){
-        ui->tabEntries->setCurrentCell(row, 0);
-        return;
-    }
-
-    // Not found, start from the beginning, until the current row
-    row = 0;
-    while(row < ui->tabEntries->currentRow()){
-        item = ui->tabEntries->item(row, 0);
-        if(item != nullptr){
-            if(item->text().contains(findTxt, Qt::CaseInsensitive))
-                break;
-        }
-        row++;
-    }
-
-    // Found?
-    if(row < ui->tabEntries->rowCount()){
-        ui->tabEntries->setCurrentCell(row, 0);
-    }
-}
-
-void MainWindow::on_edtFind_returnPressed(){
-    on_btnFind_clicked();
+    findNext();
 }
 
 //******************************************************************************
-bool MainWindow::eventFilter(QObject* obj, QEvent* event){
-
-    if(event->type()==QEvent::KeyPress){
-        QKeyEvent* key = static_cast<QKeyEvent*>(event);
-
-        // Ctrl+F pressed?
-        if((key->key() == Qt::Key_F) && (key->modifiers() & Qt::ControlModifier)){
-            ui->edtFind->setFocus();
-        }
-
-        // F3 pressed? Qt::Key_F3
-        if(key->key() == Qt::Key_F3){
-            //on_btnFind_clicked();
-        }
-    }
-
-    return QObject::eventFilter(obj, event);
+void MainWindow::on_edtFind_returnPressed(){
+    findNext();
 }
+
+//******************************************************************************

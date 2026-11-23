@@ -1,19 +1,19 @@
 //******************************************************************************
 // Configuration File
 //
+// Text file with one "category:name=value" entry per line.
+//
 // Igor Marinescu
 //******************************************************************************
-#ifndef VARFBOX_H
-#define VARFBOX_H
+#ifndef CONFFILE_H
+#define CONFFILE_H
 
 //******************************************************************************
 // Includes
 //******************************************************************************
 #include <map>
-#include <iostream>
+#include <string>
 #include <QString>
-
-using namespace std;
 
 //******************************************************************************
 //******************************************************************************
@@ -21,61 +21,50 @@ class ConfFile{
 
 public:
 
-    class ConfObj {
-    public:
+    ConfFile();
+    explicit ConfFile(const QString & filename);
 
-        enum {INTEGER, STRING, BYTEARRAY } type;
-        int varInteger;
-        string varString;
+    // Load the file (previous content is cleared). The file name is
+    // remembered for save(). Returns false if the file could not be read.
+    bool load(const QString & filename);
 
-        // constructors
-        ConfObj(){varInteger = 0; type = ConfObj::INTEGER; }
-        ConfObj(int var){varInteger = var; type = ConfObj::INTEGER; }
-        ConfObj(string str){varString = str; type = ConfObj::STRING; }
+    // Save to the remembered file name. Returns false on error.
+    bool save() const;
 
-        // assigment operator
-        ConfObj& operator=(const int & other);
-        ConfObj& operator=(const string & other);
+    const QString & fileName() const { return filename; }
+    void setFileName(const QString & name) { filename = name; }
 
-        // conversion operator
-        operator int();
-        operator string();
+    bool exists(const std::string & cat) const;
+    bool exists(const std::string & cat, const std::string & name) const;
 
-        friend std::ostream& operator<<(std::ostream& os, const ConfObj & obj);
-    };
+    void set(const std::string & cat, const std::string & name, int val);
+    void set_str(const std::string & cat, const std::string & name, const std::string & val);
+    void set_qstr(const std::string & cat, const std::string & name, const QString & qstr);
+
+    // Returns true if the value exists and is a valid integer
+    bool get(const std::string & cat, const std::string & name, int * val) const;
+    // Returns the value or 'default_value' if missing/invalid
+    int  get_or(const std::string & cat, const std::string & name, int default_value) const;
+
+    bool get_str(const std::string & cat, const std::string & name, std::string * val = nullptr) const;
+    QString get_qstr(const std::string & cat, const std::string & name,
+                     const QString & def = QString()) const;
+
+    void clear();
+    void clear(const std::string & cat);
+    void clear(const std::string & cat, const std::string & name);
 
 private:
 
-    typedef map<string, ConfObj> MapNameObj;
-    typedef map<string, MapNameObj> MapCatName;
+    typedef std::map<std::string, std::string> MapNameValue;
+    typedef std::map<std::string, MapNameValue> MapCatName;
+
+    // Returns the stored value or nullptr if not found
+    const std::string * find(const std::string & cat, const std::string & name) const;
+
     MapCatName varMap;
-
-public:
-
-    string filename;
-
-    ConfFile(){}
-    ConfFile(const ConfFile& other);
-    ConfFile& operator=(const ConfFile& other);
-    ConfFile(const char * filename);
-    virtual ~ConfFile();
-
-    bool exists(const string & cat);
-    bool exists(const string & cat, const string & name);
-
-    void set(const string & cat, const string & name, const int val);
-    void set_str(const string & cat, const string & name, const string & val);
-    void set_qstr(const char * cat, const char * name, const QString & qstr);
-
-    bool get(const string & cat, const string & name, int * val);
-    int  get(const string & cat, const string & name, int default_value = 0);
-
-    bool get_str(const string & cat, const string & name, string * val = NULL);
-    QString get_qstr(const char * cat, const char * name, const char * def = NULL);
-
-    void clear();
-    void clear(const string & cat);
-    void clear(const string & cat, const string & name);
+    QString filename;
 };
 
-#endif // VARFBOX_H
+//******************************************************************************
+#endif // CONFFILE_H
