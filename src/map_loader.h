@@ -16,7 +16,8 @@
 enum MapFormat {
     MAP_FORMAT_IAR,         // IAR ILINK (*.map)
     MAP_FORMAT_ST,          // Keil L166 for ST10/C166 (*.m66)
-    MAP_FORMAT_GCC          // GNU ld (*.map)
+    MAP_FORMAT_GCC,         // GNU ld (*.map)
+    MAP_FORMAT_ELF          // ELF file symbol table (*.elf, *.axf, *.out)
 };
 
 // Detect the map format from the file content. If the content is not

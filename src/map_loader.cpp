@@ -11,9 +11,14 @@
 #include "iar_map.h"
 #include "st_map.h"
 #include "gcc_map.h"
+#include "elf_map.h"
 
 //******************************************************************************
 MapFormat detectMapFormat(const std::string & content, const std::string & extension){
+
+    // ELF file (binary)
+    if(ElfMap::isElf(content))
+        return MAP_FORMAT_ELF;
 
     // Keil L166 signatures
     if((content.find("LINKER/LOCATER L166") != std::string::npos)
@@ -49,6 +54,8 @@ XMap * createMap(MapFormat format){
         return new StMap();
     case MAP_FORMAT_GCC:
         return new GccMap();
+    case MAP_FORMAT_ELF:
+        return new ElfMap();
     case MAP_FORMAT_IAR:
     default:
         return new IarMap();

@@ -33,7 +33,8 @@ SOURCES += main.cpp \
     utils.cpp \
     st_map.cpp \
     iar_map.cpp \
-    gcc_map.cpp
+    gcc_map.cpp \
+    elf_map.cpp
 
 HEADERS  += mainwindow.h \
     ConfFile.h \
@@ -45,7 +46,8 @@ HEADERS  += mainwindow.h \
     utils.h \
     st_map.h \
     iar_map.h \
-    gcc_map.h
+    gcc_map.h \
+    elf_map.h
 
 FORMS    += mainwindow.ui
 

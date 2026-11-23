@@ -36,6 +36,8 @@ Mapalizer can help you:
 
 The following compilers/linkers are supported: IAR, Keil, GCC (GNU ld)
 
+mapalizer can also read the symbol table of ELF files (e.g. `*.elf`, `*.axf`, `*.out`, `*.o`), independent of the compiler that generated them. The ELF symbol table contains the exact symbol sizes and also the static (local) symbols, but no module names: the "Object" column shows the section containing the symbol (e.g. `.text`, `.bss`). The file must not be stripped.
+
 Note for GCC map files: the GNU linker does not list symbol sizes. mapalizer calculates the size of a symbol as the distance to the next symbol in the same input section (or to the end of the section). Parts of input sections without a global symbol (e.g. static functions or variables) are listed under the input section name, e.g. `.text.my_static_function` or `.bss`.
 
 ## How to compile mapalizer
